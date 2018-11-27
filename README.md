@@ -1,12 +1,13 @@
 ![Chesstastic Icon](http://i.imgur.com/ELIf2Bd.png)
 
-# 팀 및 팀원 소개
+# 팀/팀원 소개 및 활동 정리
 ***
 
 * Name: Hyeon.Cheol Yun
 * Mail: hotgake@gmail.com
 * ID : hotgake
 * SID: 2015314758
+* Project 관리, Code 관리
 
 ***
 
@@ -14,34 +15,35 @@
 * Mail: skarn2158@naver.com
 * ID : Nam-gu
 * SID: 2017311512
-
+* Wiki 관리, Code 관리
 
 ***
 * Name: 이현빈
 * Mail: bigpig93@naver.com
 * ID : hyunbeen
 * SID: 2014315355
-
+* Issue 관리, Code 관리
 
 ***
 * Name: 박결
 * Mail: parkg17@naver.com
 * ID : parkg17
 * SID: 2017312665
-
+* Issue 관리, Code 관리
 
 ***
 * Name: Jisu Kang
 * Mail: kangjisu0403@gmail.com
 * ID : Knowater
 * SID: 2017313101
+* Wiki 관리, Code 관리
 
 ***
 
 
 
 
-# Material Chess - ChessTastic 
+# Material Chess - ChessTastic (프로젝트 소개 및 활동)
 
 [![Join the chat at https://gitter.im/AvijitGhosh82/material-chess-android](https://badges.gitter.im/AvijitGhosh82/material-chess-android.svg)](https://gitter.im/AvijitGhosh82/material-chess-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
