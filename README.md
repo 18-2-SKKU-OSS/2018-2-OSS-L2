@@ -1,5 +1,46 @@
 ![Chesstastic Icon](http://i.imgur.com/ELIf2Bd.png)
 
+# 팀 및 팀원 소개
+***
+
+* Name: Hyeon.Cheol Yun
+* Mail: hotgake@gmail.com
+* ID : hotgake
+* SID: 2015314758
+
+***
+
+* Name: 강남구
+* Mail: skarn2158@naver.com
+* ID : Nam-gu
+* SID: 2017311512
+
+
+***
+* Name: 이현빈
+* Mail: bigpig93@naver.com
+* ID : hyunbeen
+* SID: 2014315355
+
+
+***
+* Name: 박결
+* Mail: parkg17@naver.com
+* ID : parkg17
+* SID: 2017312665
+
+
+***
+* Name: Jisu Kang
+* Mail: kangjisu0403@gmail.com
+* ID : Knowater
+* SID: 2017313101
+
+***
+
+
+
+
 # Material Chess - ChessTastic 
 
 [![Join the chat at https://gitter.im/AvijitGhosh82/material-chess-android](https://badges.gitter.im/AvijitGhosh82/material-chess-android.svg)](https://gitter.im/AvijitGhosh82/material-chess-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
