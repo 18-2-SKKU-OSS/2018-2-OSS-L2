@@ -1,4 +1,4 @@
-chess program menual
+chess program mnual
 
 설치환경 
 1. android studio를 설치한다 
