@@ -1,5 +1,3 @@
-![Chesstastic Icon](http://i.imgur.com/ELIf2Bd.png)
-
 # 팀/팀원 소개 및 활동 정리
 ***
 
@@ -46,6 +44,8 @@
 
 
 # Material Chess - ChessTastic (프로젝트 소개 및 활동)
+
+![Chesstastic Icon](http://i.imgur.com/ELIf2Bd.png)
 
 [![Join the chat at https://gitter.im/AvijitGhosh82/material-chess-android](https://badges.gitter.im/AvijitGhosh82/material-chess-android.svg)](https://gitter.im/AvijitGhosh82/material-chess-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
