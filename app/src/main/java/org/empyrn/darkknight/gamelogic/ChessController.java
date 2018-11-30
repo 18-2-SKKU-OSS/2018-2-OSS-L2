@@ -664,7 +664,8 @@ public class ChessController {
 			updateGUI();
 		}
 	}
-
+	
+	
 	private final synchronized void startAnalysis() {
 		if (gameMode.analysisMode()) {
 			if (computerThread != null)
@@ -689,7 +690,7 @@ public class ChessController {
 			}
 		}
 	}
-
+	
 	private final synchronized void stopAnalysis() {
 		if (analysisThread != null) {
 			computerPlayer.stopSearch();
@@ -703,7 +704,8 @@ public class ChessController {
 			updateGUI();
 		}
 	}
-
+	
+	//control time limit
 	public final synchronized void setTimeLimit(int time, int moves, int inc) {
 		timeControl = time;
 		movesPerSession = moves;
@@ -712,7 +714,8 @@ public class ChessController {
 			game.timeController.setTimeControl(timeControl, movesPerSession,
 					timeIncrement);
 	}
-
+	
+	//process threading
 	public final void stopSearch() {
 		if (computerThread != null) {
 			computerPlayer.stopSearch();
@@ -736,7 +739,8 @@ public class ChessController {
 		updateGUI();
 		return true;
 	}
-
+        
+	//process draw
 	private final boolean findValidDrawClaim() {
 		if (game.getGameState() != GameState.ALIVE)
 			return true;
@@ -751,7 +755,8 @@ public class ChessController {
 			return true;
 		return false;
 	}
-
+	
+	//process resign
 	public final void resignGame() {
 		if (game.getGameState() == GameState.ALIVE) {
 			game.processString("resign");
