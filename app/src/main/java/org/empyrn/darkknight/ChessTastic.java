@@ -1640,7 +1640,14 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
         String msg;
         int invalidCase = ctrl.getGameState();
         switch(invalidCase) {
-
+            case WHITE_WIN:
+                msg = String.format("Game over, White mates!");
+                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                return;
+            case BLACK_WIN:
+                msg = String.format("Game over, Black mates!");
+                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                return;
             default:
                 msg = String.format("Invalid move %s-%s",
                         TextIO.squareToString(m.from), TextIO.squareToString(m.to));
