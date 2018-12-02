@@ -1635,9 +1635,17 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 
 	@Override
 	public void reportInvalidMove(Move m) {
-		String msg = String.format("Invalid move %s-%s",
-				TextIO.squareToString(m.from), TextIO.squareToString(m.to));
-		Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+        final int WHITE_WIN = 1;
+        final int BLACK_WIN = 2;
+        String msg;
+        int invalidCase = ctrl.getGameState();
+        switch(invalidCase) {
+
+            default:
+                msg = String.format("Invalid move %s-%s",
+                        TextIO.squareToString(m.from), TextIO.squareToString(m.to));
+                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+        }
 	}
 
 	@Override
