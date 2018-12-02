@@ -334,7 +334,18 @@ public class ChessController {
 		return gameMode.analysisMode() || !humansTurn();
 	}
 
-	private final void undoMoveNoUpdate() {
+    public final int getGameState() {
+        switch(game.getGameState()) {
+            case WHITE_MATE:
+                return 1;
+            case BLACK_MATE:
+                return 2;
+            default:
+                return 0;
+        }
+    }
+
+    private final void undoMoveNoUpdate() {
 		if (game.getLastMove() != null) {
 			ss.searchResultWanted = false;
 			game.undoMove();
