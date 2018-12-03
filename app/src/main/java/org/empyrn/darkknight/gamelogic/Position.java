@@ -387,7 +387,7 @@ public class Position {
         hash ^= epHashKeys[(epSquare >= 0) ? getX(epSquare) + 1 : 0];
         return hash;
     }
-
+    //get random value
     private final static long getRandomHashVal(int rndNo) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
