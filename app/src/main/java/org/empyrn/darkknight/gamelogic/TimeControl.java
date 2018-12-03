@@ -17,7 +17,7 @@ public class TimeControl {
 
 	/** Constructor. Sets time control to "game in 5min". */
 	public TimeControl() {
-		setTimeControl(5 * 60 * 1000, 0, 0);
+		setTimeControl(5 * 60 * 1000, 0, 0); //compute 5minute
 		reset();
 	}
 
@@ -34,7 +34,7 @@ public class TimeControl {
 		movesPerSession = moves;
 		increment = inc;
 	}
-
+	//setting move
 	public final void setCurrentMove(int move, boolean whiteToMove, long whiteBaseTime, long blackBaseTime) {
 		currentMove = move;
 		this.whiteToMove = whiteToMove;
@@ -43,17 +43,17 @@ public class TimeControl {
 		timerT0 = 0;
 		elapsed = 0;
 	}
-
+	//check timer
 	public final boolean clockRunning() {
 		return timerT0 != 0;
 	}
-
+	//setting start time
 	public final void startTimer(long now) {
 		if (!clockRunning()) {
 			timerT0 = now;
 		}
 	}
-
+	//setting stop time
 	public final void stopTimer(long now) {
 		if (clockRunning()) {
 			long timerT1 = now;
@@ -88,15 +88,15 @@ public class TimeControl {
 		}
 		return (int)remaining;
 	}
-
+	//setting initial time
 	public final int getInitialTime() {
 		return (int)timeControl;
 	}
-
+	//return increment time
 	public final int getIncrement() {
 		return (int)increment;
 	}
-	
+	//comptutate moving
 	public final int getMovesToTC() {
 		if (movesPerSession <= 0)
 			return 0;
