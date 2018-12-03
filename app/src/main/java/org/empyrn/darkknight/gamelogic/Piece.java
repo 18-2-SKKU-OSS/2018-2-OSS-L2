@@ -4,6 +4,7 @@ package org.empyrn.darkknight.gamelogic;
  * Constants for different piece types.
  * @author petero
  */
+//조각들의 타입들을 일정화시킨다 
 public class Piece {
     public static final int EMPTY = 0;
 
@@ -27,7 +28,9 @@ public class Piece {
      * Return true if p is a white piece, false otherwise.
      * Note that if p is EMPTY, an unspecified value is returned.
      */
+    //리턴 타입이 하얀색이면 참 아니면 거짓으로 한다. 조각이 비어있으면 불분명한 객체로 리턴한다. 
     //confirm white piece
+    //하얀색인지 확인한다. 
     public static boolean isWhite(int pType) {
         return pType < BKING;
     }
