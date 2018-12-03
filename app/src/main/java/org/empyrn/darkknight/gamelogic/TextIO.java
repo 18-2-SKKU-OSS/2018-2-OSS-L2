@@ -12,7 +12,9 @@ public class TextIO {
     static public final String startPosFEN = new String("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 	
     /** Parse a FEN string and return a chess Position object. */
-    public static final Position readFEN(String fen) throws ChessParseError {
+   //FEN 문자열을 구문 분석하고 체스 Position 객체를 반환합니다. 
+    
+	   public static final Position readFEN(String fen) throws ChessParseError {
         Position pos = new Position();
         String[] words = fen.split(" ");
         if (words.length < 2) {
@@ -22,7 +24,8 @@ public class TextIO {
         	words[i] = words[i].trim();
         }
         
-        // Piece placement
+        //Chess Piece placement
+        //체스조각 위치 
         int row = 7;
         int col = 0;
         for (int i = 0; i < words[0].length(); i++) {
@@ -58,6 +61,7 @@ public class TextIO {
         pos.setWhiteMove(words[1].charAt(0) == 'w');
 
         // Castling rights
+        //오른쪽 캐스팅
         int castleMask = 0;
         if (words.length > 2) {
             for (int i = 0; i < words[2].length(); i++) {
@@ -105,9 +109,11 @@ public class TextIO {
             }
         } catch (NumberFormatException nfe) {
             // Ignore errors here, since the fields are optional
+	    //이곳의 에러는 무시  
         }
 
         // Each side must have exactly one king
+        // 각각의 플레이어 쪽은 킹을 가지고 있어야 한다. 
         int wKings = 0;
         int bKings = 0;
         for (int x = 0; x < 8; x++) {
@@ -128,6 +134,7 @@ public class TextIO {
         }
 
         // Make sure king can not be captured
+        // 킹을 붙잡을수 있는지에 대한 여부를 확인한다.
         Position pos2 = new Position(pos);
         pos2.setWhiteMove(!pos.whiteMove);
         if (MoveGen.inCheck(pos2)) {
@@ -185,7 +192,8 @@ public class TextIO {
         pos.setPiece(Position.getSquare(col, row), p);
     }
     
-    /** Return a FEN string corresponding to a chess Position object. */
+    /** Return a FEN string corresponding to a chess Position object. *//
+   //체스 위치 객체에 해당하는 FEN 문자열을 반환합니다. 
     public static final String toFEN(Position pos) {
         StringBuilder ret = new StringBuilder();
         // Piece placement
@@ -277,6 +285,7 @@ public class TextIO {
      * @param longForm If true, use long notation, eg Ng1-f3.
      *                 Otherwise, use short notation, eg Nf3
      */
+   //사람이 읽을수 있도록 움직임을 변환한다. 
     public static final String moveToString(Position pos, Move move, boolean longForm) {
         ArrayList<Move> moves = MoveGen.instance.pseudoLegalMoves(pos);
         moves = MoveGen.removeIllegal(pos, moves);
@@ -338,11 +347,17 @@ public class TextIO {
                     if (numSameTarget < 2) {
                         // No file/row info needed
                     } else if (numSameFile < 2) {
-                        ret.append((char) (x1 + 'a'));   // Only file info needed
+                        ret.append((char) (x1 + 'a'));   
+			 // Only file info needed
+			    //파일 정보만 필요 
                     } else if (numSameRow < 2) {
-                        ret.append((char) (y1 + '1'));   // Only row info needed
+                        ret.append((char) (y1 + '1'));   
+			    //Only row info needed
+			    //오직 열정보만 필요 
                     } else {
-                        ret.append((char) (x1 + 'a'));   // File and row info needed
+                        ret.append((char) (x1 + 'a'));   
+			    // File and row info needed
+			    //파일과 열정보 필요 
                         ret.append((char) (y1 + '1'));
                     }
                 }
@@ -397,6 +412,7 @@ public class TextIO {
      * The string may specify any combination of piece/source/target/promotion
      * information as long as it matches exactly one valid move.
      */
+	//체스의 이동을 문자열로 표시한다. 가능한한 타당한 이동을 매치시킨다.
     public static final Move stringToMove(Position pos, String strMove) {
     	if (strMove.equals("--"))
     		return new Move(0, 0, 0);
@@ -521,6 +537,7 @@ public class TextIO {
     }
 
     /** Convert a move object to UCI string format. */
+	//물체의 이동을 UCI 형식으로 바꾼다.
     public static final String moveToUCIString(Move m) {
         String ret = squareToString(m.from);
         ret += squareToString(m.to);
@@ -551,6 +568,7 @@ public class TextIO {
      * Convert a string in UCI move format to a Move object.
      * @return A move object, or null if move has invalid syntax
      */
+	//이동을 UCI 포맷으로 바꾸고 타당하지 않는 이동은 null 표시 
     public static final Move UCIstringToMove(String move) {
         Move m = null;
         if ((move.length() < 4) || (move.length() > 5))
@@ -651,6 +669,7 @@ public class TextIO {
         return ret.toString();
     }
     //convert piece with character
+   //피스조각을 문자열로 바꾼다
     private final static String pieceToChar(int p) {
         switch (p) {
             case Piece.WQUEEN:  case Piece.BQUEEN:  return "Q";
@@ -662,6 +681,7 @@ public class TextIO {
         return "";
     }
     //convert character with piece
+	  //문자열을 피스조각으로 바꾼다.
     private final static int charToPiece(boolean white, char c) {
     	switch (c) {
     	case 'Q': case 'q': return white ? Piece.WQUEEN  : Piece.BQUEEN;
