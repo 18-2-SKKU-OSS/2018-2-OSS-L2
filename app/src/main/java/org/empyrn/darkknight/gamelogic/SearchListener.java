@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Used to get various search information during search
  */
+//검색동안에 다양한 검색 정보를 얻는데 사용되는 함수.
 public interface SearchListener {
     public void notifyDepth(int depth);
     public void notifyCurrMove(Position pos, Move m, int moveNr);
