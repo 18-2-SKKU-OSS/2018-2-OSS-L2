@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class TextIO {
     static public final String startPosFEN = new String("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-
+	
     /** Parse a FEN string and return a chess Position object. */
     public static final Position readFEN(String fen) throws ChessParseError {
         Position pos = new Position();
@@ -650,7 +650,7 @@ public class TextIO {
         }
         return ret.toString();
     }
-
+    //convert piece with character
     private final static String pieceToChar(int p) {
         switch (p) {
             case Piece.WQUEEN:  case Piece.BQUEEN:  return "Q";
@@ -661,7 +661,7 @@ public class TextIO {
         }
         return "";
     }
-    
+    //convert character with piece
     private final static int charToPiece(boolean white, char c) {
     	switch (c) {
     	case 'Q': case 'q': return white ? Piece.WQUEEN  : Piece.BQUEEN;
