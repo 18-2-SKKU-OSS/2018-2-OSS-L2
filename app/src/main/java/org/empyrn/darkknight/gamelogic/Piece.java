@@ -27,6 +27,7 @@ public class Piece {
      * Return true if p is a white piece, false otherwise.
      * Note that if p is EMPTY, an unspecified value is returned.
      */
+    //confirm white piece
     public static boolean isWhite(int pType) {
         return pType < BKING;
     }
