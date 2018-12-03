@@ -11,12 +11,21 @@ import java.security.NoSuchAlgorithmException;
  * in a separate hash table.
  * @author petero
  */
+/**
+  * 체스 위치의 상태를 저장합니다.
+  * 모든 이전 상태를 제외하고 필요한 모든 상태가 저장됩니다.
+  * 마지막 캡처 또는 폰 이동 이후. 그 상태가 필요하다.
+  * 3 배 반복 그리기 감지를 위해, 그리고 더 잘 저장됩니다.
+  * 별도의 해시 테이블에 있습니다.
+ 
+*/
 public class Position {
     private int[] squares;
 
     public boolean whiteMove;
 
     /** Bit definitions for the castleMask bit mask. */
+    /** castleMask 비트 마스크에 대한 비트 정의. */
     public static final int A1_CASTLE = 0; /** White long castle. */
     public static final int H1_CASTLE = 1; /** White short castle. */
     public static final int A8_CASTLE = 2; /** Black long castle. */
@@ -27,15 +36,18 @@ public class Position {
     private int epSquare;
     
     /** Number of half-moves since last 50-move reset. */
+    /** 마지막 50 이동 재설정 이후의 반 이동 수입니다. */
     public int halfMoveClock;
     
     /** Game move number, starting from 1. */
+    /** 1에서 시작하는 게임 이동 번호. */
     public int fullMoveCounter;
 
     private long hashKey;           // Cached Zobrist hash key
     private int wKingSq, bKingSq;   // Cached king positions
 
     /** Initialize board to empty position. */
+    /** 보드를 빈 위치로 초기화하십시오. */
     public Position() {
         squares = new int[64];
         for (int i = 0; i < 64; i++)
@@ -86,6 +98,10 @@ public class Position {
      * Return Zobrish hash value for the current position.
      * Everything except the move counters are included in the hash value.
      */
+    /**
+      * 현재 위치에 대한 Zobrish 해시 값을 반환합니다.
+      * 이동 카운터를 제외한 모든 항목이 해시 값에 포함됩니다.
+    */
     public final long zobristHash() {
         return hashKey;
     }
@@ -94,6 +110,10 @@ public class Position {
      * Decide if two positions are equal in the sense of the draw by repetition rule.
      * @return True if positions are equal, false otherwise.
      */
+    /**
+      * 반복 규칙에 의해 두 위치가 추첨의 의미에서 동일하면 결정하십시오.
+      * @return 위치가 동일한 경우는 true, 그렇지 않은 경우는 false
+    */
     final public boolean drawRuleEquals(Position other) {
         for (int i = 0; i < 64; i++) {
             if (squares[i] != other.squares[i])
@@ -115,34 +135,42 @@ public class Position {
         }
     }
     /** Return index in squares[] vector corresponding to (x,y). */
+    /** (x, y)에 해당하는 squares [] 벡터의 인덱스를 반환합니다. */
     public final static int getSquare(int x, int y) {
         return y * 8 + x;
     }
     /** Return x position (file) corresponding to a square. */
+    /** 사각형에 해당하는 x 위치 (파일)를 반환합니다. */
     public final static int getX(int square) {
         return square & 7;
     }
     /** Return y position (rank) corresponding to a square. */
+         / ** 사각형에 해당하는 y 위치 (순위)를 반환합니다. * /
     public final static int getY(int square) {
         return square >> 3;
     }
     /** Return true if (x,y) is a dark square. */
+    /** (x, y)가 어두운 사각형 인 경우 true를 반환합니다. */
     public final static boolean darkSquare(int x, int y) {
         return (x & 1) == (y & 1);
     }
 
     /** Return piece occuping a square. */
+    /** 사각형을 차지하는 조각을 되 돌린다. */
     public final int getPiece(int square) {
         return squares[square];
     }
     /** Set a square to a piece value. */
+    /** 사각형을 조각 값으로 설정합니다. */
     public final void setPiece(int square, int piece) {
     	// Update hash key
+        // hash key 업데이트 
     	int oldPiece = squares[square];
         hashKey ^= psHashKeys[oldPiece][square];
         hashKey ^= psHashKeys[piece][square];
         
         // Update board
+        // 판 업데이트 
         squares[square] = piece;
 
         // Update king position 
@@ -154,6 +182,7 @@ public class Position {
     }
 
     /** Return true if white long castling right has not been lost. */
+    /** 만약 흰색 긴 castling 권리가 손실되지 않은 경우 true를 반환합니다. */
     public final boolean a1Castle() {
         return (castleMask & (1 << A1_CASTLE)) != 0;
     }
@@ -162,14 +191,17 @@ public class Position {
         return (castleMask & (1 << H1_CASTLE)) != 0;
     }
     /** Return true if black long castling right has not been lost. */
+    /** 하얀 짧은 짧은 성곽을 잃어 버리지 않았다면 true를 반환합니다. */
     public final boolean a8Castle() {
         return (castleMask & (1 << A8_CASTLE)) != 0;
     }
     /** Return true if black short castling right has not been lost. */
+    /** 짧은 검은 색 성채를 잃어 버리지 않은 경우 true를 반환합니다. */
     public final boolean h8Castle() {
         return (castleMask & (1 << H8_CASTLE)) != 0;
     }
     /** Bitmask describing castling rights. */
+    /** 성채를 묘사하는 비트 마스크. */
     public final int getCastleMask() {
         return castleMask;
     }
@@ -180,6 +212,7 @@ public class Position {
     }
 
     /** En passant square, or -1 if no ep possible. */
+    /** en passant square 또는 ep가 없으면 -1입니다. */
     public final int getEpSquare() {
         return epSquare;
     }
@@ -199,6 +232,10 @@ public class Position {
     /**
      * Count number of pieces of a certain type.
      */
+    
+    /**
+     * 조각의 타입수를 센다.
+     */
     public final int nPieces(int pType) {
         int ret = 0;
         for (int sq = 0; sq < 64; sq++) {
@@ -209,6 +246,7 @@ public class Position {
     }
 
     /** Apply a move to the current position. */
+    //현재 위치를 적용시킨다. 
     public final void makeMove(Move move, UndoInfo ui) {
         ui.capturedPiece = squares[move.to];
         ui.castleMask = castleMask;
@@ -231,6 +269,7 @@ public class Position {
         }
 
         // Handle castling
+        // 말들의 위치를 조작한다,
         int king = wtm ? Piece.WKING : Piece.BKING;
         int k0 = move.from;
         if (p == king) {
@@ -375,6 +414,9 @@ public class Position {
     /**
      * Compute the Zobrist hash value non-incrementally. Only useful for test programs.
      */
+    /**
+      * Zobrist 해시 값을 비 점진적으로 계산합니다. 테스트 프로그램에만 유용합니다.
+     */
     final long computeZobristHash() {
         long hash = 0;
         for (int sq = 0; sq < 64; sq++) {
@@ -388,6 +430,7 @@ public class Position {
         return hash;
     }
     //get random value
+    //random value를 얻는다
     private final static long getRandomHashVal(int rndNo) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
@@ -406,6 +449,7 @@ public class Position {
     }
 
     /** Useful for debugging. */
+    //디버깅을 유용화하게 한다.
     public final String toString() {
     	return TextIO.asciiBoard(this);
     }
