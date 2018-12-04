@@ -145,7 +145,7 @@ public class Position {
         return square & 7;
     }
     /** Return y position (rank) corresponding to a square. */
-         / ** 사각형에 해당하는 y 위치 (순위)를 반환합니다. * /
+         /** 사각형에 해당하는 y 위치 (순위)를 반환합니다. */
     public final static int getY(int square) {
         return square >> 3;
     }
