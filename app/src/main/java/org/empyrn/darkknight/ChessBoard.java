@@ -72,6 +72,7 @@ public class ChessBoard extends View {
 	}
 
 	/** Configure the board's colors. */
+	/** 체스판의 색상을 구성한다. */
 	final void setColors() {
 		brightPaint.setColor(Appearance.getColor(Appearance.BRIGHT_SQUARE));
 		darkPaint.setColor(Appearance.getColor(Appearance.DARK_SQUARE));
@@ -87,7 +88,7 @@ public class ChessBoard extends View {
 
 	/**
 	 * Set the board to a given state.
-	 * 
+	 * 체스판을 주어진 상태로 설정한다.
 	 * @param pos
 	 */
 	final public void setPosition(Position pos) {
@@ -99,7 +100,7 @@ public class ChessBoard extends View {
 
 	/**
 	 * Set/clear the board flipped status.
-	 * 
+	 * 체스판 뒤집기 상태를 설정하거나 해제한다.
 	 * @param flipped
 	 */
 	final public void setFlipped(boolean flipped) {
@@ -111,7 +112,7 @@ public class ChessBoard extends View {
 
 	/**
 	 * Set/clear the selected square.
-	 * 
+	 * 선택된 square를 설정하거나 해제한다.
 	 * @param square
 	 *            The square to select, or -1 to clear selection.
 	 */
