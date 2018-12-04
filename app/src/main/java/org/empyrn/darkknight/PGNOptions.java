@@ -1,6 +1,7 @@
 package org.empyrn.darkknight;
 
 /** Settings controlling PGN import/export */
+/** PGN 가져오기 및 불러오기 제어 설정 */
 public class PGNOptions {
 	public static class Viewer {
 		public boolean variations;
