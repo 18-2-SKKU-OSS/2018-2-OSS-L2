@@ -192,7 +192,7 @@ public class TextIO {
         pos.setPiece(Position.getSquare(col, row), p);
     }
     
-    /** Return a FEN string corresponding to a chess Position object. *//
+    /** Return a FEN string corresponding to a chess Position object. */
    //체스 위치 객체에 해당하는 FEN 문자열을 반환합니다. 
     public static final String toFEN(Position pos) {
         StringBuilder ret = new StringBuilder();
