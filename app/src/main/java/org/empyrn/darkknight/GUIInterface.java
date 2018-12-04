@@ -35,6 +35,7 @@ public interface GUIInterface {
 	public void requestPromotePiece();
 
 	/** Run code on the GUI thread. */
+    /** GUI 쓰레드에서 코드를 실행한다. */
 	public void runOnUIThread(Runnable runnable);
 
 	/** Report that user attempted to make an invalid move. */
