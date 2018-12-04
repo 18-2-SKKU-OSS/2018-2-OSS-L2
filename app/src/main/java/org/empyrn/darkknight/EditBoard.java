@@ -33,6 +33,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * A setting mode that allows you to change specific chessman into different chessman.
+ * 특정 체스말을 다른 말로 바꿀 수 있는 설정 모드
+ */
+
 public class EditBoard extends Activity {
 	private ChessBoardEdit cb;
 	private TextView status;
