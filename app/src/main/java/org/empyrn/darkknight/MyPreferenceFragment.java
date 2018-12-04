@@ -107,6 +107,7 @@ public class MyPreferenceFragment extends PreferenceFragment
     	})
 
     	// Set the action buttons
+        // action 버튼을 설정한다.
     	.setPositiveButton(R.string.dok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
