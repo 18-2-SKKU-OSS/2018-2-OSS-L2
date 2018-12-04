@@ -28,6 +28,7 @@ public interface GUIInterface {
 	public void moveListUpdated();
 
 	/** Update the computer thinking information. */
+    /** 컴퓨터(AI)의 생각 정보를 업데이트한다. */
 	public void setThinkingInfo(String pvStr, String bookInfo, List<Move> pvMoves, List<Move> bookMoves);
 	
 	/** Ask what to promote a pawn to. Should call reportPromotePiece() when done. */
