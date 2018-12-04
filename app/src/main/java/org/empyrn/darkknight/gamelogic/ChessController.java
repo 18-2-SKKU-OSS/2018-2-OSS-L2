@@ -31,6 +31,11 @@ public class ChessController {
 
 	private int maxDepth;
 
+	/*
+	 * Implementation of listener from SearchListener
+	 * For get information during board searching
+	 * 보드 서치 동안에 정보를 얻어오는 구현체
+	 */
 	class SearchListener implements
 			org.empyrn.darkknight.gamelogic.SearchListener {
 		private int currDepth = 0;
