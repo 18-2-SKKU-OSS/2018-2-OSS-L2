@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 /**
  * Chess board widget suitable for edit mode.
  * @author petero
+ * 편집 모드에 적절한 체스판 위젯
  */
 public class ChessBoardEdit extends ChessBoard {
 	public ChessBoardEdit(Context context, AttributeSet attrs) {
@@ -166,6 +167,9 @@ public class ChessBoardEdit extends ChessBoard {
      * Compute the square corresponding to the coordinates of a mouse event.
      * @param evt Details about the mouse event.
      * @return The square corresponding to the mouse event, or -1 if outside board.
+     * 마우스 이벤트의 좌표에 해당하는 사각형(좌표)을 계산한다.
+     * 인자: 마우스 이벤트에 대한 세부 정보
+     * 결과: 마우스 이벤트에 해당하는 사각형(좌표)입니다. 보드 외부에 있으면 -1이다.
      */
 	@Override
     int eventToSquare(MotionEvent evt) {
