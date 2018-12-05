@@ -101,19 +101,24 @@ public class BluetoothGameController {
 
 	/**
 	 * Sends a message.
+	 * 메시지를 보냄
 	 * 
 	 * @param message
 	 *            A string of text to send.
+	 * 전달할 문자열
 	 */
 	private void sendMessage(String message) {
+		// 무언가 하기 전에 연결이 되어있는지 우선 확인함
 		// Check that we're actually connected before trying anything
 		if (mGameService.getState() != BluetoothGameService.STATE_CONNECTED) {
 			return;
 		}
 
 		// Check that there's actually something to send
+		// 보내지는 것이 실제로 있는지 확인
 		if (message.length() > 0) {
 			// Get the message bytes and tell the BluetoothGameService to write
+			// 메시지 바이트를 받고 블루투스게임서비스에게 write하라고 요청함
 			byte[] send = message.getBytes();
 			mGameService.write(send);
 		}

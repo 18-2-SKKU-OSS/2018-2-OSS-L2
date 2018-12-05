@@ -32,13 +32,16 @@ import android.util.Log;
 
 public class BluetoothGameService {
 	// Debugging
+	// 디버깅
 	private static final String TAG = "BluetoothGameControllerService";
 	private static final boolean D = true;
 
 	// Name for the SDP record when creating server socket
+	// 서버 소켓이 만들어 졌을때 SDP record의 이름
 	private static final String NAME = "BluetoothGameController";
 
 	// Unique UUID for this application
+
 	private static final UUID MY_UUID = UUID.fromString("72caefa0-568b-11e0-b8af-0800200c9a66");
 
 	// Member fields
@@ -50,6 +53,12 @@ public class BluetoothGameService {
 	private int mState;
 
 	// Constants that indicate the current connection state
+	// 현재 상태를 나타내는 상수들
+	// 아무것도 하지 않을때 0
+	// 들어오는 연결을 받을때 1
+	// 나가는 연결을 초기화 2
+	// 장치와 연결 3
+	// 연결 끊김 4
 	public static final int STATE_NONE = 0; // we're doing nothing
 	public static final int STATE_LISTEN = 1; // now listening for incoming
 												// connections
