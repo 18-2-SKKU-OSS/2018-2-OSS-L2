@@ -26,6 +26,7 @@ public class BluetoothGameController {
 	private static final boolean D = true;
 
 	// Message types sent from the BluetoothGameService Handler
+	// 블루투스게임서비스 핸들러로 부터 보내진 메시지 타입
 	public static final int MESSAGE_STATE_CHANGE = 1;
 	public static final int MESSAGE_READ = 2;
 	public static final int MESSAGE_WRITE = 3;
@@ -33,6 +34,7 @@ public class BluetoothGameController {
 	public static final int MESSAGE_TOAST = 5;
 
 	// Key names received from the BluetoothGameService Handler
+	// 블루투스게임서비스 핸들러로부터 받은 key name
 	public static final String DEVICE_NAME = "device_name";
 	public static final String TOAST = "toast";
 
@@ -40,6 +42,7 @@ public class BluetoothGameController {
 	private static final int REQUEST_CONNECT_DEVICE = 1;
 	private static final int REQUEST_ENABLE_BT = 2;
 
+	// 각각의 변수들에 대한 설명 및 요약
 	// Name of the connected device
 	private String mConnectedDeviceName = null;
 	// String buffer for outgoing messages
@@ -62,6 +65,7 @@ public class BluetoothGameController {
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
 		// if the adapter is null, then Bluetooth is not supported
+		// 어댑터가 null일때, 블루투스 지원을 하지 않음
 		if (mBluetoothAdapter == null) {
 			Toast.makeText(context, "Bluetooth is not available",
 					Toast.LENGTH_LONG).show();
@@ -85,6 +89,7 @@ public class BluetoothGameController {
 		Log.d(TAG, "setupBluetoothService()");
 
 		// Initialize the BluetoothGameService to perform bluetooth connections
+		// 블루투스 연결을 위한 블루투스게임서비스 초기화
 		mGameService = new BluetoothGameService(context, mHandler);
 		mGameService.start();
 	}
