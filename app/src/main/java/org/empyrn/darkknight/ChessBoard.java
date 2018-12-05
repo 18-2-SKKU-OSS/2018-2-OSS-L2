@@ -337,7 +337,7 @@ public class ChessBoard extends View {
 
 	/**
 	 * Compute the square corresponding to the coordinates of a mouse event.
-	 * 
+	 * 마우스 이벤트 좌표에 해당하는 square를 계산한다.
 	 * @param evt
 	 *            Details about the mouse event.
 	 * @return The square corresponding to the mouse event, or -1 if outside
