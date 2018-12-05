@@ -1,4 +1,4 @@
-# 팀/팀원 소개 및 활동 정리
+## 팀/팀원 소개 및 활동 정리
 ***
 
 * Name: **Hyeon.Cheol Yun**
@@ -43,7 +43,7 @@
 
 
 
-# Material Chess - ChessTastic (프로젝트 소개 및 활동)
+## Material Chess - ChessTastic (프로젝트 소개 및 활동)
 
 ![Chesstastic Icon](http://i.imgur.com/ELIf2Bd.png)
 
