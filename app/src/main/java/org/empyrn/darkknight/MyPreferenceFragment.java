@@ -113,6 +113,8 @@ public class MyPreferenceFragment extends PreferenceFragment
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK, so save the result somewhere
                 // or return them to the component that opened the dialog
+                // 유저가 OK를 클릭하면 결과를 어딘가에 저장한다.
+                // 혹은 대화로그를 연 컴포넌트에 반환할 수 있다.
                 //Preferences.restart();
                 //theme = sharedPreferences.getInt("Theme", R.style.AppThemeRed);
                 startActivity(new Intent(context, Preferences.class));
