@@ -17,10 +17,19 @@ import android.util.Log;
 
 /**
  * This class does all the work for setting up and managing Bluetooth
+ * 블루투스를 설정하고 관리하는 작업을 하는 클래스
+ * 
  * connections with other devices. It has a thread that listens for incoming
+ * 다른 기기들과의 연결. 들어오는 연결을 받기위한 쓰레드를 가진다.
+ * 
  * connections, a thread for connecting with a device, and a thread for
+ * 기기와 연결을 하기 위한 쓰레드
+ * 
  * performing data transmissions when connected.
+ * 연결이 되었을 때 데이터 전송을 위한 쓰레드
  */
+
+
 public class BluetoothGameService {
 	// Debugging
 	private static final String TAG = "BluetoothGameControllerService";
