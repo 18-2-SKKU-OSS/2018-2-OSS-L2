@@ -122,6 +122,8 @@ public class Preferences extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         // Respond to the action bar's Up/Home button
+        // 액션바의 Up/Home 버튼인 경우
+
         case android.R.id.home:
             NavUtils.navigateUpFromSameTask(this);
             return true;
