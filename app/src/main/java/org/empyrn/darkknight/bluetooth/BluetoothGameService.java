@@ -113,24 +113,30 @@ public class BluetoothGameService {
 	/**
 	 * Start the chat service. Specifically start AcceptThread to begin a
 	 * session in listening (server) mode.
+	 * chat 서비스를 시작함
+	 * 
+	 * accept thread가 리스닝 모드에서 세션을 시작함
 	 */
 	public synchronized void start() {
 		if (D)
 			Log.d(TAG, "start");
 
 		// Cancel any thread attempting to make a connection
+		// 연결을 하려고 시도하는 쓰레드를 취소
 		if (mConnectThread != null) {
 			mConnectThread.cancel();
 			mConnectThread = null;
 		}
 
 		// Cancel any thread currently running a connection
+		// 현재 연결하는 쓰레드 취소
 		if (mConnectedThread != null) {
 			mConnectedThread.cancel();
 			mConnectedThread = null;
 		}
 
 		// Start the thread to listen on a BluetoothServerSocket
+		// 쓰레드 시작(블루투스 서버소켓 listen)
 		if (mAcceptThread == null) {
 			mAcceptThread = new AcceptThread();
 			mAcceptThread.start();
@@ -148,6 +154,7 @@ public class BluetoothGameService {
 
 	/**
 	 * Reset the service.
+	 * 서버 리셋
 	 */
 	public synchronized void reset() {
 		// Cancel any thread attempting to make a connection
