@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 
+/* Square과 Arrow의 색깔을 관리하는 코드 영역 */
+
 public class Appearance {
 	final static int DARK_SQUARE = 1;
 	final static int BRIGHT_SQUARE = 0;
