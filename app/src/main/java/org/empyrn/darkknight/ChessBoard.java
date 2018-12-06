@@ -340,8 +340,11 @@ public class ChessBoard extends View {
 	 * 마우스 이벤트 좌표에 해당하는 square를 계산한다.
 	 * @param evt
 	 *            Details about the mouse event.
+     * 인자: evt
+	 *            마우스 이벤트에 대한 세부세항
 	 * @return The square corresponding to the mouse event, or -1 if outside
 	 *         board.
+     * 반환값: 마우스 이벤트에 해당하는 square, 만약 체스판 바깥이라면 -1
 	 */
 	int eventToSquare(MotionEvent evt) {
 		int xCrd = (int) (evt.getX());
