@@ -83,23 +83,28 @@ public class BluetoothGameService {
 	}
 
 	/**
+	 * 현재 chat 연결의 상태를 설정
 	 * Set the current state of the chat connection
 	 * 
 	 * @param state
 	 *            An integer defining the current connection state
+	 * 현재 연결 상태를 저장하는 변수
 	 */
 	private synchronized void setState(int state) {
 		if (D)
 			Log.d(TAG, "setState() " + mState + " -> " + state);
 		mState = state;
 
+
 		// Give the new state to the Handler so the UI Activity can update
+		// 핸들러에게 새로운 상태 줌. UI Activity가 업데이트를 할 수 있도록
 		mHandler.obtainMessage(BluetoothGameController.MESSAGE_STATE_CHANGE,
 				state, -1).sendToTarget();
 	}
 
 	/**
 	 * Return the current connection state.
+	 * 연재 연결 상태 값을 반환함
 	 */
 	public synchronized int getState() {
 		return mState;
