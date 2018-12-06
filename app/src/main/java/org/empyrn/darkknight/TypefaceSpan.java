@@ -16,10 +16,12 @@ public class TypefaceSpan extends MetricAffectingSpan {
 
   /**
    * Load the {@link Typeface} and apply to a {@link Spannable}.
+   * 객체 Typeface 를 불러와 Spnnable에 적용한다.
    */
   public TypefaceSpan(Context context, String typefaceName) {
       mTypeface = sTypefaceCache.get(typefaceName);
 
+      // Typeface가 캐시되어 있지 않은 경우 asset에서 불러와 캐시한다.
       if (mTypeface == null) {
           mTypeface = Typeface.createFromAsset(context.getApplicationContext()
                   .getAssets(), String.format("fonts/%s", typefaceName));
