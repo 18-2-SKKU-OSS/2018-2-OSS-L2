@@ -12,8 +12,12 @@ import android.os.Bundle;
 
 public class CPUWarning extends Activity {
 	
-	/* if there exists cpuwarning, 
-	 * load layout of cpu_warning and make a dialog*/
+	/* if there exists cpuwarning,
+	 * load layout of cpu_warning and make a dialog
+	 * 만약 cpuwaring이 존재하면
+	 * cpu_warning 레이아웃을 가져오고, 대화상자를 만든다.
+	 * */
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
