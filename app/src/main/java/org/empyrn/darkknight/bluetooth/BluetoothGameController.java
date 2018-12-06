@@ -229,13 +229,17 @@ public class BluetoothGameController {
 		switch (requestCode) {
 		case REQUEST_CONNECT_DEVICE:
 			// when DeviceListActivity returns with a device to connect
+			// device list activity가 연결할 기기와 리턴될 때
 			if (resultCode == Activity.RESULT_OK) {
 				// get the device MAC address
+				// 기기의 MAC 주소를 받음
 				String address = data.getExtras().getString(
 						DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+				// 블루투스디바이스 객체를 받음
 				// get the BLuetoothDevice object
 				BluetoothDevice device = mBluetoothAdapter
 						.getRemoteDevice(address);
+				// 디바이스와 연결하려 시도함
 				// attempt to connect to the device
 				mGameService.connect(device);
 			}
