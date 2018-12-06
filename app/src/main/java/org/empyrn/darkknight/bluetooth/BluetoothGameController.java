@@ -140,6 +140,7 @@ public class BluetoothGameController {
 	 */
 
 	// The Handler that gets information back from the BluetoothGameService
+	// 블루투스게임서버로 부터 받은 정보를 핸들러가 가져옴
 	private final Handler mHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -193,20 +194,24 @@ public class BluetoothGameController {
 			case MESSAGE_WRITE:
 				byte[] writeBuf = (byte[]) msg.obj;
 				// construct a string from the buffer
+				// 버퍼로 부터 문자열을 구성
 				String writeMessage = new String(writeBuf);
 				System.out.println("BLUETOOTH_out: " + writeMessage);
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
 				// construct a string from the valid bytes in the buffer
+				// 버퍼에 있는 유효한 바이트의 문자열을 구성
 				String readMessage = new String(readBuf, 0, msg.arg1);
 
 				// make the move from Bluetooth
+				// 블루투스로 부터 move를 만듬
 				Move m = TextIO.UCIstringToMove(readMessage);
 				ctrl.makeBluetoothMove(m);
 				break;
 			case MESSAGE_DEVICE_NAME:
 				// save the connected device's name
+				// 연결된 기기의 이름을 저장함
 				mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
 				break;
 			case MESSAGE_TOAST:
