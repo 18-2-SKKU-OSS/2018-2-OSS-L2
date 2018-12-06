@@ -12,6 +12,8 @@ import android.os.Bundle;
 
 public class CPUWarning extends Activity {
 	
+	/* if there exists cpuwarning, 
+	 * load layout of cpu_warning and make a dialog*/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
