@@ -884,6 +884,7 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 		cb.setColors();
 
 		// if Bluetooth was on but has been changed, disable it
+        // 만약 블루투스가 켜져있지만 변경되었다면 비활성화한다.
 		if (!gameMode.bluetoothMode()) {
 			if (bGameCtrl != null) {
 				bGameCtrl.stopBluetoothService();
@@ -892,6 +893,7 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 		}
 
 		// otherwise, if it has been activated, enable it
+        // 그렇지 않고 활동중이라면 활성화한다.
 		else {
 			if (bGameCtrl == null) {
 				bGameCtrl = new BluetoothGameController(this, ctrl, gameMode);
