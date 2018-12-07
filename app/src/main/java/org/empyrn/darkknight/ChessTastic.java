@@ -177,7 +177,7 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
     private Toolbar toolbar;
 
     /** Called when the activity is first created. */
-    /** 액티비티가 첫번째로 생성될 때 호출한다. */
+    /** 액티비티가 첫번째로 생성될 때 호출된다. */
 	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
