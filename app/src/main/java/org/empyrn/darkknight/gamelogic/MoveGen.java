@@ -17,6 +17,10 @@ public class MoveGen {
      * Generate and return a list of pseudo-legal moves.
      * Pseudo-legal means that the moves doesn't necessarily defend from check threats.
      */
+    /**
+     * pseudo-legal 행마에 대한 목록을 만들어 반환합니다.
+     * pseudo-legal 이라는 것은, 체크 상황에서 반드시 방어되어야 하는 움직임이 아님을 의미합니다.
+     */
     public final ArrayList<Move> pseudoLegalMoves(Position pos) {
         ArrayList<Move> moveList = getMoveListObj();
         final boolean wtm = pos.whiteMove;
@@ -137,6 +141,9 @@ public class MoveGen {
     /**
      * Return true if the side to move is in check.
      */
+    /**
+     * 움직이려는 변이 check 상황이면 true값을 반환합니다.
+     */
     public static final boolean inCheck(Position pos) {
         int kingSq = pos.getKingSq(pos.whiteMove);
         if (kingSq < 0)
@@ -146,6 +153,9 @@ public class MoveGen {
 
     /**
      * Return true if a square is attacked by the opposite side.
+     */
+    /**
+     * 해당 위치가 공격받는 위치인 경우 true값을 반환합니다.
      */
     public static final boolean sqAttacked(Position pos, int sq) {
         int x = Position.getX(sq);
@@ -204,6 +214,11 @@ public class MoveGen {
      * "moveList" is assumed to be a list of pseudo-legal moves.
      * This function removes the moves that don't defend from check threats.
      */
+    /**
+     * 모든 올바르지 않은 행마를 행마 목록에서 제거합니다.
+     * "행마 목록"이란 pseudo-legal 행마의 목록으로 가정합니다.
+     * 이 함수는 check 상황에서 방어하지 않는 움직임을 제거합니다.
+     */
     public static final ArrayList<Move> removeIllegal(Position pos, ArrayList<Move> moveList) {
         ArrayList<Move> ret = new ArrayList<Move>();
         UndoInfo ui = new UndoInfo();
@@ -225,6 +240,7 @@ public class MoveGen {
      * @param maxSteps Max steps until reaching a border. Set to 1 for non-sliding pieces.
      * @ return True if the enemy king could be captured, false otherwise.
      */
+
     private final boolean addDirection(ArrayList<Move> moveList, Position pos, int sq0, int maxSteps, int delta) {
     	int sq = sq0;
     	boolean wtm = pos.whiteMove;
