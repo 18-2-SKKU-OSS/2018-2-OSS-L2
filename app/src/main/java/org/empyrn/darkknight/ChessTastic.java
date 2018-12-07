@@ -565,6 +565,7 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
             
             //drawerLayoutt.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
             // set up the drawer's list view with items and click listener
+            // 아이템과 클릭 listener를 이용하여 drawer의 리스트뷰를 설정한다.
             listView.setAdapter(myadapter);
             listView.setOnItemClickListener(new DrawerItemClickListener());
             //actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayoutt, toolbar, R.string.app_name, R.string.app_name);
