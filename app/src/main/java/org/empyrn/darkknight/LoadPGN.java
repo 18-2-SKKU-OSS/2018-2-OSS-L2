@@ -195,6 +195,9 @@ public class LoadPGN extends ActionBarActivity {
 		final String readLine() throws IOException {
 			// First handle the common case where the next line is entirely 
 			// contained in the buffer
+			/* 먼저, 다음 줄까지 전부 버퍼에 저장되는 경우를 처리한다.
+			 * (여러 줄이 동시에 버퍼에 저장되는 경우에 대한 처리)
+			 */
 			for (int i = bufPos; i < bufLen; i++) {
 				byte b = buffer[i];
 				if ((b == '\n') || (b == '\r')) {
@@ -211,6 +214,7 @@ public class LoadPGN extends ActionBarActivity {
 			}
 
 			// Generic case
+			// 일반적인 경우 (read a one line)
 			byte[] lineBuf = new byte[8192];
 			int lineLen = 0;
 			int b;
@@ -332,7 +336,7 @@ public class LoadPGN extends ActionBarActivity {
 		} catch (IOException e) {
 		}
 	}
-
+	
 	private final void sendBackResult(int gameNo) {
 		try {
 			if ((gameNo >= 0) && (gameNo < gamesInFile.size())) {
