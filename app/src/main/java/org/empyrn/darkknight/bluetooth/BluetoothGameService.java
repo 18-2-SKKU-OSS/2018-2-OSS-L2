@@ -83,23 +83,28 @@ public class BluetoothGameService {
 	}
 
 	/**
+	 * 현재 chat 연결의 상태를 설정
 	 * Set the current state of the chat connection
 	 * 
 	 * @param state
 	 *            An integer defining the current connection state
+	 * 현재 연결 상태를 저장하는 변수
 	 */
 	private synchronized void setState(int state) {
 		if (D)
 			Log.d(TAG, "setState() " + mState + " -> " + state);
 		mState = state;
 
+
 		// Give the new state to the Handler so the UI Activity can update
+		// 핸들러에게 새로운 상태 줌. UI Activity가 업데이트를 할 수 있도록
 		mHandler.obtainMessage(BluetoothGameController.MESSAGE_STATE_CHANGE,
 				state, -1).sendToTarget();
 	}
 
 	/**
 	 * Return the current connection state.
+	 * 연재 연결 상태 값을 반환함
 	 */
 	public synchronized int getState() {
 		return mState;
@@ -108,24 +113,30 @@ public class BluetoothGameService {
 	/**
 	 * Start the chat service. Specifically start AcceptThread to begin a
 	 * session in listening (server) mode.
+	 * chat 서비스를 시작함
+	 * 
+	 * accept thread가 리스닝 모드에서 세션을 시작함
 	 */
 	public synchronized void start() {
 		if (D)
 			Log.d(TAG, "start");
 
 		// Cancel any thread attempting to make a connection
+		// 연결을 하려고 시도하는 쓰레드를 취소
 		if (mConnectThread != null) {
 			mConnectThread.cancel();
 			mConnectThread = null;
 		}
 
 		// Cancel any thread currently running a connection
+		// 현재 연결하는 쓰레드 취소
 		if (mConnectedThread != null) {
 			mConnectedThread.cancel();
 			mConnectedThread = null;
 		}
 
 		// Start the thread to listen on a BluetoothServerSocket
+		// 쓰레드 시작(블루투스 서버소켓 listen)
 		if (mAcceptThread == null) {
 			mAcceptThread = new AcceptThread();
 			mAcceptThread.start();
@@ -143,21 +154,25 @@ public class BluetoothGameService {
 
 	/**
 	 * Reset the service.
+	 * 서버 리셋
 	 */
 	public synchronized void reset() {
 		// Cancel any thread attempting to make a connection
+		// 연결을 하려고 시도하는 쓰레드를 취소
 		if (mConnectThread != null) {
 			mConnectThread.cancel();
 			mConnectThread = null;
 		}
 
 		// Cancel any thread currently running a connection
+		// 현재 연결하는 쓰레드 취소
 		if (mConnectedThread != null) {
 			mConnectedThread.cancel();
 			mConnectedThread = null;
 		}
 
 		// Start the thread to listen on a BluetoothServerSocket
+		// 쓰레드 시작(블루투스 서버소켓 listen)
 		if (mAcceptThread == null) {
 			mAcceptThread = new AcceptThread();
 			mAcceptThread.start();
@@ -168,15 +183,18 @@ public class BluetoothGameService {
 
 	/**
 	 * Start the ConnectThread to initiate a connection to a remote device.
+	 * 기기와 연결을 시작하기 위해 connect thread 시작
 	 * 
 	 * @param device
 	 *            The BluetoothDevice to connect
+	 * 연결하기 위한 블루투스 기기
 	 */
 	public synchronized void connect(BluetoothDevice device) {
 		if (D)
 			Log.d(TAG, "connect to: " + device);
 
 		// Cancel any thread attempting to make a connection
+		// 연결을 하려고 시도하는 쓰레드를 취소
 		if (mState == STATE_CONNECTING) {
 			if (mConnectThread != null) {
 				mConnectThread.cancel();
@@ -185,12 +203,14 @@ public class BluetoothGameService {
 		}
 
 		// Cancel any thread currently running a connection
+		// 현재 연결하는 쓰레드 취소
 		if (mConnectedThread != null) {
 			mConnectedThread.cancel();
 			mConnectedThread = null;
 		}
 
 		// Start the thread to connect with the given device
+		// 쓰레드 시작(블루투스 서버소켓 listen)
 		mConnectThread = new ConnectThread(device);
 		mConnectThread.start();
 		setState(STATE_CONNECTING);
@@ -198,6 +218,7 @@ public class BluetoothGameService {
 
 	/**
 	 * Start the ConnectedThread to begin managing a Bluetooth connection
+	 * 블루투수 연결을 관리하는 것을 시작하기 위해 연결된 쓰레드 시작
 	 * 
 	 * @param socket
 	 *            The BluetoothSocket on which the connection was made

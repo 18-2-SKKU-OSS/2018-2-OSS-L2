@@ -211,6 +211,7 @@ public class EditBoard extends Activity {
 	}
 
 	/** Test if a position is valid. */
+	/** 유효한 위치인지 테스트해본다. */
 	private final boolean checkValid() {
 		try {
 			String fen = TextIO.toFEN(cb.pos);

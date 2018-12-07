@@ -13,6 +13,7 @@ import org.empyrn.darkknight.gamelogic.UndoInfo;
 
 /**
  * A computer algorithm player.
+ * 컴퓨터 알고리즘 플레이어
  */
 public class ComputerPlayer {
     public static String engineName = "";
@@ -69,7 +70,8 @@ public class ComputerPlayer {
     	}
     }
 
-    /** Convert a string to tokens by splitting at whitespace characters. */
+	/** Convert a string to tokens by splitting at whitespace characters. */
+	// 공백을 기준으로 문자열을 토큰화 함
     private final String[] tokenize(String cmdLine) {
         cmdLine = cmdLine.trim();
         return cmdLine.split("\\s+");
@@ -98,6 +100,7 @@ public class ComputerPlayer {
 	}
 	
 	/** Stop the engine process. */
+	// 엔진 프로세스 정지
     public final void shutdownEngine() {
     	if (npp != null) {
     		npp.shutDown();
