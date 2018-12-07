@@ -26,6 +26,8 @@ import org.empyrn.darkknight.gamelogic.UndoInfo;
 
 /**
  * Implements an opening book.
+ * book 시작 수행
+ * 
  * @author petero
  */
 public class Book {
@@ -37,12 +39,14 @@ public class Book {
             count = 1;
         }
     }
+    // 변수들 선언
     private static Map<Long, List<BookEntry>> bookMap;
     private static Random rndGen;
     private static int numBookMoves = -1;
     
     static PolyglotBook externalBook;
 
+    // book 클래스
     public Book(boolean verbose) {
         if (numBookMoves < 0) {
             initBook(verbose);
@@ -54,6 +58,7 @@ public class Book {
 		externalBook.setBookFileName(bookFileName);
 	}
     
+    // book 시작 함수
     private final void initBook(boolean verbose) {
         long t0 = System.currentTimeMillis();
         bookMap = new HashMap<Long, List<BookEntry>>();
@@ -106,6 +111,7 @@ public class Book {
     }
 
     /** Add a move to a position in the opening book. */
+    // opening book에서의 위치 이동 추가
     private final void addToBook(Position pos, Move moveToAdd) {
         List<BookEntry> ent = bookMap.get(pos.zobristHash());
         if (ent == null) {
@@ -125,6 +131,7 @@ public class Book {
     }
 
     /** Return a random book move for a position, or null if out of book. */
+    // book 이동의 무작위 선택값 반환, out of book 일시 null 반환
     public final Move getBookMove(Position pos) {
     	List<BookEntry> bookMoves = getBookEntries(pos);
         if (bookMoves == null) {
@@ -138,7 +145,9 @@ public class Book {
             BookEntry be = bookMoves.get(i);
             if (!legalMoves.contains(be.move)) {
                 // If an illegal move was found, it means there was a hash collision,
-            	// or a corrupt external book file.
+                // 잘못된 이동일 때, hash collision 발생
+                // or a corrupt external book file.
+                // 또는 오류 발생
                 return null;
             }
             sum += getWeight(bookMoves.get(i).count);
@@ -155,6 +164,7 @@ public class Book {
             }
         }
         // Should never get here
+        // runtime exception
         throw new RuntimeException();
     }
 
