@@ -1158,8 +1158,10 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 			}
 
 			// When DeviceListActivity returns with a device to connect
+            // 연결할 장치와 함께 DeviceListActivity가 끝날 때
 			if (resultCode == Activity.RESULT_OK) {
 				// Get the device MAC address
+                // 장치의 MAC 주소를 얻는다.
 				String address = data.getExtras().getString(
 						DeviceListActivity.EXTRA_DEVICE_ADDRESS);
 				// Get the BluetoothDevice object
