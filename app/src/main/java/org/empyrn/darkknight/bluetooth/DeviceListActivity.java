@@ -161,10 +161,12 @@ public class DeviceListActivity extends Activity {
     // The on-click listener for all devices in the ListViews
     private OnItemClickListener mDeviceClickListener = new OnItemClickListener() {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
+            // 탐색 취소
             // Cancel discovery because it's costly and we're about to connect
             mBtAdapter.cancelDiscovery();
 
             // Get the device MAC address, which is the last 17 chars in the View
+            // mac 주소 받아옴
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
 
@@ -173,6 +175,7 @@ public class DeviceListActivity extends Activity {
             intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
 
             // Set result and finish this Activity
+            // 결과 지정 후, 이 activity 끝내기
             setResult(Activity.RESULT_OK, intent);
             finish();
         }
