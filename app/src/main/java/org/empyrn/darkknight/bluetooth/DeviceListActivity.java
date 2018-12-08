@@ -26,12 +26,15 @@ import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * This Activity appears as a dialog. It lists any paired devices and
+ * 이 acitvity는 다이얼로그로 나타난다. 그 지역에서 나타나는 탐지된 장치, 페어된 장치가 열거됨.
  * devices detected in the area after discovery. When a device is chosen
+ * 기기가 유저로 부터 선택 될때, 기기의 mac주소가 result internet에 있는 parent activity에게 전송된다.
  * by the user, the MAC address of the device is sent back to the parent
  * Activity in the result Intent.
  */
 public class DeviceListActivity extends Activity {
     // Debugging
+    // 디버깅
     private static final String TAG = "DeviceListActivity";
     private static final boolean D = true;
 
@@ -39,6 +42,7 @@ public class DeviceListActivity extends Activity {
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
 
     // Member fields
+    // 멤버 필드
     private BluetoothAdapter mBtAdapter;
     private ArrayAdapter<String> mPairedDevicesArrayAdapter;
     private ArrayAdapter<String> mNewDevicesArrayAdapter;
@@ -52,9 +56,11 @@ public class DeviceListActivity extends Activity {
         setContentView(R.layout.device_list);
 
         // Set result CANCELED incase the user backs out
+        // 사용자가 빠질 때 결과값을 canceled로 설정
         setResult(Activity.RESULT_CANCELED);
 
         // Initialize the button to perform device discovery
+        // 기기 탐색 수행 버튼 초기화
         Button scanButton = (Button) findViewById(R.id.button_scan);
         scanButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -69,27 +75,33 @@ public class DeviceListActivity extends Activity {
         mNewDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.device_name);
 
         // Find and set up the ListView for paired devices
+        // 페어된 기기
         ListView pairedListView = (ListView) findViewById(R.id.paired_devices);
         pairedListView.setAdapter(mPairedDevicesArrayAdapter);
         pairedListView.setOnItemClickListener(mDeviceClickListener);
 
         // Find and set up the ListView for newly discovered devices
+        // 새로 발견된 기기
         ListView newDevicesListView = (ListView) findViewById(R.id.new_devices);
         newDevicesListView.setAdapter(mNewDevicesArrayAdapter);
         newDevicesListView.setOnItemClickListener(mDeviceClickListener);
 
         // Register for broadcasts when a device is discovered
+        // 기기가 발견되었을 때 broadcast에 등록
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         this.registerReceiver(mReceiver, filter);
 
         // Register for broadcasts when discovery has finished
+        // 탐색이 끝났을 때 broadcast에 등록
         filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         this.registerReceiver(mReceiver, filter);
 
         // Get the local Bluetooth adapter
+        // local 블루투스 어댑터 가져옴
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
         // Get a set of currently paired devices
+        // 페어된 기기들 가져옴
         Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
 
         // If there are paired devices, add each one to the ArrayAdapter
