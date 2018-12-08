@@ -455,6 +455,7 @@ public class BluetoothGameService {
 
 			// Get a BluetoothSocket for a connection with the
 			// given BluetoothDevice
+			// 주어진 블루투스 소켓과 연결되어있는 블루투스 소켓을 받아옴
 			try {
 				tmp = device.createRfcommSocketToServiceRecord(MY_UUID);
 			} catch (IOException e) {
@@ -468,12 +469,15 @@ public class BluetoothGameService {
 			setName("ConnectThread");
 
 			// Always cancel discovery because it will slow down a connection
+			// 발견을 cancel함, 연결을 느리게 할 수 있기 때문에
 			mAdapter.cancelDiscovery();
 
 			// Make a connection to the BluetoothSocket
+			// 블루투스 소켓과의 연결
 			try {
 				// This is a blocking call and will only return on a
 				// successful connection or an exception
+				// blocking call -> 성공적 연결 or exception을 반환함
 				mmSocket.connect();
 			} catch (IOException e) {
 				connectionFailed();
@@ -486,16 +490,19 @@ public class BluetoothGameService {
 							e2);
 				}
 				// Start the service over to restart listening mode
+				// 듣기 모드 다시 시작 위해 서비스 시작
 				BluetoothGameService.this.start();
 				return;
 			}
 
 			// Reset the ConnectThread because we're done
+			// 끝났기 때문에 연결된 쓰레드 초기화
 			synchronized (BluetoothGameService.this) {
 				mConnectThread = null;
 			}
 
 			// Start the connected thread
+			// 연결된 쓰레드 시작
 			connected(mmSocket, mmDevice);
 		}
 
