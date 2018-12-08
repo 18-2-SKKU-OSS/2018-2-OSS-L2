@@ -345,6 +345,7 @@ public class BluetoothGameService {
 
 	/**
 	 * Indicate that the connection was lost and notify the UI Activity.
+	 * 연결이 끊어졌음을 나타내고 UI activity에 알림
 	 */
 	private void connectionLost() {
 		setState(STATE_LOST_CONNECTION);
@@ -352,17 +353,22 @@ public class BluetoothGameService {
 
 	/**
 	 * This thread runs while listening for incoming connections. It behaves
+	 * 이 쓰레드는 들어오는 연결을 listen하는 중 수행됨.
 	 * like a server-side client. It runs until a connection is accepted (or
+	 * server-side client 처럼 작동함.
+	 * 연결이 accept되거나 cancel될때 까지 동작함.
 	 * until cancelled).
 	 */
 	private class AcceptThread extends Thread {
 		// The local server socket
+		// 로컬 서버 소켓
 		private final BluetoothServerSocket mmServerSocket;
 
 		public AcceptThread() {
 			BluetoothServerSocket tmp = null;
 
 			// Create a new listening server socket
+			// 새로운 리스닝 서버 소켓 만듬
 			try {
 				tmp = mAdapter
 						.listenUsingRfcommWithServiceRecord(NAME, MY_UUID);
@@ -379,6 +385,7 @@ public class BluetoothGameService {
 			BluetoothSocket socket = null;
 
 			// Listen to the server socket if we're not connected
+			// 연결이 되어있지 않다면 서버 소켓을 들음.
 			while (mState != STATE_CONNECTED) {
 				try {
 					// This is a blocking call and will only return on a
