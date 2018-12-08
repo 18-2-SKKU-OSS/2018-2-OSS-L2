@@ -222,8 +222,10 @@ public class BluetoothGameService {
 	 * 
 	 * @param socket
 	 *            The BluetoothSocket on which the connection was made
+	 * 블루투스 소켓 연결이 되는 곳
 	 * @param device
 	 *            The BluetoothDevice that has been connected
+	 * 블루투스 기기 연결됨
 	 */
 	public synchronized void connected(BluetoothSocket socket,
 			BluetoothDevice device) {
@@ -231,12 +233,14 @@ public class BluetoothGameService {
 			Log.d(TAG, "connected");
 
 		// Cancel the thread that completed the connection
+		// 연결이 끝난 쓰레드 cancel
 		if (mConnectThread != null) {
 			mConnectThread.cancel();
 			mConnectThread = null;
 		}
 
 		// Cancel any thread currently running a connection
+		// 현재 연결하는 쓰레드 cancel
 		if (mConnectedThread != null) {
 			mConnectedThread.cancel();
 			mConnectedThread = null;
@@ -244,16 +248,19 @@ public class BluetoothGameService {
 
 		// Cancel the accept thread because we only want to connect to one
 		// device
+		// 받이진 쓰레드 cancel 하나의 기기에만 연결을 원하기 때문에
 		if (mAcceptThread != null) {
 			mAcceptThread.cancel();
 			mAcceptThread = null;
 		}
 
 		// Start the thread to manage the connection and perform transmissions
+		// 연결을 관리하고 전송을 수행하는 쓰레드 시작
 		mConnectedThread = new ConnectedThread(socket);
 		mConnectedThread.start();
 
 		// Send the name of the connected device back to the UI Activity
+		// 연결된 기기의 이름을 UI Activity에 보내줌
 		Message msg = mHandler
 				.obtainMessage(BluetoothGameController.MESSAGE_DEVICE_NAME);
 		Bundle bundle = new Bundle();
@@ -266,6 +273,7 @@ public class BluetoothGameService {
 
 	/**
 	 * Stop all threads
+	 * 모든 쓰레드 정지
 	 */
 	public synchronized void stop() {
 		if (D)
@@ -303,24 +311,29 @@ public class BluetoothGameService {
 	 */
 	public void write(byte[] out) {
 		// Create temporary object
+		// 임시 객체 생성
 		ConnectedThread r;
 		// Synchronize a copy of the ConnectedThread
+		// 연결된 쓰레드의 복사본과 동기화
 		synchronized (this) {
 			if (mState != STATE_CONNECTED)
 				return;
 			r = mConnectedThread;
 		}
 		// Perform the write unsynchronized
+		// write 비동기화 수행
 		r.write(out);
 	}
 
 	/**
 	 * Indicate that the connection attempt failed and notify the UI Activity.
+	 * 연결 시도 실패를 나타냄
 	 */
 	private void connectionFailed() {
 		setState(STATE_LISTEN);
 
 		// Send a failure message back to the Activity
+		// 실패 메세지 보냄
 		Message msg = mHandler
 				.obtainMessage(BluetoothGameController.MESSAGE_TOAST);
 		Bundle bundle = new Bundle();
