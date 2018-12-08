@@ -517,7 +517,9 @@ public class BluetoothGameService {
 
 	/**
 	 * This thread runs during a connection with a remote device. It handles all
+	 * 원격 기기와 연결하고 있을 때 작동하는 쓰레드
 	 * incoming and outgoing transmissions.
+	 * 모든 입출력 전송들을 관리한다.
 	 */
 	private class ConnectedThread extends Thread {
 		private final BluetoothSocket mmSocket;
@@ -531,6 +533,7 @@ public class BluetoothGameService {
 			OutputStream tmpOut = null;
 
 			// Get the BluetoothSocket input and output streams
+			// 블루투스소켓 입출력 스트림을 받아옴
 			try {
 				tmpIn = socket.getInputStream();
 				tmpOut = socket.getOutputStream();
@@ -548,9 +551,11 @@ public class BluetoothGameService {
 			int bytes;
 
 			// Keep listening to the InputStream while connected
+			// 연결 중일 때 입력스트림을 계속해서 listen
 			while (true) {
 				try {
 					// Read from the InputStream
+					// 입력스트림으로 부터 읽어옴
 					bytes = mmInStream.read(buffer);
 
 					// Send the obtained bytes to the UI Activity
@@ -568,6 +573,7 @@ public class BluetoothGameService {
 		/**
 		 * Write to the connected OutStream.
 		 * 
+		 * 
 		 * @param buffer
 		 *            The bytes to write
 		 */
@@ -576,6 +582,7 @@ public class BluetoothGameService {
 				mmOutStream.write(buffer);
 
 				// Share the sent message back to the UI Activity
+				// 보낸 메시지 공유
 				mHandler.obtainMessage(BluetoothGameController.MESSAGE_WRITE,
 						-1, -1, buffer).sendToTarget();
 			} catch (IOException e) {
