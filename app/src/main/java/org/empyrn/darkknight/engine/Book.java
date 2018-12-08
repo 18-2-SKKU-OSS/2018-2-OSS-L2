@@ -165,6 +165,7 @@ public class Book {
         }
         // Should never get here
         // runtime exception
+        // 런타임 exception
         throw new RuntimeException();
     }
 
@@ -208,6 +209,7 @@ public class Book {
         return new Pair<String, ArrayList<Move>>(ret.toString(), bookMoveList);
     }
 
+    // book.bin 파일 생성
     /** Creates the book.bin file. */
     public static void main(String[] args) throws IOException {
     	List<Byte> binBook = createBinBook();
@@ -248,6 +250,7 @@ public class Book {
     }
 
     /** Add a sequence of moves, starting from the initial position, to the binary opening book. */
+    // 첫 번째 위치에서 시작하는 이동들을 binary opening book에 추가
     private static boolean addBookLine(String line, List<Byte> binBook) throws ChessParseError {
         Position pos = TextIO.readFEN(TextIO.startPosFEN);
         UndoInfo ui = new UndoInfo();

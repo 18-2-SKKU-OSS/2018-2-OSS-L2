@@ -129,6 +129,7 @@ public class BluetoothGameController {
 	}
 
 	// The action listener for the EditText widget, to listen for the return key
+	// 반환 값을 받음
 	/*
 	 * private TextView.OnEditorActionListener mWriteListener = new
 	 * TextView.OnEditorActionListener() { public boolean

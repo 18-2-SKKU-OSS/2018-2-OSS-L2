@@ -222,8 +222,10 @@ public class BluetoothGameService {
 	 * 
 	 * @param socket
 	 *            The BluetoothSocket on which the connection was made
+	 * 블루투스 소켓 연결이 되는 곳
 	 * @param device
 	 *            The BluetoothDevice that has been connected
+	 * 블루투스 기기 연결됨
 	 */
 	public synchronized void connected(BluetoothSocket socket,
 			BluetoothDevice device) {
@@ -231,12 +233,14 @@ public class BluetoothGameService {
 			Log.d(TAG, "connected");
 
 		// Cancel the thread that completed the connection
+		// 연결이 끝난 쓰레드 cancel
 		if (mConnectThread != null) {
 			mConnectThread.cancel();
 			mConnectThread = null;
 		}
 
 		// Cancel any thread currently running a connection
+		// 현재 연결하는 쓰레드 cancel
 		if (mConnectedThread != null) {
 			mConnectedThread.cancel();
 			mConnectedThread = null;
@@ -244,16 +248,19 @@ public class BluetoothGameService {
 
 		// Cancel the accept thread because we only want to connect to one
 		// device
+		// 받이진 쓰레드 cancel 하나의 기기에만 연결을 원하기 때문에
 		if (mAcceptThread != null) {
 			mAcceptThread.cancel();
 			mAcceptThread = null;
 		}
 
 		// Start the thread to manage the connection and perform transmissions
+		// 연결을 관리하고 전송을 수행하는 쓰레드 시작
 		mConnectedThread = new ConnectedThread(socket);
 		mConnectedThread.start();
 
 		// Send the name of the connected device back to the UI Activity
+		// 연결된 기기의 이름을 UI Activity에 보내줌
 		Message msg = mHandler
 				.obtainMessage(BluetoothGameController.MESSAGE_DEVICE_NAME);
 		Bundle bundle = new Bundle();
@@ -266,6 +273,7 @@ public class BluetoothGameService {
 
 	/**
 	 * Stop all threads
+	 * 모든 쓰레드 정지
 	 */
 	public synchronized void stop() {
 		if (D)
@@ -303,24 +311,29 @@ public class BluetoothGameService {
 	 */
 	public void write(byte[] out) {
 		// Create temporary object
+		// 임시 객체 생성
 		ConnectedThread r;
 		// Synchronize a copy of the ConnectedThread
+		// 연결된 쓰레드의 복사본과 동기화
 		synchronized (this) {
 			if (mState != STATE_CONNECTED)
 				return;
 			r = mConnectedThread;
 		}
 		// Perform the write unsynchronized
+		// write 비동기화 수행
 		r.write(out);
 	}
 
 	/**
 	 * Indicate that the connection attempt failed and notify the UI Activity.
+	 * 연결 시도 실패를 나타냄
 	 */
 	private void connectionFailed() {
 		setState(STATE_LISTEN);
 
 		// Send a failure message back to the Activity
+		// 실패 메세지 보냄
 		Message msg = mHandler
 				.obtainMessage(BluetoothGameController.MESSAGE_TOAST);
 		Bundle bundle = new Bundle();
@@ -332,6 +345,7 @@ public class BluetoothGameService {
 
 	/**
 	 * Indicate that the connection was lost and notify the UI Activity.
+	 * 연결이 끊어졌음을 나타내고 UI activity에 알림
 	 */
 	private void connectionLost() {
 		setState(STATE_LOST_CONNECTION);
@@ -339,17 +353,22 @@ public class BluetoothGameService {
 
 	/**
 	 * This thread runs while listening for incoming connections. It behaves
+	 * 이 쓰레드는 들어오는 연결을 listen하는 중 수행됨.
 	 * like a server-side client. It runs until a connection is accepted (or
+	 * server-side client 처럼 작동함.
+	 * 연결이 accept되거나 cancel될때 까지 동작함.
 	 * until cancelled).
 	 */
 	private class AcceptThread extends Thread {
 		// The local server socket
+		// 로컬 서버 소켓
 		private final BluetoothServerSocket mmServerSocket;
 
 		public AcceptThread() {
 			BluetoothServerSocket tmp = null;
 
 			// Create a new listening server socket
+			// 새로운 리스닝 서버 소켓 만듬
 			try {
 				tmp = mAdapter
 						.listenUsingRfcommWithServiceRecord(NAME, MY_UUID);
@@ -366,10 +385,12 @@ public class BluetoothGameService {
 			BluetoothSocket socket = null;
 
 			// Listen to the server socket if we're not connected
+			// 연결이 되어있지 않다면 서버 소켓을 들음.
 			while (mState != STATE_CONNECTED) {
 				try {
 					// This is a blocking call and will only return on a
 					// successful connection or an exception
+					// blocking call -> 연결에 성공하거나 exception 둘 중 하나 반환
 					socket = mmServerSocket.accept();
 				} catch (IOException e) {
 					Log.e(TAG, "accept() failed", e);
@@ -377,18 +398,22 @@ public class BluetoothGameService {
 				}
 
 				// If a connection was accepted
+				// 연결이 accept될때
 				if (socket != null) {
 					synchronized (BluetoothGameService.this) {
 						switch (mState) {
 						case STATE_LISTEN:
 						case STATE_CONNECTING:
 							// Situation normal. Start the connected thread.
+							// 연결된 쓰레드 시작
 							connected(socket, socket.getRemoteDevice());
 							break;
 						case STATE_NONE:
+						// 준비가 안되어있거나 연결되지 않았다면 새로운 소켓 종료
 						case STATE_CONNECTED:
 							// Either not ready or already connected. Terminate
 							// new socket.
+							
 							try {
 								socket.close();
 							} catch (IOException e) {
@@ -416,6 +441,7 @@ public class BluetoothGameService {
 
 	/**
 	 * This thread runs while attempting to make an outgoing connection with a
+	 * 이 쓰레드는 기기와 나가는 연결이 시도 될때 수행됨.
 	 * device. It runs straight through; the connection either succeeds or
 	 * fails.
 	 */
@@ -429,6 +455,7 @@ public class BluetoothGameService {
 
 			// Get a BluetoothSocket for a connection with the
 			// given BluetoothDevice
+			// 주어진 블루투스 소켓과 연결되어있는 블루투스 소켓을 받아옴
 			try {
 				tmp = device.createRfcommSocketToServiceRecord(MY_UUID);
 			} catch (IOException e) {
@@ -442,12 +469,15 @@ public class BluetoothGameService {
 			setName("ConnectThread");
 
 			// Always cancel discovery because it will slow down a connection
+			// 발견을 cancel함, 연결을 느리게 할 수 있기 때문에
 			mAdapter.cancelDiscovery();
 
 			// Make a connection to the BluetoothSocket
+			// 블루투스 소켓과의 연결
 			try {
 				// This is a blocking call and will only return on a
 				// successful connection or an exception
+				// blocking call -> 성공적 연결 or exception을 반환함
 				mmSocket.connect();
 			} catch (IOException e) {
 				connectionFailed();
@@ -460,16 +490,19 @@ public class BluetoothGameService {
 							e2);
 				}
 				// Start the service over to restart listening mode
+				// 듣기 모드 다시 시작 위해 서비스 시작
 				BluetoothGameService.this.start();
 				return;
 			}
 
 			// Reset the ConnectThread because we're done
+			// 끝났기 때문에 연결된 쓰레드 초기화
 			synchronized (BluetoothGameService.this) {
 				mConnectThread = null;
 			}
 
 			// Start the connected thread
+			// 연결된 쓰레드 시작
 			connected(mmSocket, mmDevice);
 		}
 
@@ -484,7 +517,9 @@ public class BluetoothGameService {
 
 	/**
 	 * This thread runs during a connection with a remote device. It handles all
+	 * 원격 기기와 연결하고 있을 때 작동하는 쓰레드
 	 * incoming and outgoing transmissions.
+	 * 모든 입출력 전송들을 관리한다.
 	 */
 	private class ConnectedThread extends Thread {
 		private final BluetoothSocket mmSocket;
@@ -498,6 +533,7 @@ public class BluetoothGameService {
 			OutputStream tmpOut = null;
 
 			// Get the BluetoothSocket input and output streams
+			// 블루투스소켓 입출력 스트림을 받아옴
 			try {
 				tmpIn = socket.getInputStream();
 				tmpOut = socket.getOutputStream();
@@ -515,9 +551,11 @@ public class BluetoothGameService {
 			int bytes;
 
 			// Keep listening to the InputStream while connected
+			// 연결 중일 때 입력스트림을 계속해서 listen
 			while (true) {
 				try {
 					// Read from the InputStream
+					// 입력스트림으로 부터 읽어옴
 					bytes = mmInStream.read(buffer);
 
 					// Send the obtained bytes to the UI Activity
@@ -535,6 +573,7 @@ public class BluetoothGameService {
 		/**
 		 * Write to the connected OutStream.
 		 * 
+		 * 
 		 * @param buffer
 		 *            The bytes to write
 		 */
@@ -543,6 +582,7 @@ public class BluetoothGameService {
 				mmOutStream.write(buffer);
 
 				// Share the sent message back to the UI Activity
+				// 보낸 메시지 공유
 				mHandler.obtainMessage(BluetoothGameController.MESSAGE_WRITE,
 						-1, -1, buffer).sendToTarget();
 			} catch (IOException e) {
