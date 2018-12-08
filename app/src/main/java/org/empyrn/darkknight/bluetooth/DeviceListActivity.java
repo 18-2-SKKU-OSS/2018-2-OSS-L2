@@ -134,11 +134,13 @@ public class DeviceListActivity extends Activity {
 
     /**
      * Start device discover with the BluetoothAdapter
+     * 블루투스 어댑터와 기기 탐색 시작
      */
     private void doDiscovery() {
         if (D) Log.d(TAG, "doDiscovery()");
 
         // Indicate scanning in the title
+        // title 나타냄
         setProgressBarIndeterminateVisibility(true);
         setTitle(R.string.scanning);
 
@@ -146,11 +148,13 @@ public class DeviceListActivity extends Activity {
         findViewById(R.id.title_new_devices).setVisibility(View.VISIBLE);
 
         // If we're already discovering, stop it
+        // 이미 탐색중이면 멈춤
         if (mBtAdapter.isDiscovering()) {
             mBtAdapter.cancelDiscovery();
         }
 
         // Request discover from BluetoothAdapter
+        // 블루투스어댑터로 부터 탐색 요청
         mBtAdapter.startDiscovery();
     }
 
