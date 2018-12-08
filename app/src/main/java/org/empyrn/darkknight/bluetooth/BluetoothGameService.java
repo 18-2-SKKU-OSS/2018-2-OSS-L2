@@ -390,6 +390,7 @@ public class BluetoothGameService {
 				try {
 					// This is a blocking call and will only return on a
 					// successful connection or an exception
+					// blocking call -> 연결에 성공하거나 exception 둘 중 하나 반환
 					socket = mmServerSocket.accept();
 				} catch (IOException e) {
 					Log.e(TAG, "accept() failed", e);
@@ -397,18 +398,22 @@ public class BluetoothGameService {
 				}
 
 				// If a connection was accepted
+				// 연결이 accept될때
 				if (socket != null) {
 					synchronized (BluetoothGameService.this) {
 						switch (mState) {
 						case STATE_LISTEN:
 						case STATE_CONNECTING:
 							// Situation normal. Start the connected thread.
+							// 연결된 쓰레드 시작
 							connected(socket, socket.getRemoteDevice());
 							break;
 						case STATE_NONE:
+						// 준비가 안되어있거나 연결되지 않았다면 새로운 소켓 종료
 						case STATE_CONNECTED:
 							// Either not ready or already connected. Terminate
 							// new socket.
+							
 							try {
 								socket.close();
 							} catch (IOException e) {
@@ -436,6 +441,7 @@ public class BluetoothGameService {
 
 	/**
 	 * This thread runs while attempting to make an outgoing connection with a
+	 * 이 쓰레드는 기기와 나가는 연결이 시도 될때 수행됨.
 	 * device. It runs straight through; the connection either succeeds or
 	 * fails.
 	 */
