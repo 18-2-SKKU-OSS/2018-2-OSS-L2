@@ -182,21 +182,26 @@ public class DeviceListActivity extends Activity {
     };
 
     // The BroadcastReceiver that listens for discovered devices and
+    // 탐색된 기기를 listen하는 broadcast receiver
     // changes the title when discovery is finished
+    // title 변경, 탐색이 끝났을 때
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
 
             // When discovery finds a device
+            // 기기를 탐색했을 때
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // Get the BluetoothDevice object from the Intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // If it's already paired, skip it, because it's been listed already
+                // 이미 페어 되었을 때, 이미 list되어 있기 때문에 건너 뜀.
                 if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
                     mNewDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
                 }
             // When discovery is finished, change the Activity title
+            // 탐색이 끝났을 때, activity title 바꿈.
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 setProgressBarIndeterminateVisibility(false);
                 setTitle(R.string.select_device);
