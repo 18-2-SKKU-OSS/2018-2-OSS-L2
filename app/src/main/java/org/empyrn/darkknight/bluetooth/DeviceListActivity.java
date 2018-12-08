@@ -105,6 +105,7 @@ public class DeviceListActivity extends Activity {
         Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
 
         // If there are paired devices, add each one to the ArrayAdapter
+        // 페어된 기기이면, 각각을 array adapter에 추가
         if (pairedDevices.size() > 0) {
             findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
             for (BluetoothDevice device : pairedDevices) {
@@ -121,11 +122,13 @@ public class DeviceListActivity extends Activity {
         super.onDestroy();
 
         // Make sure we're not doing discovery anymore
+        // 탐색을 더 이상 하지 않음
         if (mBtAdapter != null) {
             mBtAdapter.cancelDiscovery();
         }
 
         // Unregister broadcast listeners
+        // broadcast listener 등록 취소
         this.unregisterReceiver(mReceiver);
     }
 
