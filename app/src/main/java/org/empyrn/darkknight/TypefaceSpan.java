@@ -9,6 +9,7 @@ import android.text.style.MetricAffectingSpan;
 
 public class TypefaceSpan extends MetricAffectingSpan {
     /** An <code>LruCache</code> for previously loaded typefaces. */
+    /** 이전에 로드된 typefaces를 위한 <code>LruCache</code> */
   private static LruCache<String, Typeface> sTypefaceCache =
           new LruCache<String, Typeface>(12);
 
@@ -27,6 +28,7 @@ public class TypefaceSpan extends MetricAffectingSpan {
                   .getAssets(), String.format("fonts/%s", typefaceName));
 
           // Cache the loaded Typeface
+          // 로드된 Typeface를 캐시한다.
           sTypefaceCache.put(typefaceName, mTypeface);
       }
   }
@@ -36,6 +38,7 @@ public class TypefaceSpan extends MetricAffectingSpan {
       p.setTypeface(mTypeface);
 
       // Note: This flag is required for proper typeface rendering
+      // 주목: 이 플래그는 적절한 typeface 렌더링을 필요로 합니다.
       p.setFlags(p.getFlags() | Paint.SUBPIXEL_TEXT_FLAG);
   }
 
@@ -44,6 +47,7 @@ public class TypefaceSpan extends MetricAffectingSpan {
       tp.setTypeface(mTypeface);
 
       // Note: This flag is required for proper typeface rendering
+      // 주목: 이 플래그는 적절한 typeface 렌더링을 필요로 합니다.
       tp.setFlags(tp.getFlags() | Paint.SUBPIXEL_TEXT_FLAG);
   }
 }
