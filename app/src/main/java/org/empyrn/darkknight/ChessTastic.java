@@ -606,10 +606,12 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
                 @Override
                 public void onDrawerStateChanged(int arg0) {
                     // or use states of the drawer to hide/show the items
+                    // 또는 drawer의 상태를 사용하여 항목을 숨기거나 보여준다.
 
                 }};
             drawerLayoutt.setDrawerListener(actionBarDrawerToggle);
             // enable ActionBar app icon to behave as action to toggle nav drawer
+            // ActionBar 앱 아이콘이 nav drawer를 토글하는 동작으로 동작하도록 활성화
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
             /*if (savedInstanceState == null) {
@@ -621,14 +623,17 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
             SharedPreferences settings2 = getSharedPreferences(PREFS_NAME, 0);
 
             if (settings2.getBoolean("my_first_time", true)) {
-                //the app is being launched for first time, do something
+                // the app is being launched for first time, do something
+                // 어플리케이션이 처음으로 시작되면, 무언가를 수행한다.
                 homelayout=(LinearLayout)findViewById(R.id.my_home);
 
                 displayShowcaseViewOne();
 
                 // first time task
+                // 첫번쨰 time 작업
 
                 // record the fact that the app has been started at least once
+                // 어플리케이션이 적어도 한 번 시작되었다는 사실을 기록한다.
                 settings2.edit().putBoolean("my_first_time", false).commit();
             }
 
