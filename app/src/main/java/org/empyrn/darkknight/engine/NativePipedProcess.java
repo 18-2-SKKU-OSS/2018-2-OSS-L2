@@ -52,12 +52,14 @@ public class NativePipedProcess {
 	}
 
 	/** Write a line to the process. \n will be added automatically. */
+	// 프로세스에 한 줄 씀. 개행 문자가 자동적으로 추가됨.
 	public final synchronized void writeLineToProcess(String data) {
 //		System.out.printf("GUI -> Engine: %s\n", data);
 		writeToProcess(data + "\n");
 	}
 
 	/** Start the child process. */
+	// 자식 프로세스 시작
 	private final native void startProcess();
 
 	/**
