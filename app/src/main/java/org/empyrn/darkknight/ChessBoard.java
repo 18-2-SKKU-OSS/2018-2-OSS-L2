@@ -213,6 +213,7 @@ public class ChessBoard extends View {
 		drawMoveHints(canvas);
 	}
 
+    /** 체스말을 움직이는데 있어서 힌트를 제공하는 함수 */
 	private final void drawMoveHints(Canvas canvas) {
 		if (moveHints == null)
 			return;
