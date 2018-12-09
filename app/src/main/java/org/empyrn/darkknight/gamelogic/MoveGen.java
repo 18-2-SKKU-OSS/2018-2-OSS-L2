@@ -240,6 +240,8 @@ public class MoveGen {
      * @param maxSteps Max steps until reaching a border. Set to 1 for non-sliding pieces.
      * @ return True if the enemy king could be captured, false otherwise.
      */
+    // 현재 위치에서 이동 가능한 모든 행마를 추가합니다.
+
 
     private final boolean addDirection(ArrayList<Move> moveList, Position pos, int sq0, int maxSteps, int delta) {
     	int sq = sq0;
@@ -271,6 +273,7 @@ public class MoveGen {
     /**
      * Generate all possible pawn moves from (x0,y0) to (x1,y1), taking pawn promotions into account.
      */
+    // 가능한 모든 폰의 행마를 표현합니다.
     private final void addPawnMoves(ArrayList<Move> moveList, int sq0, int sq1) {
             if (sq1 >= 56) { // White promotion
             moveList.add(getMoveObj(sq0, sq1, Piece.WQUEEN));
@@ -293,6 +296,10 @@ public class MoveGen {
      * @param maxSteps Max steps until reaching a border. Set to 1 for non-sliding pieces.
      * @return The first piece in the given direction, or EMPTY if there is no piece
      *         in that direction.
+     */
+    /**
+     * 현재 위치에서 시작하여 주어진 방향에 공격하는 말이 있는지 확인합니다.
+     * 해당 방향은 delta값에 의해 주어집니다.
      */
     private static final int checkDirection(Position pos, int sq, int maxSteps, int delta) {
     	while (maxSteps > 0) {
