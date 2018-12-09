@@ -109,7 +109,7 @@ public class TextIO {
             }
         } catch (NumberFormatException nfe) {
             // Ignore errors here, since the fields are optional
-	    //이곳의 에러는 무시  
+	        // 해당 필드가 선택적이기 때문에 이곳의 에러는 무시한다.
         }
 
         // Each side must have exactly one king
