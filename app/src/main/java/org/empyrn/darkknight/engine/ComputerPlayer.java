@@ -273,6 +273,7 @@ public class ComputerPlayer {
     /** Check if a draw claim is allowed, possibly after playing "move".
 	 * draw claim이 허용되는 지 확인, move 후에
      * @param move The move that may have to be made before claiming draw.
+	 * claiming draw 전에 만들어 져야 하는 이동
      * @return The draw string that claims the draw, or empty string if draw claim not valid.
      */
     private String canClaimDraw(Position pos, long[] posHashList, int posHashListSize, Move move) {
@@ -386,13 +387,16 @@ public class ComputerPlayer {
     			}
     		}
     	} catch (NumberFormatException nfe) {
-    		// Ignore
+			// Ignore
+			// 무시
     	} catch (ArrayIndexOutOfBoundsException aioob) {
-    		// Ignore
+			// Ignore
+			// 무시
     	}
 	}
 
-    /** Notify GUI about search statistics. */
+	/** Notify GUI about search statistics. */
+	// GUI에 검색 통계 알림
     private final void notifyGUI(Position pos) {
         if (listener == null)
     		return;
