@@ -55,11 +55,14 @@ public class MyPreferenceFragment extends PreferenceFragment
     public Dialog onCreateDialogSingleChoice() {
 
     	//Initialize the Alert Dialog
+        //경고 대화상자 초기화
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
     	//Source of the data in the DIalog
+        //대화상자의 데이터 소스
     	
 
     	// Set the dialog title
+        // 대화 상자의 제목을 설정한다.
     	builder.setTitle(R.string.dtitle)
     	// Specify the list array, the items to be selected by default (null for none),
     	// and the listener through which to receive callbacks when items are selected
