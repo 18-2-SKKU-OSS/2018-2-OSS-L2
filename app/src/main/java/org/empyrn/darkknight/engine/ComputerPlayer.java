@@ -196,7 +196,8 @@ public class ComputerPlayer {
         return bestMove;
     }
 
-    /** Wait for engine to respond with "bestmove". While waiting, monitor and report search info. */
+	/** Wait for engine to respond with "bestmove". While waiting, monitor and report search info. */
+	// 엔진이 bestmove로 응답할 때 까지 기다림. 기다리는 동안 정보를 관찰하고 보고함.
 	private final String monitorEngine(Position pos) {
 		// Monitor engine response
     	clearInfo();
@@ -222,6 +223,7 @@ public class ComputerPlayer {
     		notifyGUI(pos);
 			try {
 				Thread.sleep(100); // 10 GUI updates per second is enough
+				// 초당 10 GUI 업데이트면 충분함.
 			} catch (InterruptedException e) {
 			}
     	}
@@ -242,7 +244,8 @@ public class ComputerPlayer {
     		listener.notifyBookInfo(bi.first, bi.second);
     	}
 
-    	// If no legal moves, there is nothing to analyze
+		// If no legal moves, there is nothing to analyze
+		// legal move가 없다면 분석할 것이 없음
         ArrayList<Move> moves = new MoveGen().pseudoLegalMoves(currPos);
         moves = MoveGen.removeIllegal(currPos, moves);
         if (moves.size() == 0)
@@ -268,7 +271,9 @@ public class ComputerPlayer {
     }
 
     /** Check if a draw claim is allowed, possibly after playing "move".
+	 * draw claim이 허용되는 지 확인, move 후에
      * @param move The move that may have to be made before claiming draw.
+	 * claiming draw 전에 만들어 져야 하는 이동
      * @return The draw string that claims the draw, or empty string if draw claim not valid.
      */
     private String canClaimDraw(Position pos, long[] posHashList, int posHashListSize, Move move) {
@@ -382,13 +387,16 @@ public class ComputerPlayer {
     			}
     		}
     	} catch (NumberFormatException nfe) {
-    		// Ignore
+			// Ignore
+			// 무시
     	} catch (ArrayIndexOutOfBoundsException aioob) {
-    		// Ignore
+			// Ignore
+			// 무시
     	}
 	}
 
-    /** Notify GUI about search statistics. */
+	/** Notify GUI about search statistics. */
+	// GUI에 검색 통계 알림
     private final void notifyGUI(Position pos) {
         if (listener == null)
     		return;
