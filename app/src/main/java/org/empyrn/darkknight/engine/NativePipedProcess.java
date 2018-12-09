@@ -12,6 +12,7 @@ public class NativePipedProcess {
 	}
 
 	/** Start process. */
+	// 프로세스 시작
 	public final void initialize() {
 		if (!processAlive) {
 			startProcess();
@@ -20,6 +21,7 @@ public class NativePipedProcess {
 	}
 
 	/** Shut down process. */
+	// 프로세스 종료
 	public final void shutDown() {
 		if (processAlive) {
 			writeLineToProcess("quit");
@@ -29,10 +31,15 @@ public class NativePipedProcess {
 
 	/**
 	 * Read a line from the process.
+	 * 프로세스로 부터 한줄 읽어옴
 	 * @param timeoutMillis Maximum time to wait for data
+	 * 데이터 기다리는 최대 시간
 	 * @return The line, without terminating newline characters,
+	 * 라인, 종료하는 개행 문자 없이
 	 *         or empty string if no data available,
+	 * 가능한 데이터가 없으면 empty string
 	 *         or null if I/O error.
+	 * 인풋 아웃풋 에러시 null
 	 */
 	public final String readLineFromProcess(int timeoutMillis) {
 		String ret = readFromProcess(timeoutMillis);
