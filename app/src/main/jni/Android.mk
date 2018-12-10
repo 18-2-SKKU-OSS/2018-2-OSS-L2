@@ -1,7 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-
+ 
 LOCAL_MODULE    := jni
 LOCAL_SRC_FILES := jni.cpp
 
