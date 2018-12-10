@@ -34,9 +34,15 @@ public class Piece {
     public static boolean isWhite(int pType) {
         return pType < BKING;
     }
+    
+    // Make a white piece.
+    //하얀색 조각을 만든다.
     public static int makeWhite(int pType) {
     	return pType < BKING ? pType : pType - (BKING - WKING);
     }
+    
+    // Make a black piece.
+    //검은색 조각을 만든다.
     public static int makeBlack(int pType) {
     	return ((pType >= WKING) && (pType <= WPAWN)) ? pType + (BKING - WKING) : pType;
     }
