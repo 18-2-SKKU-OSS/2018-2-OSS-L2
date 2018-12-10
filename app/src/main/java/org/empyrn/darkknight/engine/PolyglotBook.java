@@ -25,6 +25,7 @@ public class PolyglotBook {
 	}
 
 	/** Compute a polyglot hash key corresponding to a position. */
+	// 위치에 맞는 여러 언어의 해시 키를 계산
 	public static long getHashKey(Position pos) {
 		// Pieces
 		long key = 0;
@@ -61,12 +62,14 @@ public class PolyglotBook {
 		}
 
 		// Side to move
+		// 옆으로 이동
 		if (pos.whiteMove)
 			key ^= hashRandoms[780];
 
 		return key;
 	}
 
+	// 해시 랜덤 값
 	static private long hashRandoms[] = {
 		0x9D39247E33776D41L, 0x2AF7398005AAA5C7L, 0x44DB015024623547L, 0x9C15F73E62A76AE2L,
 		0x75834465489C0C89L, 0x3290AC3A203001BFL, 0x0FBBAD1F61042279L, 0xE83A908FF2FB60CAL,
