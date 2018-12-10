@@ -16,5 +16,21 @@ https://sourceforge.net/projects/jmcg/ - computer 대결이 아니라 multiplay�
 
 practice mate positions, solve puzzles, play online (FICS), chromecast
 
+-------------------- Comparison with other projects English version -----------------------
+
+Other chess-related projects
+https://github.com/jcarolus/android-chess - Unlike this project, it shows the remaining words
+
+https://github.com/johngunderman/g_chess - It's hard to know where your score is displayed
+
+https://sourceforge.net/projects/java-chess/ - The correct file and description are missing
+
+https://sourceforge.net/projects/jmcg/ - computer multiplayer is possible instead of confrontation,
+
+The correct file is missing
+
+Android Games
+practice mate positions, solve puzzles, play online (FICS), chromecast
+
 
 
