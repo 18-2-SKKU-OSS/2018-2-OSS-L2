@@ -364,6 +364,7 @@ public class PolyglotBook {
 			PGBookEntry ent = new PGBookEntry();
 			
 			// Find first entry with hash key >= wantedKey
+			// 해시값이 원하는 키보다 크거나 같은 첫 번째 항목 찾음
 			long lo = -1;
 			long hi = numEntries;
 			// ent[lo] < key <= ent[hi]
@@ -379,6 +380,7 @@ public class PolyglotBook {
 			}
 
 			// Read all entries with matching hash key
+			// 해시 값과 매칭 되는 모든 항목들을 읽음
 			List<BookEntry> ret = new ArrayList<BookEntry>();
 			long entNo = hi;
 			while (entNo < numEntries) {
