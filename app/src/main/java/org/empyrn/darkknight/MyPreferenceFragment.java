@@ -66,6 +66,8 @@ public class MyPreferenceFragment extends PreferenceFragment
     	builder.setTitle(R.string.dtitle)
     	// Specify the list array, the items to be selected by default (null for none),
     	// and the listener through which to receive callbacks when items are selected
+        // list 배열 즉, 기본적으로 선택 될 항목 (none의 경우 null) 및
+        // 항목 선택시 콜백을 수신 할 리스너를 지정합니다.
     	.setSingleChoiceItems(items, choice, new DialogInterface.OnClickListener() {
 
     	@Override
