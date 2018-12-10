@@ -46,6 +46,7 @@ public class PgnToken {
 		//pgn game으로 부터 표시와 함께 객체 상태 업데이트
 		public void processToken(GameTree.Node node, int type, String token);
 
+		/** Clears the current move status */
 		/** 현재 이동상태를 지운다*/
 		public void setCurrent(GameTree.Node node);
 	};
