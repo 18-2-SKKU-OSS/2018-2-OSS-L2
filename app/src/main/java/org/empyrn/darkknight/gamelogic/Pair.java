@@ -5,6 +5,10 @@ package org.empyrn.darkknight.gamelogic;
  * @author petero
  */
 
+/**
+  * 함수에서 두 개의 값을 반환 할 수있게 도와주는 클래스입니다.
+  * @author petero
+*/
 // Pair 형태를 다루기 위한 헬퍼 템플릿 클래스.
 // C++ STL의 Pair 객체와 완전히 동일함.
 public final class Pair<T1, T2> {
