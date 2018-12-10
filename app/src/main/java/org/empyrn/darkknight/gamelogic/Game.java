@@ -260,16 +260,16 @@ public class Game {
 
     public static enum GameState {
         ALIVE,
-        WHITE_MATE,         // White mates
-        BLACK_MATE,         // Black mates
-        WHITE_STALEMATE,    // White is stalemated
-        BLACK_STALEMATE,    // Black is stalemated
-        DRAW_REP,           // Draw by 3-fold repetition
-        DRAW_50,            // Draw by 50 move rule
-        DRAW_NO_MATE,       // Draw by impossibility of check mate
-        DRAW_AGREE,         // Draw by agreement
-        RESIGN_WHITE,       // White resigns
-        RESIGN_BLACK        // Black resigns
+        WHITE_MATE,         // White mates                          - 흰색이 이길 경우
+        BLACK_MATE,         // Black mates                          - 검은색이 이길 경우
+        WHITE_STALEMATE,    // White is stalemated                  - 흰색이 교착상태인 경우
+        BLACK_STALEMATE,    // Black is stalemated                  - 검은색이 교착상태인 경우
+        DRAW_REP,           // Draw by 3-fold repetition            - 3-fold 반복으로 비긴 경우
+        DRAW_50,            // Draw by 50 move rule                 - 50 움직임 규칙으로 비긴 경우
+        DRAW_NO_MATE,       // Draw by impossibility of check mate  - 체크메이트 불가능으로 비긴 경우
+        DRAW_AGREE,         // Draw by agreement                    - 합의로 비긴 경우
+        RESIGN_WHITE,       // White resigns                        - 흰색이 포기한 경우
+        RESIGN_BLACK        // Black resigns                        - 검은색이 포기한 경우
     }
 
     /**
