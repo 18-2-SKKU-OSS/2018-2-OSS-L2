@@ -8,6 +8,10 @@ import java.util.List;
  *
  * @author petero
  */
+/**
+  *
+  * @저자 petero
+ */
 public class TextIO {
     static public final String startPosFEN = new String("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 	
@@ -161,7 +165,8 @@ public class TextIO {
     	pos.setCastleMask(castleMask);
     }
 
-    /** Remove pseudo-legal EP square if it is not legal, ie would leave king in check. */
+    /** Remove pseudo-legal EP square if it is not legal, ie would leave king in check. */ 
+    /** 합법적이지 않은 경우 pseudo-legal EP square를 제거합니다. 즉, 왕을 확인하는 것입니다. */
     public static final void fixupEPSquare(Position pos) {
         int epSquare = pos.getEpSquare();
         if (epSquare >= 0) {
@@ -235,6 +240,7 @@ public class TextIO {
         ret.append(pos.whiteMove ? " w " : " b ");
 
         // Castling rights
+	//왕의 오른쪽이동
         boolean anyCastle = false;
         if (pos.h1Castle()) {
             ret.append('K');
@@ -270,6 +276,7 @@ public class TextIO {
         }
 
         // Move counters
+	 //이동을 세기
         ret.append(' ');
         ret.append(pos.halfMoveClock);
         ret.append(' ');
