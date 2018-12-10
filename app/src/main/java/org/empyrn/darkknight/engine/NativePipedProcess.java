@@ -64,11 +64,15 @@ public class NativePipedProcess {
 
 	/**
 	 * Read a line of data from the process.
+	 * 프로세스로 부터 데이터를 한 줄 읽어옴
 	 * Return as soon as there is a full line of data to return, 
+	 * 반환할 전체 데이터 빨리 반환하거나
 	 * or when timeoutMillis milliseconds have passed.
+	 * milliseconds 지났을 때
 	 */
 	private final native String readFromProcess(int timeoutMillis);
 
 	/** Write data to the process. */
+	// 프로세스에 데이터 작성
 	private final native void writeToProcess(String data);
 }
