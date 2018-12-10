@@ -1649,6 +1649,9 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 		});
 	}
 
+	/** Invalid Move일 경우 Toast로 알려주는 함수.
+     *  기존의 경우 Chessmate 상황일때도 "invalid move"라고만 메시지가 나왔었지만,
+     *  수정하여서 게임이 끝났을 경우에는 "Game Over"가 출력되도록 변경하였다. */
 	@Override
 	public void reportInvalidMove(Move m) {
         final int WHITE_WIN = 1;
@@ -1657,11 +1660,11 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
         int invalidCase = ctrl.getGameState();
         switch(invalidCase) {
             case WHITE_WIN:
-                msg = String.format("Game over, White mates!");
+                msg = String.format("Game Over, White mates!");
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                 return;
             case BLACK_WIN:
-                msg = String.format("Game over, Black mates!");
+                msg = String.format("Game Over, Black mates!");
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                 return;
             default:
