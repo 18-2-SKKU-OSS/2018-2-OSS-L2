@@ -270,6 +270,7 @@ public class PolyglotBook {
 	};
 
 	/** Return true if the external book is available. */
+	// 외부 book을 사용할 수 있는 경우 참 반환
 	final boolean enabled() {
 		return bookFile.canRead();
 	}
@@ -317,6 +318,7 @@ public class PolyglotBook {
 			}
 
 			// Convert castling moves
+			// 룩 이동 변환
 			if ((from == 4) && (pos.getPiece(from) == Piece.WKING)) {
 				if (to == 7)
 					to = 6;
@@ -344,10 +346,12 @@ public class PolyglotBook {
 	}
 
 	/** Return true if key1 < key2, when compared as unsigned longs. */
+	// key2가 key1보다 크면 참 반환, unsigned long으로 비교할 때
 	private final boolean keyLess(long key1, long key2) {
 		if ((key1 < 0) == (key2 < 0)) { // Same sign, normal compare
 			return key1 < key2;
 		} else { // The negative number is largest
+			// 음수가 가장 큼
 			return key2 < 0;
 		}
 	}
