@@ -20,6 +20,7 @@
 * Mail: bigpig93@naver.com
 * ID : hyunbeen
 * SID: 2014315355
+* 개인 깃허브 홈페이지: https://hyunbeen.github.io
 * Issue 관리, Code 관리, 번역작업 및 주석관리
 
 ***
