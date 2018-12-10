@@ -32,12 +32,14 @@ public class ChessController {
 	private int maxDepth;
 
 	/*
-	 * Implementation of listener from SearchListener
-	 * For get information during board searching
-	 * 보드 서치 동안에 정보를 얻어오는 구현체
-	 */
+	* Implementation of listener from SearchListener
+	* For get information during board searching
+	* 보드 서치 동안에 정보를 얻어오는 구현체
+	*/
 	class SearchListener implements
 			org.empyrn.darkknight.gamelogic.SearchListener {
+		// curr 는 current
+		// 현재 탐색중인 노드에 대한 정보를 저장
 		private int currDepth = 0;
 		private int currMoveNr = 0;
 		private String currMove = "";
@@ -45,6 +47,9 @@ public class ChessController {
 		private int currNps = 0;
 		private int currTime = 0;
 
+		// pv 는 previous
+		// curr 정보로부터 새로이 갱신되며,
+		
 		private int pvDepth = 0;
 		private int pvScore = 0;
 		private boolean pvIsMate = false;
@@ -64,6 +69,8 @@ public class ChessController {
 			setSearchInfo();
 		}
 
+		//  Search tree 탐색에 대한 현재 정보를 newPV 에 담아 GUI에 갱신.
+		//  Search 영역을 탐색과정에서 호출되며, 이전 영역의 정보와 현재정보를 String 형태로 기록한다.
 		private final void setSearchInfo() {
 			StringBuilder buf = new StringBuilder();
 			if (pvDepth > 0) {
@@ -151,6 +158,7 @@ public class ChessController {
 
 	SearchListener listener;
 
+	
 	public ChessController(GUIInterface gui,
 			PgnToken.PgnTokenReceiver gameTextListener, PGNOptions options) {
 		this.gui = gui;
@@ -262,8 +270,9 @@ public class ChessController {
 				ss.searchResultWanted = false;
 			gameMode = newMode;
 			if (!gameMode.playerWhite() || !gameMode.playerBlack())
-				setPlayerNames(game); // If computer player involved, set player
-										// names
+				// If computer player involved, set player names.
+				// 컴퓨터와의 대전시, 유저의 이름을 설정해줌.
+				setPlayerNames(game);
 			updateGamePaused();
 			updateComputeThreads(true);
 			updateGUI();
@@ -327,12 +336,17 @@ public class ChessController {
 		updateGUI();
 	}
 
-	/** True if human's turn to make a move. (True in analysis mode.) */
+	// True if human's turn to make a move. (True in analysis mode.)
+	// 플레이어 턴에서 True 반환
 	public final boolean humansTurn() {
 		return gameMode.humansTurn(game.currPos().whiteMove);
 	}
 
-	/** Return true if computer player is using CPU power. */
+	/* 
+	*  Return true if computer player is using CPU power.
+	*  게임 계산이 진행중일 때 True 반환.
+	*  플레이어 턴에서는 False 반환.
+	*/
 	public final boolean computerBusy() {
 		if (game.getGameState() != GameState.ALIVE)
 			return false;
