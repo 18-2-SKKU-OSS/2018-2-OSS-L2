@@ -10,6 +10,9 @@ package org.empyrn.darkknight.gamelogic;
  * makeMove ()에 의해 설정됩니다. unMakeMove ()에 의해 사용됩니다.
  * 저자 petero
  */
+
+// class to store piece movement info
+//피스의 이동정보를 저장할 클래스
 public class UndoInfo {
     int capturedPiece;
     int castleMask;
