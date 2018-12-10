@@ -17,13 +17,15 @@ import org.empyrn.darkknight.gamelogic.Game.GameState;
 
 public class GameTree {
     // Data from the seven tag roster (STR) part of the PGN standard
+    // PGN 표준의 7 태그 명단 (STR) 부분의 데이터
     String event, site, date, round, white, black;
     // Result is the last tag pair in the STR, but it is computed on demand from the game tree.
-
+    // 결과는 STR의 마지막 태그 쌍이지만 게임 트리의 요구에 따라 계산됩니다.
     Position startPos;
     String timeControl;
 
     // Non-standard tags
+    // 비표준 태그
     static private class TagPair {
     	String tagName;
     	String tagValue;
@@ -32,7 +34,9 @@ public class GameTree {
 
     Node rootNode;
     Node currentNode;
-    Position currentPos;	// Cached value. Computable from "currentNode".
+    Position currentPos;	
+	// Cached value. Computable from "currentNode".
+	// 캐싱 된 값. "currentNode"에서 계산 가능.
 
     PgnToken.PgnTokenReceiver gameStateListener;
     
@@ -54,6 +58,7 @@ public class GameTree {
 	}
 
 	/** Set start position. Drops the whole game tree. */
+	/** 시작 위치를 설정합니다. 전체 게임 트리를 버립니다. */
 	final void setStartPos(Position pos) {
     	event = "?";
     	site = "?";
@@ -83,6 +88,7 @@ public class GameTree {
 	}
 
 	/** PngTokenReceiver implementation that generates plain text PGN data. */
+	/** 일반 텍스트 PGN 데이터를 생성하는 PngTokenReceiver 구현입니다. */
 	private static class PgnText implements PgnToken.PgnTokenReceiver {
 		private StringBuilder sb = new StringBuilder(256);
 		private String header = "";
@@ -200,6 +206,7 @@ public class GameTree {
 	}
 
     /** Export game tree in PGN format. */
+    /** 게임 트리를 PGN 형식으로 내 보냅니다. */
     public final String toPGN(PGNOptions options) {
     	PgnText pgnText = new PgnText();
     	options.exp.pgnPromotions = true;
@@ -208,8 +215,10 @@ public class GameTree {
     }
 
     /** Walks the game tree in PGN export order. */
+    /** PGN 내보내기 순서로 게임 트리를 안내합니다. */
     public final void pgnTreeWalker(PGNOptions options, PgnToken.PgnTokenReceiver out) {
     	// Go to end of mainline to evaluate PGN result string.
+	// 메인 라인의 끝으로 이동하여 PGN 결과 문자열을 평가합니다.
     	String pgnResultString;
     	{
     		List<Integer> currPath = new ArrayList<Integer>();
@@ -229,6 +238,7 @@ public class GameTree {
     	}
 
     	// Write seven tag roster
+	 // 7 개의 태그 명부 작성
         addTagPair(out, "Event",  event);
         addTagPair(out, "Site",   site);
         addTagPair(out, "Date",   date);
@@ -238,6 +248,7 @@ public class GameTree {
         addTagPair(out, "Result", pgnResultString);
 
         // Write special tag pairs
+	// 스페셜 태그 작성
     	String fen = TextIO.toFEN(startPos);
     	if (!fen.equals(TextIO.startPosFEN)) {
     		addTagPair(out, "FEN", fen);
@@ -247,10 +258,12 @@ public class GameTree {
     		addTagPair(out, "TimeControl", timeControl);
 
     	// Write other non-standard tag pairs
+	// 다른 비표준 태그 쌍을 씁니다.
     	for (int i = 0; i < tagPairs.size(); i++)
     		addTagPair(out, tagPairs.get(i).tagName, tagPairs.get(i).tagValue);
 
     	// Write moveText section
+	// moveText 섹션 작성
     	MoveNumber mn = new MoveNumber(startPos.fullMoveCounter, startPos.whiteMove);
     	Node.addPgnData(out, rootNode, mn.prev(), options);
     	out.processToken(null, PgnToken.SYMBOL, pgnResultString);
@@ -272,6 +285,7 @@ public class GameTree {
     	PgnScanner(String pgn) {
     		savedTokens = new ArrayList<PgnToken>();
     		// Skip "escape" lines, ie lines starting with a '%' character
+		// "escape"줄, 즉 '%'문자로 시작하는 줄을 건너 뜁니다.
     		StringBuilder sb = new StringBuilder();
     		int len = pgn.length();
     		boolean col0 = true;
@@ -290,7 +304,9 @@ public class GameTree {
     				col0 = ((c == '\n') || (c == '\r'));
     			}
     		}
-    		sb.append('\n'); // Terminating whitespace simplifies the tokenizer
+    		sb.append('\n'); 
+		// Terminating whitespace simplifies the tokenizer
+		// 공백을 종료하면 토크 나이저가 간단해진다.
     		data = sb.toString();
     		idx = 0;
     	}
@@ -416,11 +432,13 @@ public class GameTree {
     }
 
     /** Import PGN data. */ 
+    /** PGN 데이터 가져 오기. */
     public final boolean readPGN(String pgn, PGNOptions options) throws ChessParseError {
     	PgnScanner scanner = new PgnScanner(pgn);
     	PgnToken tok = scanner.nextToken();
 
     	// Parse tag section
+	// 태그 섹션 분석
         List<TagPair> tagPairs = new ArrayList<TagPair>();
     	while (tok.type == PgnToken.LEFT_BRACKET) {
     		TagPair tp = new TagPair();
@@ -438,6 +456,10 @@ public class GameTree {
     			// and the right bracket, but broken headers with non-escaped
     			// " characters sometimes occur. Try to do something useful
     			// for such headers here.
+			// 올바른 형식의 PGN에서는 문자열 사이에 아무 것도 없습니다.
+			//와 오른쪽 대괄호가 있지만 이스케이프 처리되지 않은 깨진 헤더
+			// "문자가 때때로 발생합니다. 유용한 것을 시도해보십시오.
+			// 여기에서 그러한 헤더에 대해.
     			PgnToken prevTok = new PgnToken(PgnToken.STRING, "");
     			while ((tok.type == PgnToken.STRING) || (tok.type == PgnToken.SYMBOL)) {
     				if (tok.type != prevTok.type)
@@ -455,10 +477,12 @@ public class GameTree {
     	scanner.putBack(tok);
 
     	// Parse move section
+	// 구문 분석 섹션
     	Node gameRoot = new Node();
     	Node.parsePgn(scanner, gameRoot, options);
 
     	// Store parsed data in GameTree
+	// 파스 데이타를 GameTree에 저장
     	if ((tagPairs.size() == 0) && (gameRoot.children.size() == 0))
     		return false;
 
@@ -503,6 +527,8 @@ public class GameTree {
 
     	// If result indicated draw by agreement or a resigned game,
     	// add that info to the game tree.
+	// 결과가 합의 또는 사퇴 한 게임으로 표시 한 경우,
+        // 그 정보를 게임 트리에 추가하십시오.
     	{
     		// Go to end of mainline
     		while (variations().size() > 0)
@@ -527,6 +553,7 @@ public class GameTree {
     			}
     		}
     		// Go back to the root
+		// 루트로 돌아갑니다.
     		while (currentNode != rootNode)
     			goBack();
     	}
@@ -536,6 +563,7 @@ public class GameTree {
     }
 
     /** Serialize to byte array. */
+    /** 바이트 배열로 직렬화하십시오. */
     public final byte[] toByteArray() {
     	try {
         	ByteArrayOutputStream baos = new ByteArrayOutputStream(32768);
@@ -571,6 +599,7 @@ public class GameTree {
     }
 
     /** De-serialize from byte array. */
+    /** 바이트 배열에서 비 직렬화. */
     public final void fromByteArray(byte[] data) {
     	try {
         	ByteArrayInputStream bais = new ByteArrayInputStream(data);
@@ -608,6 +637,7 @@ public class GameTree {
 
 
     /** Go backward in game tree. */
+    /** 게임 트리에서 뒤로 이동하십시오. */
     public final void goBack() {
     	if (currentNode.parent != null) {
     		currentPos.unMakeMove(currentNode.move, currentNode.ui);
@@ -617,6 +647,9 @@ public class GameTree {
 
     /** Go forward in game tree.
      * @param variation Which variation to follow. -1 to follow default variation.
+     */
+    /** 게임 트리에서 앞으로 나아가십시오.
+      * @param variation 따라야 할 변형입니다. 기본 변형을 따르려면 -1입니다.
      */
     public final void goForward(int variation) {
     	goForward(variation, true);
@@ -639,6 +672,7 @@ public class GameTree {
     }
 
     /** List of possible continuation moves. */
+    /** 가능한 연속 이동 목록. */
     public final List<Move> variations() {
     	if (currentNode.verifyChildren(currentPos))
     		updateListener();
@@ -651,6 +685,9 @@ public class GameTree {
     /** Add a move last in the list of variations.
      * @return Move number in variations list. -1 if moveStr is not a valid move
      */
+    /** 변형 목록에서 마지막으로 이동을 추가합니다.
+      * @return 변형 목록에서 번호를 이동합니다. moveStr가 유효한 이동이 아니면 -1
+     */
     public final int addMove(String moveStr, String playerAction, int nag, String preComment, String postComment) {
     	if (currentNode.verifyChildren(currentPos))
     		updateListener();
@@ -670,6 +707,7 @@ public class GameTree {
 	}
     
 	/** Move a variation in the ordered list of variations. */
+	/** 변형 된 순서 목록에서 변형을 이동합니다. */
     public final void reorderVariation(int varNo, int newPos) {
     	if (currentNode.verifyChildren(currentPos))
     		updateListener();
@@ -692,6 +730,7 @@ public class GameTree {
     }
 
     /** Delete a variation. */
+    /** 대안 페이지 삭제 */
     public final void deleteVariation(int varNo) {
     	if (currentNode.verifyChildren(currentPos))
     		updateListener();
@@ -708,6 +747,7 @@ public class GameTree {
     }
     
     /* Get linear game history, using default variations at branch points. */
+	/* 분기점의 기본 변형을 사용하여 선형 게임 기록을 가져옵니다. */
     public final Pair<List<Node>, Integer> getMoveList() {
     	List<Node> ret = new ArrayList<Node>();
     	Node node = currentNode;
@@ -796,6 +836,7 @@ public class GameTree {
 	}
 
 	/** Get additional info affecting gameState. A player "draw" or "resign" command. */
+	/** gameState에 영향을 미치는 추가 정보를 얻습니다. 플레이어는 "draw"또는 "resign"명령을 내립니다. */
 	final String getGameStateInfo() {
 		String ret = "";
         String action = currentNode.playerAction;
@@ -894,6 +935,11 @@ public class GameTree {
      *  The position is defined by the move that leads to the position from the parent position.
      *  The root node is special in that it doesn't have a move.
      */
+	/**
+      * 노드 객체는 게임 트리에서의 위치를 나타냅니다.
+      * 위치는 부모 위치에서 위치로 이동하는 이동에 의해 정의됩니다.
+      * 루트 노드는 이동이 없다는 점에서 특별합니다.
+      */
     public static class Node {
     	String moveStr;				// String representation of move leading to this node. Empty string root node.
     	Move move;					// Computed on demand for better PGN parsing performance.
@@ -941,6 +987,7 @@ public class GameTree {
     	}
 
     	/** nodePos must represent the same position as this Node object. */
+	    /** nodePos는이 Node 객체와 동일한 위치를 나타내야합니다. */
         private final boolean verifyChildren(Position nodePos) {
         	boolean anyToRemove = false;
         	for (Node child : children) {
@@ -1036,6 +1083,7 @@ public class GameTree {
 		}
 
 		/** Export whole tree rooted at "node" in PGN format. */ 
+	    	/** "노드"를 루트로하는 전체 트리를 PGN 형식으로 내 보냅니다. */
     	public static final void addPgnData(PgnToken.PgnTokenReceiver out, Node node,
     										MoveNumber moveNum, PGNOptions options) {
     		boolean needMoveNr = node.addPgnDataOneNode(out, moveNum, true, options);
@@ -1059,6 +1107,7 @@ public class GameTree {
     	}
 
     	/** Export this node in PGN format. */ 
+	/**이 노드를 PGN 형식으로 내 보냅니다. */
     	private final boolean addPgnDataOneNode(PgnToken.PgnTokenReceiver out, MoveNumber mn,
     											boolean needMoveNr, PGNOptions options) {
     		if ((preComment.length() > 0) && options.exp.comments) {
@@ -1273,6 +1322,7 @@ public class GameTree {
     	}
     	
     	/** Convert hh:mm:ss to milliseconds */
+	/** hh : mm : ss를 밀리 초로 변환 */
     	private static final int parseTimeString(String str) {
     		str = str.trim();
     		int ret = 0;
