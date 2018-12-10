@@ -628,6 +628,7 @@ public class TextIO {
 
     /**
      * Convert a square number to a string, such as "e4".
+     * square 번호를 "e4"와 같은 문자열로 변환한다.
      */
     public static final String squareToString(int square) {
         StringBuilder ret = new StringBuilder();
@@ -640,6 +641,7 @@ public class TextIO {
 
     /**
      * Create an ascii representation of a position.
+     * 위치의 ASCII 표현을 생성한다.
      */
     public static final String asciiBoard(Position pos) {
         StringBuilder ret = new StringBuilder(400);
@@ -695,6 +697,7 @@ public class TextIO {
     }
 
     /** Add an = sign to a promotion move, as required by the PGN standard. */
+    /** PGN 표준에서 요구하는대로 프로모션 이동에 = 기호를 추가한다. */
 	public final static String pgnPromotion(String str) {
 		int idx = str.length() - 1;
 		while (idx > 0) {
