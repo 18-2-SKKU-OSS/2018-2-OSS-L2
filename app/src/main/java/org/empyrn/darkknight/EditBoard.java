@@ -247,11 +247,13 @@ public class EditBoard extends Activity {
 			    public void onClick(DialogInterface dialog, int item) {
 			    	switch (item) {
 			    	case 0: // Edit side to move
+                            // 이동할 곳 편집
 			    		showDialog(SIDE_DIALOG);
 			    		cb.setSelection(-1);
 			    		checkValid();
 			    		break;
 			    	case 1: { // Clear board
+                              // 체스판 초기화
 			    		Position pos = new Position();
 			    		cb.setPosition(pos);
 			    		cb.setSelection(-1);
@@ -259,6 +261,7 @@ public class EditBoard extends Activity {
 			    		break;
 			    	}
 			    	case 2: { // Set initial position
+                              // 초기 위치 설정
 			    		try {
 			    			Position pos = TextIO.readFEN(TextIO.startPosFEN);
 			    			cb.setPosition(pos);
@@ -269,24 +272,28 @@ public class EditBoard extends Activity {
 			    		break;
 			    	}
 			    	case 3: // Edit castling flags
+                            // 캐슬링 플래그 편집
 			    		removeDialog(CASTLE_DIALOG);
 			    		showDialog(CASTLE_DIALOG);
 			    		cb.setSelection(-1);
 			    		checkValid();
 			    		break;
 			    	case 4: // Edit en passant file
+                            // en passant file 편집
 			    		removeDialog(EP_DIALOG);
 			    		showDialog(EP_DIALOG);
 			    		cb.setSelection(-1);
 			    		checkValid();
 			    		break;
 			    	case 5: // Edit move counters
+                            // 이동 수 편집
 			    		removeDialog(MOVCNT_DIALOG);
 			    		showDialog(MOVCNT_DIALOG);
 			    		cb.setSelection(-1);
 			    		checkValid();
 			    		break;
 			    	case 6: { // Copy position
+                              // 위치 복사
 						setPosFields();
 			    		String fen = TextIO.toFEN(cb.pos) + "\n";
 			    		ClipboardManager clipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
@@ -295,6 +302,7 @@ public class EditBoard extends Activity {
 			    		break;
 			    	}
 			    	case 7: { // Paste position
+                              // 위치 붙여넣기
 			    		ClipboardManager clipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
 			    		if (clipboard.hasText()) {
 			    			String fen = clipboard.getText().toString();
