@@ -7,6 +7,10 @@ import java.util.ArrayList;
  *
  * @author petero
  */
+/**
+  *
+  * @저자 petero
+ */
 public class MoveGen {
 	static MoveGen instance;
 	static {
@@ -89,14 +93,20 @@ public class MoveGen {
                 }
                 if ((p == Piece.WPAWN) || (p == Piece.BPAWN)) {
                     int yDir = wtm ? 8 : -8;
-                    if (pos.getPiece(sq + yDir) == Piece.EMPTY) { // non-capture
+                    if (pos.getPiece(sq + yDir) == Piece.EMPTY) { 
+			    // non-capture
+			    // 못 잡다
                         addPawnMoves(moveList, sq, sq + yDir);
                         if ((y == (wtm ? 1 : 6)) &&
-                                (pos.getPiece(sq + 2 * yDir) == Piece.EMPTY)) { // double step
+                                (pos.getPiece(sq + 2 * yDir) == Piece.EMPTY)) { 
+				// double step
+				// 이중 이동
                             addPawnMoves(moveList, sq, sq + yDir * 2);
                         }
                     }
-                    if (x > 0) { // Capture to the left
+                    if (x > 0) { 
+			    // Capture to the left
+			    // 왼쪽에서 잡다
                     	int toSq = sq + yDir - 1;
                         int cap = pos.getPiece(toSq);
                         if (cap != Piece.EMPTY) {
@@ -114,7 +124,9 @@ public class MoveGen {
                             addPawnMoves(moveList, sq, toSq);
                         }
                     }
-                    if (x < 7) { // Capture to the right
+                    if (x < 7) { 
+			    // Capture to the right
+			    // 오른쪽에서 잡다
                     	int toSq = sq + yDir + 1;
                         int cap = pos.getPiece(toSq);
                         if (cap != Piece.EMPTY) {
@@ -313,7 +325,7 @@ public class MoveGen {
     }
 
     // Code to handle the Move cache.
-
+    // 잡으러 가는 이동을 다룬다
     private Move[] moveCache = new Move[2048];
     private int movesInCache = 0;
     private Object[] moveListCache = new Object[200];
@@ -339,6 +351,7 @@ public class MoveGen {
     }
 
     /** Return all move objects in moveList to the move cache. */
+   // 이동리스트에서 모든 객체의 모든 이동값을 반환한다
     public final void returnMoveList(ArrayList<Move> moveList) {
         if (movesInCache + moveList.size() <= moveCache.length) {
         	int mlSize = moveList.size();
