@@ -1,7 +1,7 @@
 ## 팀/팀원 소개 및 활동 정리
 ***
 
-* Name: **Hyeon.Cheol Yun**
+* Name: **윤현철**
 * Mail: hotgake@gmail.com
 * ID : hotgake
 * SID: 2015314758
@@ -30,7 +30,7 @@
 * Issue 관리, Code 관리 ,번역작업 및 주석관리
 
 ***
-* Name: **Jisu Kang**
+* Name: **강지수**
 * Mail: kangjisu0403@gmail.com
 * ID : Knowater
 * SID: 2017313101
@@ -38,7 +38,8 @@
 
 ***
 
-* 더 구체적인 내용은 Wiki 참조 (https://github.com/18-2-SKKU-OSS/2018-2-OSS-L2/wiki)
+* 더 구체적인 내용은 Wiki 참조 
+* 메인 프로젝트 깃허브 주소 : https://github.com/18-2-SKKU-OSS/2018-2-OSS-L2/wiki
 
 
 
