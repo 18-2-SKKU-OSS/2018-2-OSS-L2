@@ -39,8 +39,10 @@
 
 ***
 
-* 더 구체적인 내용은 Wiki 참조 : https://github.com/18-2-SKKU-OSS/2018-2-OSS-L2/wiki
-* 메인 프로젝트 깃허브 주소 : https://github.com/AvijitGhosh82/material-chess-android
+* **더 구체적인 내용은 Wiki 참조 :** https://github.com/18-2-SKKU-OSS/2018-2-OSS-L2/wiki
+
+
+* **메인 프로젝트 깃허브 주소 :** https://github.com/AvijitGhosh82/material-chess-android
 
 
 ***
