@@ -889,6 +889,7 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 		cb.setColors();
 
 		// if Bluetooth was on but has been changed, disable it
+        // 만약 블루투스가 켜져 있지만 변경된 경우 비활성화한다.
 		if (!gameMode.bluetoothMode()) {
 			if (bGameCtrl != null) {
 				bGameCtrl.stopBluetoothService();
@@ -897,6 +898,7 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 		}
 
 		// otherwise, if it has been activated, enable it
+        // 그렇지 않고 활동중이라면 활성화한다.
 		else {
 			if (bGameCtrl == null) {
 				bGameCtrl = new BluetoothGameController(this, ctrl, gameMode);
@@ -1161,11 +1163,14 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 			}
 
 			// When DeviceListActivity returns with a device to connect
+            // 연결할 장치와 함께 DeviceListActivity가 반환 될 때
 			if (resultCode == Activity.RESULT_OK) {
 				// Get the device MAC address
+                // 장치의 MAC 주소를 얻는다.
 				String address = data.getExtras().getString(
 						DeviceListActivity.EXTRA_DEVICE_ADDRESS);
 				// Get the BluetoothDevice object
+                // 블루투스장치 객체를 얻는다.
 				BluetoothDevice device = bGameCtrl.getmBluetoothAdapter()
 						.getRemoteDevice(address);
 
