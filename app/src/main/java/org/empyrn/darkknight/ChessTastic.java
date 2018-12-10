@@ -2099,16 +2099,18 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
                         ChessTastic.this);
 
                 // set title
+                // 제목 설정
                 alertDialogBuilder.setTitle("Rating and Feedback");
 
                 // set dialog message
+                // 대화 상자 메시지 설정
                 alertDialogBuilder
                         .setMessage("Do you like this app? Press Rate to add a good rating and some kind words on the Play Store. Are you facing any problems? Press the Feedback button below to send me an email!")
                         .setCancelable(true)
                         .setPositiveButton("Rate",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, close
-                                // current activity
+                                // if this button is clicked, close current activity
+                                // 만약 버튼이 클릭되면, 최근 액티비티를 닫는다.
                                 final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
                                 try {
                                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
@@ -2119,8 +2121,8 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
                         })
                         .setNegativeButton("Feedback",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
+                                // if this button is clicked, just close the dialog box and do nothing
+                                // 이 버튼이 클릭되면, 대화 상자를 닫고 아무것도 하지 않는다.
                                 Toast.makeText(getApplicationContext(), "Opening email. Please tell me your problems. ", Toast.LENGTH_LONG).show();
                                 /*Intent i = new Intent(android.content.Intent.ACTION_SEND);
                                 i.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {"avijitg22@gmail.com"});
@@ -2136,9 +2138,11 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
                         });
 
                 // create alert dialog
+                // 경고 대화 상자를 생성한다.
                 AlertDialog alertDialog = alertDialogBuilder.create();
 
                 // show it
+                // 보여준다.
                 alertDialog.show();
                 break;
 			case 11:
