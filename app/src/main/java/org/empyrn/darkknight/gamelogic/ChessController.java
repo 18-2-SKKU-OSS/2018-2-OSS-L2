@@ -11,7 +11,8 @@ import org.empyrn.darkknight.gamelogic.Game.GameState;
 
 /**
  * The glue between the chess engine and the GUI.
- * 
+ * GUI 와 체스 게임 엔진 사이의 인터페이스
+ * 게임 전체에 대한 정보를 가지고 있으며, 이를 관리하는 
  * @author petero
  */
 public class ChessController {
@@ -48,7 +49,7 @@ public class ChessController {
 		private int currTime = 0;
 
 		// pv 는 previous
-		// curr 정보로부터 새로이 갱신되며,
+		// curr 정보로부터 새로이 갱신되며
 		
 		private int pvDepth = 0;
 		private int pvScore = 0;
@@ -104,18 +105,22 @@ public class ChessController {
 				}
 			});
 		}
-
+		
+		// GUI 에 현재 Depth 를 알림
 		public void notifyDepth(int depth) {
 			currDepth = depth;
 			setSearchInfo();
 		}
 
+		// GUI 에 현재 상태의 Move 정보를 알린다.
 		public void notifyCurrMove(Position pos, Move m, int moveNr) {
 			currMove = TextIO.moveToString(pos, m, false);
 			currMoveNr = moveNr;
 			setSearchInfo();
 		}
 
+		// GUI 에 이전 정보를 반영하기 위해, 인자로 받은 값들을 이전정보로 갱신하고
+		// GUI 에 갱신된 정보를 알린다.
 		public void notifyPV(Position pos, int depth, int score, int time,
 				int nodes, int nps, boolean isMate, boolean upperBound,
 				boolean lowerBound, ArrayList<Move> pv) {
@@ -141,6 +146,7 @@ public class ChessController {
 			setSearchInfo();
 		}
 
+		// 현재 상태를 갱신하고, 이를 GUI 에 알린다.
 		public void notifyStats(int nodes, int nps, int time) {
 			currNodes = nodes;
 			currNps = nps;
@@ -158,7 +164,8 @@ public class ChessController {
 
 	SearchListener listener;
 
-	
+	// For connect GUI and egine, create controller.
+	// GUI 정보와, 엔진 정보를 얻어와 연결을 설정하는 생성자.
 	public ChessController(GUIInterface gui,
 			PgnToken.PgnTokenReceiver gameTextListener, PGNOptions options) {
 		this.gui = gui;
@@ -167,10 +174,13 @@ public class ChessController {
 		listener = new SearchListener();
 	}
 
+	// MaxDepth 는 외부 옵션에 의해 설정되며,
+	// 이 정보를 TreeSearch 에서 탐색 조건을 결정하기위해
+	// 사용한다.
+	// get-set pair
 	public int getMaxDepth() {
 		return maxDepth;
 	}
-
 	public void setMaxDepth(int maxDepth) {
 		this.maxDepth = maxDepth;
 	}
@@ -207,6 +217,8 @@ public class ChessController {
 
 	SearchStatus ss = new SearchStatus();
 
+	// gameMode 설정을 받아 새로운 게임을 시작한다.
+	// gameMode
 	public final void newGame(GameMode gameMode) {
 		ss.searchResultWanted = false;
 		stopComputerThinking();
@@ -293,10 +305,11 @@ public class ChessController {
 		}
 	}
 
+	// Convert format between data and array
+	// Data와 내부 Array 사이의 형태 변환.
 	public final void fromByteArray(byte[] data) {
 		game.fromByteArray(data);
 	}
-
 	public final byte[] toByteArray() {
 		return game.tree.toByteArray();
 	}
