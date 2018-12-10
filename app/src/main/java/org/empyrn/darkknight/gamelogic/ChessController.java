@@ -14,6 +14,7 @@ import org.empyrn.darkknight.gamelogic.Game.GameState;
  * GUI 와 체스 게임 엔진 사이의 인터페이스
  * 게임 전체에 대한 정보를 가지고 있으며, 이를 관리하는 
  * @author petero
+  *@저자 petero
  */
 public class ChessController {
 	private ComputerPlayer computerPlayer = null;
@@ -39,6 +40,9 @@ public class ChessController {
 	*/
 	class SearchListener implements
 			org.empyrn.darkknight.gamelogic.SearchListener {
+		
+		// curr is current
+		// Save information about the node currently being searched
 		// curr 는 current
 		// 현재 탐색중인 노드에 대한 정보를 저장
 		private int currDepth = 0;
@@ -48,6 +52,9 @@ public class ChessController {
 		private int currNps = 0;
 		private int currTime = 0;
 
+		
+		// pv is previous
+		// Newly updated from curr information
 		// pv 는 previous
 		// curr 정보로부터 새로이 갱신되며
 		
@@ -69,7 +76,8 @@ public class ChessController {
 			bookMoves = null;
 			setSearchInfo();
 		}
-
+		// Search Tree Update the GUI with the current information about navigation in newPV.
+		// It is invoked in search process of search area, and records information of previous area and current information in String form.
 		//  Search tree 탐색에 대한 현재 정보를 newPV 에 담아 GUI에 갱신.
 		//  Search 영역을 탐색과정에서 호출되며, 이전 영역의 정보와 현재정보를 String 형태로 기록한다.
 		private final void setSearchInfo() {
@@ -105,20 +113,21 @@ public class ChessController {
 				}
 			});
 		}
-		
+		// Notify current depth to GUI
 		// GUI 에 현재 Depth 를 알림
 		public void notifyDepth(int depth) {
 			currDepth = depth;
 			setSearchInfo();
 		}
-
+		// Tell the GUI about the current Move information.
 		// GUI 에 현재 상태의 Move 정보를 알린다.
 		public void notifyCurrMove(Position pos, Move m, int moveNr) {
 			currMove = TextIO.moveToString(pos, m, false);
 			currMoveNr = moveNr;
 			setSearchInfo();
 		}
-
+		// In order to reflect the previous information in the GUI, the values received as arguments are updated with the previous information
+		// Notify the GUI of the updated information.
 		// GUI 에 이전 정보를 반영하기 위해, 인자로 받은 값들을 이전정보로 갱신하고
 		// GUI 에 갱신된 정보를 알린다.
 		public void notifyPV(Position pos, int depth, int score, int time,
@@ -145,7 +154,7 @@ public class ChessController {
 			pvMoves = pv;
 			setSearchInfo();
 		}
-
+		// Update the current state and notify the GUI.
 		// 현재 상태를 갱신하고, 이를 GUI 에 알린다.
 		public void notifyStats(int nodes, int nps, int time) {
 			currNodes = nodes;
@@ -276,6 +285,7 @@ public class ChessController {
 	}
 
 	/** Set game mode. */
+	/** 게임모드 설정.*/
 	public final void setGameMode(GameMode newMode) {
 		if (!gameMode.equals(newMode)) {
 			if (newMode.humansTurn(game.currPos().whiteMove))
@@ -319,6 +329,7 @@ public class ChessController {
 	}
 
 	/** Convert current game to PGN format. */
+	/** 현재 게임을 PGN 형식으로 변환하십시오. */
 	public final String getPGN() {
 		return game.tree.toPGN(pgnOptions);
 	}
@@ -391,6 +402,9 @@ public class ChessController {
 					// Don't undo first white move if playing black vs computer,
 					// because that would cause computer to immediately make
 					// a new move and the whole redo history will be lost.
+					// 검은 색 컴퓨터를 재생할 경우 첫 번째 흰색 이동을 실행 취소하지 말고,
+					// 그렇게하면 컴퓨터가 즉시
+					// 새로운 이동 및 전체 리두 히스토리가 손실됩니다.
 					if (gameMode.playerWhite() || gameMode.playerBlack())
 						game.redoMove();
 				}
@@ -553,6 +567,11 @@ public class ChessController {
 	 * 
 	 * @return True if the move was legal, false otherwise.
 	 */
+	/**
+	* 조각을 한 사각형에서 다른 사각형으로 이동하십시오.
+	*
+	* @return 이동이 유효한 경우는 true, 그렇지 않은 경우는 false
+	*/
 	final private boolean doMove(Move move) {
 		Position pos = game.currPos();
 		ArrayList<Move> moves = new MoveGen().pseudoLegalMoves(pos);
@@ -749,6 +768,7 @@ public class ChessController {
 	}
 	
 	//control time limit
+	//시간제한 컨트롤
 	public final synchronized void setTimeLimit(int time, int moves, int inc) {
 		timeControl = time;
 		movesPerSession = moves;
@@ -759,6 +779,7 @@ public class ChessController {
 	}
 	
 	//process threading
+	//쓰레딩 처리
 	public final void stopSearch() {
 		if (computerThread != null) {
 			computerPlayer.stopSearch();
@@ -776,6 +797,10 @@ public class ChessController {
 	 * Help human to claim a draw by trying to find and execute a valid draw
 	 * claim.
 	 */
+	/**
+	* 유효한 끌기를 찾아서 실행하는 것을 시도해서 인간이 끌기를 요구하도록 돕는다.
+	* 주장.
+	*/
 	public final boolean claimDrawIfPossible() {
 		if (!findValidDrawClaim())
 			return false;
@@ -784,6 +809,7 @@ public class ChessController {
 	}
         
 	//process draw
+	//드로우 처리
 	private final boolean findValidDrawClaim() {
 		if (game.getGameState() != GameState.ALIVE)
 			return true;
