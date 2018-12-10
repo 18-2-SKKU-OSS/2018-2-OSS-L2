@@ -115,6 +115,8 @@ public class ChessBoard extends View {
 	 * 선택된 square를 설정하거나 해제한다.
 	 * @param square
 	 *            The square to select, or -1 to clear selection.
+	 * 인자: square
+	 *			  선택한 square, 선택을 취소하려면 -1.
 	 */
 	final public void setSelection(int square) {
 		if (square != selectedSquare) {
