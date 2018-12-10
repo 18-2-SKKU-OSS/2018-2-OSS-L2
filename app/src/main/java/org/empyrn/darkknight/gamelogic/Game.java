@@ -259,6 +259,7 @@ public class Game {
 
     /**
      * Get the current state (draw, mate, ongoing, etc) of the game.
+     * 게임의 현재 상태/노드 상태 반환
      */
     public final GameState getGameState() {
     	return tree.getGameState();
