@@ -43,7 +43,7 @@
 * 메인 프로젝트 깃허브 주소 : https://github.com/AvijitGhosh82/material-chess-android
 
 
-
+***
 
 ## Material Chess - ChessTastic (프로젝트 소개 및 활동)
 
