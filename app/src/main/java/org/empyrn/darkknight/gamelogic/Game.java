@@ -12,6 +12,10 @@ import org.empyrn.darkknight.gamelogic.GameTree.Node;
  *
  * @author petero
  */
+/**
+ *
+ * @저자 petero
+ */
 public class Game {
     boolean pendingDrawOffer;
     GameTree tree;
@@ -69,6 +73,11 @@ public class Game {
      * @param str The move or command to process.
      * @return True if str was understood, false otherwise.
      */
+       /**
+      * 플레이어의 이동 / 명령 문자열에 따라 게임 상태를 업데이트합니다.
+      * @param str 처리 할 이동 또는 명령입니다.
+      * @return str가 인식되면 true를 반환하고 그렇지 않으면 false를 반환합니다.
+      */
     public final boolean processString(String str) {
         if (getGameState() != GameState.ALIVE)
             return false;
@@ -107,7 +116,9 @@ public class Game {
     }
     
     private final void addToGameTree(Move m, String playerAction) {
-    	if (m.equals(new Move(0, 0, 0))) { // Don't create more than one null move at a node
+    	if (m.equals(new Move(0, 0, 0))) { 
+		// Don't create more than one null move at a node
+		// 노드에서 둘 이상의 null 이동을 만들지 않습니다.
     		List<Move> varMoves = tree.variations();
     		for (int i = varMoves.size() - 1; i >= 0; i--) {
             	if (varMoves.get(i).equals(m)) {
@@ -199,11 +210,15 @@ public class Game {
     /**
      * Get the last played move, or null if no moves played yet.
      */
+    /**
+      * 마지막으로 한 동작을 가져 오거나 아직 동작하지 않은 경우 null입니다.
+     */
     public final Move getLastMove() {
     	return tree.currentNode.move;
     }
     
     /** Return true if there is a move to redo. */
+    /** 재실행으로 넘어갈 경우 true를 반환합니다. */
     public final boolean canRedoMove() {
     	int nVar = tree.variations().size();
     	return nVar > 0;
@@ -269,6 +284,10 @@ public class Game {
      * Check if a draw offer is available.
      * @return True if the current player has the option to accept a draw offer.
      */
+      /**
+      * 비기는게 가능한지 확인하십시오.
+      * @return 현재 플레이어가 비기는 제안을 수락 할 수있는 옵션이 있어야한다.
+      */
     public final boolean haveDrawOffer() {
     	return tree.currentNode.playerAction.equals("draw offer");
     }
@@ -304,6 +323,10 @@ public class Game {
      * Return the last zeroing position and a list of moves
      * to go from that position to the current position.
      */
+    /**
+      * 마지막 제로 위치 및 이동 목록을 반환합니다.
+      * 그 위치에서 현재 위치로 이동하십시오.
+     */
     public final Pair<Position, ArrayList<Move>> getUCIHistory() {
     	Pair<List<Node>, Integer> ml = tree.getMoveList();
         List<Node> moveList = ml.first;
