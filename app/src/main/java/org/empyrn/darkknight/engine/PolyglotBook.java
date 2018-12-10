@@ -25,6 +25,7 @@ public class PolyglotBook {
 	}
 
 	/** Compute a polyglot hash key corresponding to a position. */
+	// 위치에 맞는 여러 언어의 해시 키를 계산
 	public static long getHashKey(Position pos) {
 		// Pieces
 		long key = 0;
@@ -61,12 +62,14 @@ public class PolyglotBook {
 		}
 
 		// Side to move
+		// 옆으로 이동
 		if (pos.whiteMove)
 			key ^= hashRandoms[780];
 
 		return key;
 	}
 
+	// 해시 랜덤 값
 	static private long hashRandoms[] = {
 		0x9D39247E33776D41L, 0x2AF7398005AAA5C7L, 0x44DB015024623547L, 0x9C15F73E62A76AE2L,
 		0x75834465489C0C89L, 0x3290AC3A203001BFL, 0x0FBBAD1F61042279L, 0xE83A908FF2FB60CAL,
@@ -267,6 +270,7 @@ public class PolyglotBook {
 	};
 
 	/** Return true if the external book is available. */
+	// 외부 book을 사용할 수 있는 경우 참 반환
 	final boolean enabled() {
 		return bookFile.canRead();
 	}
@@ -314,6 +318,7 @@ public class PolyglotBook {
 			}
 
 			// Convert castling moves
+			// 룩 이동 변환
 			if ((from == 4) && (pos.getPiece(from) == Piece.WKING)) {
 				if (to == 7)
 					to = 6;
@@ -341,10 +346,12 @@ public class PolyglotBook {
 	}
 
 	/** Return true if key1 < key2, when compared as unsigned longs. */
+	// key2가 key1보다 크면 참 반환, unsigned long으로 비교할 때
 	private final boolean keyLess(long key1, long key2) {
 		if ((key1 < 0) == (key2 < 0)) { // Same sign, normal compare
 			return key1 < key2;
 		} else { // The negative number is largest
+			// 음수가 가장 큼
 			return key2 < 0;
 		}
 	}
@@ -357,6 +364,7 @@ public class PolyglotBook {
 			PGBookEntry ent = new PGBookEntry();
 			
 			// Find first entry with hash key >= wantedKey
+			// 해시값이 원하는 키보다 크거나 같은 첫 번째 항목 찾음
 			long lo = -1;
 			long hi = numEntries;
 			// ent[lo] < key <= ent[hi]
@@ -372,6 +380,7 @@ public class PolyglotBook {
 			}
 
 			// Read all entries with matching hash key
+			// 해시 값과 매칭 되는 모든 항목들을 읽음
 			List<BookEntry> ret = new ArrayList<BookEntry>();
 			long entNo = hi;
 			while (entNo < numEntries) {
