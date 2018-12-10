@@ -18,6 +18,11 @@ static int fdToChild = -1;
  * Method:    startProcess
  * Signature: ()V
  */
+/*
+  * 클래스 : org_empyrn_darkknight_engine_NativePipedProcess
+  * 메소드 : startProcess
+  * 서명 : () V
+ */
 extern "C" JNIEXPORT void JNICALL Java_org_empyrn_darkknight_engine_NativePipedProcess_startProcess
 		(JNIEnv* env, jobject obj)
 {
@@ -85,6 +90,11 @@ static std::vector<char> lineBuf;
  * Method:    readFromProcess
  * Signature: (I)Ljava/lang/String;
  */
+/*
+  * 클래스 : org_empyrn_darkknight_engine_NativePipedProcess
+  * 메서드 : readFromProcess
+  * 서명 : (I) Ljava / lang / String;
+ */
 extern "C" JNIEXPORT jstring JNICALL Java_org_empyrn_darkknight_engine_NativePipedProcess_readFromProcess
 		(JNIEnv* env, jobject obj, jint timeoutMillis)
 {
@@ -122,6 +132,11 @@ extern "C" JNIEXPORT jstring JNICALL Java_org_empyrn_darkknight_engine_NativePip
  * Method:    writeToProcess
  * Signature: (Ljava/lang/String;)V
  */
+/*
+  * 클래스 : org_empyrn_darkknight_engine_NativePipedProcess
+  * 메서드 : writeToProcess
+  * 서명 : (Ljava / lang / String;) V
+ */
 extern "C" JNIEXPORT void JNICALL Java_org_empyrn_darkknight_engine_NativePipedProcess_writeToProcess
 		(JNIEnv* env, jobject obj, jstring msg)
 {
