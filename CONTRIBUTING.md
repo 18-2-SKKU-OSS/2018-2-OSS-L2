@@ -1,5 +1,7 @@
 --------------------------------------------------English Version--------------------------------------------------------
-#How to contribute
+
+
+## How to contribute
 
 1. Open up Android Studio
 
@@ -9,7 +11,7 @@
 
 4. Make a branch and get started on the issues, or make your own if you find bugs. Do not send pull requests from master.
 
-Roles and activities by participating students
+## Roles and activities by participating students
 
 Code management 
 Kang Ji Soo (Knowater) Gang Nam Gu (Nam-gu) Park Gyeol (parkg17) Yoon Hyun Cheol (hotgake) Lee Hyun Been (hyunbeen)
