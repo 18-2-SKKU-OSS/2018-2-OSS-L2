@@ -1,5 +1,6 @@
 package org.empyrn.darkknight.gamelogic;
-
+// Functions related to elapsed time and movement of pieces
+//경과 시간과 피스의 이동에 관한 함수
 public class TimeControl {
 	private long timeControl;
 	private int movesPerSession;
