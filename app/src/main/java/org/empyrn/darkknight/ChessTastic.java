@@ -685,6 +685,7 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 							float scrollUnit = cb.sqSize * scrollSensitivity;
 							if (Math.abs(scrollX) >= Math.abs(scrollY)) {
 								// Undo/redo
+                                // 실행 취소 / 다시 실행
 								int nRedo = 0, nUndo = 0;
 								while (scrollX > scrollUnit) {
 									nRedo++;
@@ -711,6 +712,7 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 								ctrl.setGameMode(gameMode);
 							} else {
 								// Next/previous variation
+                                // 다음/이전 변화
 								int varDelta = 0;
 								while (scrollY > scrollUnit) {
 									varDelta++;
@@ -1690,6 +1692,7 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 	}
 
 	/** Decide if user should be warned about heavy CPU usage. */
+	/** 사용자가 과도한 CPU 사용량에 대해 경고해야하는지 결정한다. */
 	private final void updateNotification() {
 		boolean warn = false;
 		if (lastVisibleMillis != 0) { // GUI not visible
@@ -1702,6 +1705,7 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 	private boolean notificationActive = false;
 
 	/** Set/clear the "heavy CPU usage" notification. */
+    /** "CPU 사용량 높음" 알림을 설정하거나 해제한다.  */
 	private final void setNotification(boolean show) {
 		if (notificationActive == show)
 			return;
@@ -1758,6 +1762,7 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 
     /**
 	 * PngTokenReceiver implementation that renders PGN data for screen display.
+     * 화면 표시를 위해 PGN 데이터를 렌더링하는 PngTokenReceiver implementation 이다.
 	 */
 	static class PgnScreenText implements PgnToken.PgnTokenReceiver {
 		private SpannableStringBuilder sb = new SpannableStringBuilder();
