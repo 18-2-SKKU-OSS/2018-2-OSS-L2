@@ -4,7 +4,12 @@ package org.empyrn.darkknight.gamelogic;
  *
  * @author petero
  */
+/**
+ *
+ * @저자 petero
+ */
 public class Move {
+    // The chess board is 8x8 standard and records it as a one-dimensional string instead of a two-dimensional coordinate.
     // 체스판은 8x8 규격이며, 이를 2차원 좌표형태 대신 1차원 스트링형태로 기록한다.
     
     /** From square, 0-63. */
@@ -53,6 +58,7 @@ public class Move {
     }
 
     /** Useful for debugging. */
+    /** 디버깅에 유용합니다. */
     public final String toString() {
     	return TextIO.moveToUCIString(this);
     }
