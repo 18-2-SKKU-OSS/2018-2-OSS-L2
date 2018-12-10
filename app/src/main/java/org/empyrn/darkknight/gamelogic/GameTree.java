@@ -43,7 +43,11 @@ public class GameTree {
 		} catch (ChessParseError e) {
 		}
     }
-
+	// Set each players name.
+	// If it's computer, set 'engine.'
+	// 플레이어의 이름을 지정한다.
+	// 컴퓨터 플레이어의 경우 'engine'으로 저장됨.
+	// (외부 구현체 'ChessController' 에서 호출되는 함수)
 	final void setPlayerNames(String white, String black) {
 		this.white = white;
 		this.black = black;
