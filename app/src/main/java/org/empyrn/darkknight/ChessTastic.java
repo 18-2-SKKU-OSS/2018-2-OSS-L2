@@ -1176,6 +1176,7 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 
 				if (device != null) {
 					// Attempt to connect to the device
+                    // 장치에 연결을 시도한다.
 					bGameCtrl.connectToDevice(device);
 				} else {
 					showDialog(R.string.bt_not_enabled_leaving);
@@ -1184,15 +1185,18 @@ public class ChessTastic extends AppCompatActivity implements GUIInterface, OnSh
 			break;
 		case REQUEST_ENABLE_BT:
 			// when the request to enable Bluetooth returns
+            // 블루투스 활성화 요청이 돌아올 때
 			if (resultCode == Activity.RESULT_OK) {
 				if (bGameCtrl == null)
 					bGameCtrl = new BluetoothGameController(this, ctrl,
 							gameMode);
 
 				// Bluetooth is now enabled, so set up a chat session
+                // 블루투스가 이제 사용 가능하므로, 채팅 세션을 설정한다.
 				bGameCtrl.setupBluetoothService();
 			} else {
 				// Bluetooth not enabled or an error occurred
+                // 블루투스가 사용 불가능하거나 에러가 발생했을 때
 				showDialog(R.string.bt_not_enabled_leaving);
 			}
 			break;
