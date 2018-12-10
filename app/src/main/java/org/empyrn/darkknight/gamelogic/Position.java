@@ -174,6 +174,7 @@ public class Position {
         squares[square] = piece;
 
         // Update king position 
+        // 왕의 위치 최신화
         if (piece == Piece.WKING) {
             wKingSq = square;
         } else if (piece == Piece.BKING) {
@@ -325,8 +326,11 @@ public class Position {
         }
             
         // Perform move
+        // 이동을 실행
         setPiece(move.from, Piece.EMPTY);
+        
         // Handle promotion
+        //전진하는 것을 다루다
         if (move.promoteTo != Piece.EMPTY) {
             setPiece(move.to, move.promoteTo);
         } else {
@@ -353,6 +357,7 @@ public class Position {
         }
         
         // Handle castling
+        // 왕의 이동을 다루다
         int king = wtm ? Piece.WKING : Piece.BKING;
         int k0 = move.from;
         if (p == king) {
@@ -388,7 +393,8 @@ public class Position {
     }
 
     /* ------------- Hashing code ------------------ */
-    
+    /* ------------- 해시 코드 ------------------ */
+ 
     private static long[][] psHashKeys;    // [piece][square]
     private static long whiteHashKey;
     private static long[] castleHashKeys;  // [castleMask]
