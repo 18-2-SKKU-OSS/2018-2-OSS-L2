@@ -616,7 +616,9 @@ public class TextIO {
     
     /**
      * Convert a string, such as "e4" to a square number.
+     * "e4"와 같은 문자열을 square 번호로 변환한다.
      * @return The square number, or -1 if not a legal square.
+     * 반환값: square 번호, 올바른 square가 아닌 경우는 -1
      */
     public static final int getSquare(String s) {
         int x = s.charAt(0) - 'a';
