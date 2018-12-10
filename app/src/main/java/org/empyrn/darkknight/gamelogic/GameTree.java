@@ -527,8 +527,8 @@ public class GameTree {
 
     	// If result indicated draw by agreement or a resigned game,
     	// add that info to the game tree.
-	// 결과가 합의 또는 사퇴 한 게임으로 표시 한 경우,
-        // 그 정보를 게임 트리에 추가하십시오.
+	    // 결과가 합의 또는 사퇴 한 게임으로 표시 한 경우,
+	    // 그 정보를 게임 트리에 추가하십시오.
     	{
     		// Go to end of mainline
     		while (variations().size() > 0)

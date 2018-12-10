@@ -343,6 +343,7 @@ public class ChessController {
 			setPlayerNames(newGame);
 		} catch (ChessParseError e) {
 			// Try read as PGN instead
+			// 대신 PGN으로 읽는다.
 			if (!newGame.readPGN(fenPgn, pgnOptions)) {
 				throw e;
 			}
@@ -647,6 +648,7 @@ public class ChessController {
 
 	final public void updateRemainingTime() {
 		// Update remaining time
+		// 남아있는 시간을 업데이트한다.
 		long now = System.currentTimeMillis();
 		long wTime = game.timeController.getRemainingTime(true, now);
 		long bTime = game.timeController.getRemainingTime(false, now);
@@ -826,6 +828,7 @@ public class ChessController {
 	}
 	
 	//process resign
+	//패배 처리
 	public final void resignGame() {
 		if (game.getGameState() == GameState.ALIVE) {
 			game.processString("resign");
