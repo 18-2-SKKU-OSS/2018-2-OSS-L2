@@ -35,3 +35,7 @@ The correct file is missing
 
 #### Android Games
 practice mate positions, solve puzzles, play online (FICS), chromecast
+
+#### Application plan
+
+If the comparative project has been posted on the feather hub site, watch it and compare it with the team project and develop it.
