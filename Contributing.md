@@ -13,16 +13,20 @@
 
 ## Roles and activities by participating students
 
-Code management 
+Code management
+
 Kang Ji Soo (Knowater) Kang Nam Gu (Nam-gu) Park Gyeol (parkg17) Yoon Hyun Cheol (hotgake) Lee Hyun Been (hyunbeen)
 
-Issue management 
+Issue management
+
 Park Gyeol (parkg17) Lee Hyun Been (hyunbeen)
 
-Wiki Management 
+Wiki Management
+
 Kang Ji Soo (Knowater) Kang Nam Gu (Nam-gu)
 
-Project management 
+Project management
+
 Yoon Hyun Cheol (hotgake)
 
 
@@ -31,7 +35,7 @@ Yoon Hyun Cheol (hotgake)
 
 ## 참여 방법
 
-1. Android Studio를 엽니 다.
+1. Android Studio를 엽니다.
 
 2. 버전 관리에서 새 프로젝트 선택
 
@@ -42,13 +46,17 @@ Yoon Hyun Cheol (hotgake)
 ## 참여하는 학생들의 역할과 활동
 
 코드 관리
+
 강지수 (Knowmitter) 강남구 (Nam-gu) 박결 (parkg17) 윤현철 (hotgake) 이현빈 (hyunbeen)
 
 이슈 관리
-박길 (parkg17) 이현빈 (hyunbeen)
+
+박결 (parkg17) 이현빈 (hyunbeen)
 
 위키 관리
+
 강지수 (Knowter) 강남구 (Nam-gu)
 
 프로젝트 관리
+
 윤현철 (hotgake)
