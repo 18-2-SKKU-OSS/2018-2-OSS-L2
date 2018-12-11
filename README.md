@@ -1,7 +1,7 @@
 ## 팀/팀원 소개 및 활동 정리
 ***
 
-* Name: **윤현철**
+* Name: **윤현철**(Yoon Hyun Chul)
 * Mail: hotgake@gmail.com
 * ID : hotgake
 * SID: 2015314758
@@ -9,14 +9,14 @@
 
 ***
 
-* Name: **강남구**
+* Name: **강남구**(Gang Nam Gu)
 * Mail: skarn2158@naver.com
 * ID : Nam-gu
 * SID: 2017311512
 * Wiki 관리, Code 관리, 번역작업 및 주석관리, 문서작업
 
 ***
-* Name: **이현빈**
+* Name: **이현빈**(Lee Hyun Been)
 * Mail: bigpig93@naver.com
 * ID : hyunbeen
 * SID: 2014315355
@@ -24,14 +24,14 @@
 * Issue 관리, Code 관리, 번역작업 및 주석관리, 문서작업
 
 ***
-* Name: **박결**
+* Name: **박결**(Park Gyeol)
 * Mail: parkg17@naver.com
 * ID : parkg17
 * SID: 2017312665
 * Issue 관리, Code 관리 ,번역작업 및 주석관리, 문서작업
 
 ***
-* Name: **강지수**
+* Name: **강지수**(Kang Ji Su)
 * Mail: kangjisu0403@gmail.com
 * ID : Knowater
 * SID: 2017313101
