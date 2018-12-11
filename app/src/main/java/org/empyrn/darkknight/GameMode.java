@@ -1,5 +1,9 @@
 package org.empyrn.darkknight;
 
+// code for game mode
+// The while / black player control is assigned differently depending on the mode
+// analysis, Bluetooth is also assigned different permissions depending on the mode.
+
 // 게임 모드에 대한 코드
 // 모드에 따라 while/black 플레이어 제어권이 다르게 할당되며
 // analysis, 블루투스도 또한 모드에 따라 권한이 다르게 할당된다.
