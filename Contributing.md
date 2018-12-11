@@ -13,7 +13,7 @@
 
 ## Roles and activities by participating students
 
-Code management
+Code management , Document management
 
 Kang Ji Soo (Knowater) Kang Nam Gu (Nam-gu) Park Gyeol (parkg17) Yoon Hyun Cheol (hotgake) Lee Hyun Been (hyunbeen)
 
@@ -45,7 +45,7 @@ Yoon Hyun Cheol (hotgake)
 
 ## 참여하는 학생들의 역할과 활동
 
-코드 관리
+코드 관리, 문서관리
 
 강지수 (Knowmitter) 강남구 (Nam-gu) 박결 (parkg17) 윤현철 (hotgake) 이현빈 (hyunbeen)
 
