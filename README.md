@@ -65,7 +65,7 @@ An extension of the Dark Knight and Stockfish open source projects, I developed 
 
 다크 나이트 (Dark Knight)와 스톡 피쉬 (Stockfish) 오픈 소스 프로젝트의 연장선에서 지난 겨울 취미 프로젝트로 이것을 개발했습니다. 이 프로젝트를 유지할 수 있도록 공동 개발자를 찾고 있습니다.
 
-# Goals(목표)
+## Goals(목표)
 
 1. Move to Stockfish 8
 2. Develop multiplayer using Play Games
@@ -86,13 +86,13 @@ Kindly send me pull requests and/or shoot a message at avijitg22@gmail.com if yo
 
 친절하게 개선 요청을 받고 있으니 avijitg22@gmail.com에서 메시지를 보내주십시오. 고맙습니다.
 
-# KWoC 2016
+## KWoC 2016
 
 *Chesstastic* is participating in Kharagpur Winter of Code 2016. Please join this [Facebook Group](https://www.facebook.com/groups/1814965085382388/) to ask questions and discuss.
 
 *Chesstastic*은 코드 2016의 Kharagpur Winter에 참여하고 있습니다.이 [페이스북 그룹](https://www.facebook.com/groups/1814965085382388/) 에 가입하여 질문하고 토론하십시오.
 
-# Screenshots:
+## Screenshots:
 
 ![Screenshot](http://i.imgur.com/iy1zEtP.png)
 ![Screenshot](http://i.imgur.com/WlD1w0b.png)
@@ -104,7 +104,7 @@ Kindly send me pull requests and/or shoot a message at avijitg22@gmail.com if yo
 ![Screenshot](http://i.imgur.com/FhEWYd9.png)
 
 
-# License
+## License
 
 
 GNU GPL V3
