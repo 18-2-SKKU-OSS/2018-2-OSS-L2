@@ -26,15 +26,15 @@ import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * This Activity appears as a dialog. It lists any paired devices and
- * ÀÌ acitvity´Â ´ÙÀÌ¾ó·Î±×·Î ³ªÅ¸³­´Ù. ±× Áö¿ª¿¡¼­ ³ªÅ¸³ª´Â Å½ÁöµÈ ÀåÄ¡, Æä¾îµÈ ÀåÄ¡°¡ ¿­°ÅµÊ.
+ * ì´ acitvityëŠ” ë‹¤ì´ì–¼ë¡œê·¸ë¡œ ë‚˜íƒ€ë‚œë‹¤. ê·¸ ì§€ì—­ì—ì„œ ë‚˜íƒ€ë‚˜ëŠ” íƒì§€ëœ ì¥ì¹˜, í˜ì–´ëœ ì¥ì¹˜ê°€ ì—´ê±°ë¨.
  * devices detected in the area after discovery. When a device is chosen
- * ±â±â°¡ À¯Àú·Î ºÎÅÍ ¼±ÅÃ µÉ¶§, ±â±âÀÇ macÁÖ¼Ò°¡ result internet¿¡ ÀÖ´Â parent activity¿¡°Ô Àü¼ÛµÈ´Ù.
+ * ê¸°ê¸°ê°€ ìœ ì €ë¡œ ë¶€í„° ì„ íƒ ë ë•Œ, ê¸°ê¸°ì˜ macì£¼ì†Œê°€ result internetì— ìˆëŠ” parent activityì—ê²Œ ì „ì†¡ëœë‹¤.
  * by the user, the MAC address of the device is sent back to the parent
  * Activity in the result Intent.
  */
 public class DeviceListActivity extends Activity {
     // Debugging
-    // µğ¹ö±ë
+    // ë””ë²„ê¹…
     private static final String TAG = "DeviceListActivity";
     private static final boolean D = true;
 
@@ -42,7 +42,7 @@ public class DeviceListActivity extends Activity {
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
 
     // Member fields
-    // ¸â¹ö ÇÊµå
+    // ë©¤ë²„ í•„ë“œ
     private BluetoothAdapter mBtAdapter;
     private ArrayAdapter<String> mPairedDevicesArrayAdapter;
     private ArrayAdapter<String> mNewDevicesArrayAdapter;
@@ -56,11 +56,11 @@ public class DeviceListActivity extends Activity {
         setContentView(R.layout.device_list);
 
         // Set result CANCELED incase the user backs out
-        // »ç¿ëÀÚ°¡ ºüÁú ¶§ °á°ú°ªÀ» canceled·Î ¼³Á¤
+        // ì‚¬ìš©ìê°€ ë¹ ì§ˆ ë•Œ ê²°ê³¼ê°’ì„ canceledë¡œ ì„¤ì • 
         setResult(Activity.RESULT_CANCELED);
 
         // Initialize the button to perform device discovery
-        // ±â±â Å½»ö ¼öÇà ¹öÆ° ÃÊ±âÈ­
+        // ê¸°ê¸° íƒìƒ‰ ìˆ˜í–‰ ë²„íŠ¼ ì´ˆê¸°í™”
         Button scanButton = (Button) findViewById(R.id.button_scan);
         scanButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -75,37 +75,37 @@ public class DeviceListActivity extends Activity {
         mNewDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.device_name);
 
         // Find and set up the ListView for paired devices
-        // Æä¾îµÈ ±â±â
+        // í˜ì–´ëœ ê¸°ê¸°
         ListView pairedListView = (ListView) findViewById(R.id.paired_devices);
         pairedListView.setAdapter(mPairedDevicesArrayAdapter);
         pairedListView.setOnItemClickListener(mDeviceClickListener);
 
         // Find and set up the ListView for newly discovered devices
-        // »õ·Î ¹ß°ßµÈ ±â±â
+        // ìƒˆë¡œ ë°œê²¬ëœ ê¸°ê¸°
         ListView newDevicesListView = (ListView) findViewById(R.id.new_devices);
         newDevicesListView.setAdapter(mNewDevicesArrayAdapter);
         newDevicesListView.setOnItemClickListener(mDeviceClickListener);
 
         // Register for broadcasts when a device is discovered
-        // ±â±â°¡ ¹ß°ßµÇ¾úÀ» ¶§ broadcast¿¡ µî·Ï
+        // ê¸°ê¸°ê°€ ë°œê²¬ë˜ì—ˆì„ ë•Œ broadcastì— ë“±ë¡
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         this.registerReceiver(mReceiver, filter);
 
         // Register for broadcasts when discovery has finished
-        // Å½»öÀÌ ³¡³µÀ» ¶§ broadcast¿¡ µî·Ï
+        // íƒìƒ‰ì´ ëë‚¬ì„ ë•Œ broadcastì— ë“±ë¡
         filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         this.registerReceiver(mReceiver, filter);
 
         // Get the local Bluetooth adapter
-        // local ºí·çÅõ½º ¾î´ğÅÍ °¡Á®¿È
+        // local ë¸”ë£¨íˆ¬ìŠ¤ ì–´ëŒ‘í„° ê°€ì ¸ì˜´
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
         // Get a set of currently paired devices
-        // Æä¾îµÈ ±â±âµé °¡Á®¿È
+        // í˜ì–´ëœ ê¸°ê¸°ë“¤ ê°€ì ¸ì˜´
         Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
 
         // If there are paired devices, add each one to the ArrayAdapter
-        // Æä¾îµÈ ±â±âÀÌ¸é, °¢°¢À» array adapter¿¡ Ãß°¡
+        // í˜ì–´ëœ ê¸°ê¸°ì´ë©´, ê°ê°ì„ array adapterì— ì¶”ê°€
         if (pairedDevices.size() > 0) {
             findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
             for (BluetoothDevice device : pairedDevices) {
@@ -122,25 +122,25 @@ public class DeviceListActivity extends Activity {
         super.onDestroy();
 
         // Make sure we're not doing discovery anymore
-        // Å½»öÀ» ´õ ÀÌ»ó ÇÏÁö ¾ÊÀ½
+        // íƒìƒ‰ì„ ë” ì´ìƒ í•˜ì§€ ì•ŠìŒ
         if (mBtAdapter != null) {
             mBtAdapter.cancelDiscovery();
         }
 
         // Unregister broadcast listeners
-        // broadcast listener µî·Ï Ãë¼Ò
+        // broadcast listener ë“±ë¡ ì·¨ì†Œ
         this.unregisterReceiver(mReceiver);
     }
 
     /**
      * Start device discover with the BluetoothAdapter
-     * ºí·çÅõ½º ¾î´ğÅÍ¿Í ±â±â Å½»ö ½ÃÀÛ
+     * ë¸”ë£¨íˆ¬ìŠ¤ ì–´ëŒ‘í„°ì™€ ê¸°ê¸° íƒìƒ‰ ì‹œì‘
      */
     private void doDiscovery() {
         if (D) Log.d(TAG, "doDiscovery()");
 
         // Indicate scanning in the title
-        // title ³ªÅ¸³¿
+        // title ë‚˜íƒ€ëƒ„
         setProgressBarIndeterminateVisibility(true);
         setTitle(R.string.scanning);
 
@@ -148,25 +148,25 @@ public class DeviceListActivity extends Activity {
         findViewById(R.id.title_new_devices).setVisibility(View.VISIBLE);
 
         // If we're already discovering, stop it
-        // ÀÌ¹Ì Å½»öÁßÀÌ¸é ¸ØÃã
+        // ì´ë¯¸ íƒìƒ‰ì¤‘ì´ë©´ ë©ˆì¶¤
         if (mBtAdapter.isDiscovering()) {
             mBtAdapter.cancelDiscovery();
         }
 
         // Request discover from BluetoothAdapter
-        // ºí·çÅõ½º¾î´ğÅÍ·Î ºÎÅÍ Å½»ö ¿äÃ»
+        // ë¸”ë£¨íˆ¬ìŠ¤ì–´ëŒ‘í„°ë¡œ ë¶€í„° íƒìƒ‰ ìš”ì²­
         mBtAdapter.startDiscovery();
     }
 
     // The on-click listener for all devices in the ListViews
     private OnItemClickListener mDeviceClickListener = new OnItemClickListener() {
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
-            // Å½»ö Ãë¼Ò
+            // íƒìƒ‰ ì·¨ì†Œ
             // Cancel discovery because it's costly and we're about to connect
             mBtAdapter.cancelDiscovery();
 
             // Get the device MAC address, which is the last 17 chars in the View
-            // mac ÁÖ¼Ò ¹Ş¾Æ¿È
+            // mac ì£¼ì†Œ ë°›ì•„ì˜´
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
 
@@ -175,33 +175,33 @@ public class DeviceListActivity extends Activity {
             intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
 
             // Set result and finish this Activity
-            // °á°ú ÁöÁ¤ ÈÄ, ÀÌ activity ³¡³»±â
+            // ê²°ê³¼ ì§€ì • í›„, ì´ activity ëë‚´ê¸°
             setResult(Activity.RESULT_OK, intent);
             finish();
         }
     };
 
     // The BroadcastReceiver that listens for discovered devices and
-    // Å½»öµÈ ±â±â¸¦ listenÇÏ´Â broadcast receiver
+    // íƒìƒ‰ëœ ê¸°ê¸°ë¥¼ listení•˜ëŠ” broadcast receiver
     // changes the title when discovery is finished
-    // title º¯°æ, Å½»öÀÌ ³¡³µÀ» ¶§
+    // title ë³€ê²½, íƒìƒ‰ì´ ëë‚¬ì„ ë•Œ
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
 
             // When discovery finds a device
-            // ±â±â¸¦ Å½»öÇßÀ» ¶§
+            // ê¸°ê¸°ë¥¼ íƒìƒ‰í–ˆì„ ë•Œ
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // Get the BluetoothDevice object from the Intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // If it's already paired, skip it, because it's been listed already
-                // ÀÌ¹Ì Æä¾î µÇ¾úÀ» ¶§, ÀÌ¹Ì listµÇ¾î ÀÖ±â ¶§¹®¿¡ °Ç³Ê ¶Ü.
+                // ì´ë¯¸ í˜ì–´ ë˜ì—ˆì„ ë•Œ, ì´ë¯¸ listë˜ì–´ ìˆê¸° ë•Œë¬¸ì— ê±´ë„ˆ ëœ€.
                 if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
                     mNewDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
                 }
             // When discovery is finished, change the Activity title
-            // Å½»öÀÌ ³¡³µÀ» ¶§, activity title ¹Ù²Ş.
+            // íƒìƒ‰ì´ ëë‚¬ì„ ë•Œ, activity title ë°”ê¿ˆ.
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 setProgressBarIndeterminateVisibility(false);
                 setTitle(R.string.select_device);
