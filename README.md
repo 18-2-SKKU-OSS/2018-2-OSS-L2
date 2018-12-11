@@ -69,6 +69,8 @@ An extension of the Dark Knight and Stockfish open source projects, I developed 
 2. Develop multiplayer using Play Games
 3. Fix the bluetooth gaming functionality
 
+<br>
+
 1. 스톡 피쉬 8로 이동
 2. Play 게임을 이용한 멀티 플레이어 개발
 3. 블루투스 게임 기능 수정
