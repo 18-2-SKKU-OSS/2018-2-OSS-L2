@@ -12,7 +12,7 @@ public class NativePipedProcess {
 	}
 
 	/** Start process. */
-	// ÇÁ·Î¼¼½º ½ÃÀÛ
+	// í”„ë¡œì„¸ìŠ¤ ì‹œì‘ 
 	public final void initialize() {
 		if (!processAlive) {
 			startProcess();
@@ -21,7 +21,7 @@ public class NativePipedProcess {
 	}
 
 	/** Shut down process. */
-	// ÇÁ·Î¼¼½º Á¾·á
+	// í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ
 	public final void shutDown() {
 		if (processAlive) {
 			writeLineToProcess("quit");
@@ -31,15 +31,15 @@ public class NativePipedProcess {
 
 	/**
 	 * Read a line from the process.
-	 * ÇÁ·Î¼¼½º·Î ºÎÅÍ ÇÑÁÙ ÀĞ¾î¿È
+	 * í”„ë¡œì„¸ìŠ¤ë¡œ ë¶€í„° í•œì¤„ ì½ì–´ì˜´
 	 * @param timeoutMillis Maximum time to wait for data
-	 * µ¥ÀÌÅÍ ±â´Ù¸®´Â ÃÖ´ë ½Ã°£
+	 * ë°ì´í„° ê¸°ë‹¤ë¦¬ëŠ” ìµœëŒ€ ì‹œê°„
 	 * @return The line, without terminating newline characters,
-	 * ¶óÀÎ, Á¾·áÇÏ´Â °³Çà ¹®ÀÚ ¾øÀÌ
+	 * ë¼ì¸, ì¢…ë£Œí•˜ëŠ” ê°œí–‰ ë¬¸ì ì—†ì´
 	 *         or empty string if no data available,
-	 * °¡´ÉÇÑ µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é empty string
+	 * ê°€ëŠ¥í•œ ë°ì´í„°ê°€ ì—†ìœ¼ë©´ empty string
 	 *         or null if I/O error.
-	 * ÀÎÇ² ¾Æ¿ôÇ² ¿¡·¯½Ã null
+	 * ì¸í’‹ ì•„ì›ƒí’‹ ì—ëŸ¬ì‹œ null
 	 */
 	public final String readLineFromProcess(int timeoutMillis) {
 		String ret = readFromProcess(timeoutMillis);
@@ -52,27 +52,27 @@ public class NativePipedProcess {
 	}
 
 	/** Write a line to the process. \n will be added automatically. */
-	// ÇÁ·Î¼¼½º¿¡ ÇÑ ÁÙ ¾¸. °³Çà ¹®ÀÚ°¡ ÀÚµ¿ÀûÀ¸·Î Ãß°¡µÊ.
+	// í”„ë¡œì„¸ìŠ¤ì— í•œ ì¤„ ì”€. ê°œí–‰ ë¬¸ìê°€ ìë™ì ìœ¼ë¡œ ì¶”ê°€ë¨.
 	public final synchronized void writeLineToProcess(String data) {
 //		System.out.printf("GUI -> Engine: %s\n", data);
 		writeToProcess(data + "\n");
 	}
 
 	/** Start the child process. */
-	// ÀÚ½Ä ÇÁ·Î¼¼½º ½ÃÀÛ
+	// ìì‹ í”„ë¡œì„¸ìŠ¤ ì‹œì‘
 	private final native void startProcess();
 
 	/**
 	 * Read a line of data from the process.
-	 * ÇÁ·Î¼¼½º·Î ºÎÅÍ µ¥ÀÌÅÍ¸¦ ÇÑ ÁÙ ÀĞ¾î¿È
+	 * í”„ë¡œì„¸ìŠ¤ë¡œ ë¶€í„° ë°ì´í„°ë¥¼ í•œ ì¤„ ì½ì–´ì˜´
 	 * Return as soon as there is a full line of data to return, 
-	 * ¹İÈ¯ÇÒ ÀüÃ¼ µ¥ÀÌÅÍ »¡¸® ¹İÈ¯ÇÏ°Å³ª
+	 * ë°˜í™˜í•  ì „ì²´ ë°ì´í„° ë¹¨ë¦¬ ë°˜í™˜í•˜ê±°ë‚˜
 	 * or when timeoutMillis milliseconds have passed.
-	 * milliseconds Áö³µÀ» ¶§
+	 * milliseconds ì§€ë‚¬ì„ ë•Œ
 	 */
 	private final native String readFromProcess(int timeoutMillis);
 
 	/** Write data to the process. */
-	// ÇÁ·Î¼¼½º¿¡ µ¥ÀÌÅÍ ÀÛ¼º
+	// í”„ë¡œì„¸ìŠ¤ì— ë°ì´í„° ì‘ì„±
 	private final native void writeToProcess(String data);
 }
