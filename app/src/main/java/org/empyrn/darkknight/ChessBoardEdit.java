@@ -40,7 +40,9 @@ public class ChessBoardEdit extends ChessBoard {
 	}
 
 	int extraPieces(int x, int y) {
-		if (y == -1) { // White pieces
+		if (y == -1) { 
+			// White pieces
+			// 하얀색 말 
 			switch (x) {
 			case 0: return Piece.WKING;
 			case 1: return Piece.WQUEEN;
