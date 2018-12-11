@@ -81,7 +81,7 @@ Kindly send me pull requests and/or shoot a message at avijitg22@gmail.com if yo
 
 *Chesstastic* is participating in Kharagpur Winter of Code 2016. Please join this [Facebook Group](https://www.facebook.com/groups/1814965085382388/) to ask questions and discuss.
 
-* Chesstastic *은 코드 2016의 Kharagpur Winter에 참여하고 있습니다.이 [Facebook Group] (https://www.facebook.com/groups/1814965085382388/)에 가입하여 질문하고 토론하십시오.
+*Chesstastic*은 코드 2016의 Kharagpur Winter에 참여하고 있습니다.이 [Facebook Group] (https://www.facebook.com/groups/1814965085382388/)에 가입하여 질문하고 토론하십시오.
 
 # Screenshots:
 
@@ -109,17 +109,17 @@ GNU GPL V3
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
-     Chesstastic은 자유 소프트웨어입니다. 재배포 및 / 또는 수정할 수 있습니다.
-     GNU 일반 공중 사용 허가서 (GNU General Public License)의 조건에 따라
-     자유 소프트웨어 재단, 라이센스 버전 3 또는
-     (귀하의 선택에 따라) 최신 버전.
-     이 프로그램은 유용 할 것이라는 희망으로 배포됩니다.
-     그러나 어떠한 보증도하지 않습니다. 묵시적 보증없이
-     상품성 또는 특정 목적에의 적합성. 자세한 내용은
-     GNU 일반 공중 사용 허가서 (GNU General Public License).
+    Chesstastic은 자유 소프트웨어입니다. 재배포 및 / 또는 수정할 수 있습니다.
+    GNU 일반 공중 사용 허가서 (GNU General Public License)의 조건에 따라
+    자유 소프트웨어 재단, 라이센스 버전 3 또는
+    (귀하의 선택에 따라) 최신 버전.
+    이 프로그램은 유용 할 것이라는 희망으로 배포됩니다.
+    그러나 어떠한 보증도하지 않습니다. 묵시적 보증없이
+    상품성 또는 특정 목적에의 적합성. 자세한 내용은
+    GNU 일반 공중 사용 허가서 (GNU General Public License).
 
 Additional term:
 
 ```You *MAY NOT* sell this app or any modification of it for commercial purposes. This is intended to be free and open source software.```
 
-```당신은 이 응용 프로그램을 상업적 목적을 위해 수정 판매  할수 없습니다. 이프로그램은 자유 소프트웨어 및 오픈 소스 소프트웨어를위한 것입니다. "
+```당신은 이 응용 프로그램을 상업적 목적을 위해 수정 판매할 수 없습니다. 이프로그램은 자유 소프트웨어 및 오픈소스 소프트웨어를 위한 것입니다. "
