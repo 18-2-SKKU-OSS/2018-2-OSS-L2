@@ -194,6 +194,8 @@ public class ChessController {
 		this.maxDepth = maxDepth;
 	}
 
+	/* Set file name in Book */
+	/* 저장할 파일이름을 설정한다. */
 	public final void setBookFileName(String bookFileName) {
 		if (!this.bookFileName.equals(bookFileName)) {
 			this.bookFileName = bookFileName;
@@ -224,6 +226,8 @@ public class ChessController {
 		boolean searchResultWanted = true;
 	}
 
+	/* Search Info Object */
+	/* 이동에 따라 탐색정보를 갱신하여 담아두는 객체 */
 	SearchStatus ss = new SearchStatus();
         // bring game mode setting and start new game
 	// gameMode 설정을 받아 새로운 게임을 시작한다.
