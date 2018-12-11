@@ -182,7 +182,7 @@ public class ChessController {
 		pgnOptions = options;
 		listener = new SearchListener();
 	}
-
+        // set max depth usinh external option , this information is used in tree search
 	// MaxDepth 는 외부 옵션에 의해 설정되며,
 	// 이 정보를 TreeSearch 에서 탐색 조건을 결정하기위해
 	// 사용한다.
@@ -225,7 +225,7 @@ public class ChessController {
 	}
 
 	SearchStatus ss = new SearchStatus();
-
+        // bring game mode setting and start new game
 	// gameMode 설정을 받아 새로운 게임을 시작한다.
 	// gameMode
 	public final void newGame(GameMode gameMode) {
