@@ -25,6 +25,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.WindowManager;
 
+// class to load the png file and use as image in game
+//png파일을 불러들여 game에서 이미지로 사용하는 클래스
 public class LoadPGN extends ActionBarActivity {
     private int theme;
     private int choice;
