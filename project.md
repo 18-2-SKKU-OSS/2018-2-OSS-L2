@@ -18,7 +18,7 @@ practice mate positions, solve puzzles, play online (FICS), chromecast
 
 -------------------- Comparison with other projects English version -----------------------
 
-Other chess-related projects
+#### Other chess-related projects
 https://github.com/jcarolus/android-chess - Unlike this project, it shows the remaining words
 
 https://github.com/johngunderman/g_chess - It's hard to know where your score is displayed
@@ -29,7 +29,7 @@ https://sourceforge.net/projects/jmcg/ - computer multiplayer is possible instea
 
 The correct file is missing
 
-Android Games
+#### Android Games
 practice mate positions, solve puzzles, play online (FICS), chromecast
 
 
