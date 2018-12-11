@@ -20,6 +20,10 @@ practice mate positions, solve puzzles, play online (FICS), chromecast
 
 비교한 프로젝트를 깃허브 사이트에 올려져있는 경우 watch를 실시하여 팀프로젝트와 비교하며 개발을 실시한다.
 
+![Screenshot](https://i.imgur.com/t4jaYWM.png)
+
+![Screenshot](https://i.imgur.com/hSi2lNV.png)
+
 -------------------- Comparison with other projects English version -----------------------
 
 #### Other chess-related projects
@@ -39,3 +43,7 @@ practice mate positions, solve puzzles, play online (FICS), chromecast
 #### Application plan
 
 If the comparative project has been posted on the feather hub site, watch it and compare it with the team project and develop it.
+
+![Screenshot](https://i.imgur.com/t4jaYWM.png)
+
+![Screenshot](https://i.imgur.com/hSi2lNV.png)
