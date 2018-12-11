@@ -9,7 +9,7 @@
 
 ***
 
-* Name: **강남구**(Gang Nam Gu)
+* Name: **강남구**(Kang Nam Gu)
 * Mail: skarn2158@naver.com
 * ID : Nam-gu
 * SID: 2017311512
@@ -126,4 +126,4 @@ Additional term:
 
 ```You *MAY NOT* sell this app or any modification of it for commercial purposes. This is intended to be free and open source software.```
 
-```당신은 이 응용 프로그램을 상업적 목적을 위해 수정 판매할 수 없습니다. 이프로그램은 자유 소프트웨어 및 오픈소스 소프트웨어를 위한 것입니다.```
+```당신은 이 응용 프로그램을 상업적 목적을 위해 수정 판매할 수 *없습니다*. 이프로그램은 자유 소프트웨어 및 오픈소스 소프트웨어를 위한 것입니다.```
