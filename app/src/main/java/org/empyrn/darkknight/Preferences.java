@@ -42,7 +42,8 @@ import android.widget.ImageView;
 	    }
 	}
 }*/
-
+// The class responsible for the color of the screen of the program
+//프로그램의 화면의 컬러를 담당하는 클래스
 public class Preferences extends ActionBarActivity {
 	
 	public static Context contextOfApplication;
