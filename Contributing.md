@@ -14,13 +14,13 @@
 ## Roles and activities by participating students
 
 Code management 
-Kang Ji Soo (Knowater) Gang Nam Gu (Nam-gu) Park Gyeol (parkg17) Yoon Hyun Cheol (hotgake) Lee Hyun Been (hyunbeen)
+Kang Ji Soo (Knowater) Kang Nam Gu (Nam-gu) Park Gyeol (parkg17) Yoon Hyun Cheol (hotgake) Lee Hyun Been (hyunbeen)
 
 Issue management 
 Park Gyeol (parkg17) Lee Hyun Been (hyunbeen)
 
 Wiki Management 
-Kang Ji Soo (Knowater) Gang Nam Gu (Nam-gu)
+Kang Ji Soo (Knowater) Kang Nam Gu (Nam-gu)
 
 Project management 
 Yoon Hyun Cheol (hotgake)
@@ -35,7 +35,7 @@ Yoon Hyun Cheol (hotgake)
 
 2. 버전 관리에서 새 프로젝트 선택
 
-3.이 프로젝트에 github repo 링크 추가
+3. 이 프로젝트에 github repo 링크 추가
 
 4. 지점을 만들고 문제를 시작하거나 버그를 발견하면 직접 만듭니다. 마스터로부터 풀 요청을 보내지 마십시오.
 
