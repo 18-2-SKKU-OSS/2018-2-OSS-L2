@@ -73,7 +73,7 @@ Check [Contributing Guidelines](CONTRIBUTING.md) on how to get started if you wi
 
 Kindly send me pull requests and/or shoot a message at avijitg22@gmail.com if you are in or have improvements! Thank you.
 
-기여하고자하는 경우 시작하는 방법에 대해서는 [Contribution Guidelines] (CONTRIBUTING.md)를 확인하십시오.
+기여하고자하는 경우 시작하는 방법에 대해서는 [Contribution Guidelines](Contributing.md)를 확인하십시오.
 
 친절하게 개선 요청을 받고 있으니 avijitg22@gmail.com에서 메시지를 보내주십시오. 고맙습니다.
 
