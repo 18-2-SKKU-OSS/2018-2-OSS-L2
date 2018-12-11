@@ -42,8 +42,12 @@
 * **See the Wiki for more details:** https://github.com/18-2-SKKU-OSS/2018-2-OSS-L2/wiki
 * **더 구체적인 내용은 Wiki 참조 :** https://github.com/18-2-SKKU-OSS/2018-2-OSS-L2/wiki
 
-* **Main Project Finish Github Address:** https://github.com/AvijitGhosh82/material-chess-android
+* **Main Project Github Address:** https://github.com/AvijitGhosh82/material-chess-android
 * **메인 프로젝트 깃허브 주소 :** https://github.com/AvijitGhosh82/material-chess-android
+
+* **Team Project Github Address:** https://18-2-skku-oss.github.io/2018-2-OSS-L2/
+* **팀 프로젝트 깃허브 주소 :** https://18-2-skku-oss.github.io/2018-2-OSS-L2/
+
 
 ***
 
