@@ -13,7 +13,7 @@ import org.empyrn.darkknight.gamelogic.UndoInfo;
 
 /**
  * A computer algorithm player.
- * ÄÄÇ»ÅÍ ¾Ë°í¸®Áò ÇÃ·¹ÀÌ¾î
+ * ì»´í“¨í„° ì•Œê³ ë¦¬ì¦˜ í”Œë ˆì´ì–´ 
  */
 public class ComputerPlayer {
     public static String engineName = "";
@@ -71,7 +71,7 @@ public class ComputerPlayer {
     }
 
 	/** Convert a string to tokens by splitting at whitespace characters. */
-	// °ø¹éÀ» ±âÁØÀ¸·Î ¹®ÀÚ¿­À» ÅäÅ«È­ ÇÔ
+	// ê³µë°±ì„ ê¸°ì¤€ìœ¼ë¡œ ë¬¸ìì—´ì„ í† í°í™” í•¨
     private final String[] tokenize(String cmdLine) {
         cmdLine = cmdLine.trim();
         return cmdLine.split("\\s+");
@@ -100,7 +100,7 @@ public class ComputerPlayer {
 	}
 	
 	/** Stop the engine process. */
-	// ¿£Áø ÇÁ·Î¼¼½º Á¤Áö
+	// ì—”ì§„ í”„ë¡œì„¸ìŠ¤ ì •ì§€
     public final void shutdownEngine() {
     	if (npp != null) {
     		npp.shutDown();
@@ -197,7 +197,7 @@ public class ComputerPlayer {
     }
 
 	/** Wait for engine to respond with "bestmove". While waiting, monitor and report search info. */
-	// ¿£ÁøÀÌ bestmove·Î ÀÀ´äÇÒ ¶§ ±îÁö ±â´Ù¸². ±â´Ù¸®´Â µ¿¾È Á¤º¸¸¦ °üÂûÇÏ°í º¸°íÇÔ.
+	// ì—”ì§„ì´ bestmoveë¡œ ì‘ë‹µí•  ë•Œ ê¹Œì§€ ê¸°ë‹¤ë¦¼. ê¸°ë‹¤ë¦¬ëŠ” ë™ì•ˆ ì •ë³´ë¥¼ ê´€ì°°í•˜ê³  ë³´ê³ í•¨.
 	private final String monitorEngine(Position pos) {
 		// Monitor engine response
     	clearInfo();
@@ -223,7 +223,7 @@ public class ComputerPlayer {
     		notifyGUI(pos);
 			try {
 				Thread.sleep(100); // 10 GUI updates per second is enough
-				// ÃÊ´ç 10 GUI ¾÷µ¥ÀÌÆ®¸é ÃæºĞÇÔ.
+				// ì´ˆë‹¹ 10 GUI ì—…ë°ì´íŠ¸ë©´ ì¶©ë¶„í•¨.
 			} catch (InterruptedException e) {
 			}
     	}
@@ -245,7 +245,7 @@ public class ComputerPlayer {
     	}
 
 		// If no legal moves, there is nothing to analyze
-		// legal move°¡ ¾ø´Ù¸é ºĞ¼®ÇÒ °ÍÀÌ ¾øÀ½
+		// legal moveê°€ ì—†ë‹¤ë©´ ë¶„ì„í•  ê²ƒì´ ì—†ìŒ
         ArrayList<Move> moves = new MoveGen().pseudoLegalMoves(currPos);
         moves = MoveGen.removeIllegal(currPos, moves);
         if (moves.size() == 0)
@@ -271,9 +271,9 @@ public class ComputerPlayer {
     }
 
     /** Check if a draw claim is allowed, possibly after playing "move".
-	 * draw claimÀÌ Çã¿ëµÇ´Â Áö È®ÀÎ, move ÈÄ¿¡
+	 * draw claimì´ í—ˆìš©ë˜ëŠ” ì§€ í™•ì¸, move í›„ì—
      * @param move The move that may have to be made before claiming draw.
-	 * claiming draw Àü¿¡ ¸¸µé¾î Á®¾ß ÇÏ´Â ÀÌµ¿
+	 * claiming draw ì „ì— ë§Œë“¤ì–´ ì ¸ì•¼ í•˜ëŠ” ì´ë™
      * @return The draw string that claims the draw, or empty string if draw claim not valid.
      */
     private String canClaimDraw(Position pos, long[] posHashList, int posHashListSize, Move move) {
@@ -388,15 +388,15 @@ public class ComputerPlayer {
     		}
     	} catch (NumberFormatException nfe) {
 			// Ignore
-			// ¹«½Ã
+			// ë¬´ì‹œ
     	} catch (ArrayIndexOutOfBoundsException aioob) {
 			// Ignore
-			// ¹«½Ã
+			// ë¬´ì‹œ
     	}
 	}
 
 	/** Notify GUI about search statistics. */
-	// GUI¿¡ °Ë»ö Åë°è ¾Ë¸²
+	// GUIì— ê²€ìƒ‰ í†µê³„ ì•Œë¦¼
     private final void notifyGUI(Position pos) {
         if (listener == null)
     		return;
