@@ -26,7 +26,7 @@ public class BluetoothGameController {
 	private static final boolean D = true;
 
 	// Message types sent from the BluetoothGameService Handler
-	// ºí·çÅõ½º°ÔÀÓ¼­ºñ½º ÇÚµé·¯·Î ºÎÅÍ º¸³»Áø ¸Ş½ÃÁö Å¸ÀÔ
+	// ë¸”ë£¨íˆ¬ìŠ¤ê²Œì„ì„œë¹„ìŠ¤ í•¸ë“¤ëŸ¬ë¡œ ë¶€í„° ë³´ë‚´ì§„ ë©”ì‹œì§€ íƒ€ì… 
 	public static final int MESSAGE_STATE_CHANGE = 1;
 	public static final int MESSAGE_READ = 2;
 	public static final int MESSAGE_WRITE = 3;
@@ -34,7 +34,7 @@ public class BluetoothGameController {
 	public static final int MESSAGE_TOAST = 5;
 
 	// Key names received from the BluetoothGameService Handler
-	// ºí·çÅõ½º°ÔÀÓ¼­ºñ½º ÇÚµé·¯·ÎºÎÅÍ ¹ŞÀº key name
+	// ë¸”ë£¨íˆ¬ìŠ¤ê²Œì„ì„œë¹„ìŠ¤ í•¸ë“¤ëŸ¬ë¡œë¶€í„° ë°›ì€ key name
 	public static final String DEVICE_NAME = "device_name";
 	public static final String TOAST = "toast";
 
@@ -42,7 +42,7 @@ public class BluetoothGameController {
 	private static final int REQUEST_CONNECT_DEVICE = 1;
 	private static final int REQUEST_ENABLE_BT = 2;
 
-	// °¢°¢ÀÇ º¯¼öµé¿¡ ´ëÇÑ ¼³¸í ¹× ¿ä¾à
+	// ê°ê°ì˜ ë³€ìˆ˜ë“¤ì— ëŒ€í•œ ì„¤ëª… ë° ìš”ì•½
 	// Name of the connected device
 	private String mConnectedDeviceName = null;
 	// String buffer for outgoing messages
@@ -65,7 +65,7 @@ public class BluetoothGameController {
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
 		// if the adapter is null, then Bluetooth is not supported
-		// ¾î´ğÅÍ°¡ nullÀÏ¶§, ºí·çÅõ½º Áö¿øÀ» ÇÏÁö ¾ÊÀ½
+		// ì–´ëŒ‘í„°ê°€ nullì¼ë•Œ, ë¸”ë£¨íˆ¬ìŠ¤ ì§€ì›ì„ í•˜ì§€ ì•ŠìŒ
 		if (mBluetoothAdapter == null) {
 			Toast.makeText(context, "Bluetooth is not available",
 					Toast.LENGTH_LONG).show();
@@ -89,7 +89,7 @@ public class BluetoothGameController {
 		Log.d(TAG, "setupBluetoothService()");
 
 		// Initialize the BluetoothGameService to perform bluetooth connections
-		// ºí·çÅõ½º ¿¬°áÀ» À§ÇÑ ºí·çÅõ½º°ÔÀÓ¼­ºñ½º ÃÊ±âÈ­
+		// ë¸”ë£¨íˆ¬ìŠ¤ ì—°ê²°ì„ ìœ„í•œ ë¸”ë£¨íˆ¬ìŠ¤ê²Œì„ì„œë¹„ìŠ¤ ì´ˆê¸°í™”
 		mGameService = new BluetoothGameService(context, mHandler);
 		mGameService.start();
 	}
@@ -101,24 +101,24 @@ public class BluetoothGameController {
 
 	/**
 	 * Sends a message.
-	 * ¸Ş½ÃÁö¸¦ º¸³¿
+	 * ë©”ì‹œì§€ë¥¼ ë³´ëƒ„
 	 * 
 	 * @param message
 	 *            A string of text to send.
-	 * Àü´ŞÇÒ ¹®ÀÚ¿­
+	 * ì „ë‹¬í•  ë¬¸ìì—´
 	 */
 	private void sendMessage(String message) {
-		// ¹«¾ğ°¡ ÇÏ±â Àü¿¡ ¿¬°áÀÌ µÇ¾îÀÖ´ÂÁö ¿ì¼± È®ÀÎÇÔ
+		// ë¬´ì–¸ê°€ í•˜ê¸° ì „ì— ì—°ê²°ì´ ë˜ì–´ìˆëŠ”ì§€ ìš°ì„  í™•ì¸í•¨
 		// Check that we're actually connected before trying anything
 		if (mGameService.getState() != BluetoothGameService.STATE_CONNECTED) {
 			return;
 		}
 
 		// Check that there's actually something to send
-		// º¸³»Áö´Â °ÍÀÌ ½ÇÁ¦·Î ÀÖ´ÂÁö È®ÀÎ
+		// ë³´ë‚´ì§€ëŠ” ê²ƒì´ ì‹¤ì œë¡œ ìˆëŠ”ì§€ í™•ì¸
 		if (message.length() > 0) {
 			// Get the message bytes and tell the BluetoothGameService to write
-			// ¸Ş½ÃÁö ¹ÙÀÌÆ®¸¦ ¹Ş°í ºí·çÅõ½º°ÔÀÓ¼­ºñ½º¿¡°Ô writeÇÏ¶ó°í ¿äÃ»ÇÔ
+			// ë©”ì‹œì§€ ë°”ì´íŠ¸ë¥¼ ë°›ê³  ë¸”ë£¨íˆ¬ìŠ¤ê²Œì„ì„œë¹„ìŠ¤ì—ê²Œ writeí•˜ë¼ê³  ìš”ì²­í•¨
 			byte[] send = message.getBytes();
 			mGameService.write(send);
 		}
@@ -129,7 +129,7 @@ public class BluetoothGameController {
 	}
 
 	// The action listener for the EditText widget, to listen for the return key
-	// ¹İÈ¯ °ªÀ» ¹ŞÀ½
+	// ë°˜í™˜ ê°’ì„ ë°›ìŒ
 	/*
 	 * private TextView.OnEditorActionListener mWriteListener = new
 	 * TextView.OnEditorActionListener() { public boolean
@@ -141,7 +141,7 @@ public class BluetoothGameController {
 	 */
 
 	// The Handler that gets information back from the BluetoothGameService
-	// ºí·çÅõ½º°ÔÀÓ¼­¹ö·Î ºÎÅÍ ¹ŞÀº Á¤º¸¸¦ ÇÚµé·¯°¡ °¡Á®¿È
+	// ë¸”ë£¨íˆ¬ìŠ¤ê²Œì„ì„œë²„ë¡œ ë¶€í„° ë°›ì€ ì •ë³´ë¥¼ í•¸ë“¤ëŸ¬ê°€ ê°€ì ¸ì˜´
 	private final Handler mHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -195,24 +195,24 @@ public class BluetoothGameController {
 			case MESSAGE_WRITE:
 				byte[] writeBuf = (byte[]) msg.obj;
 				// construct a string from the buffer
-				// ¹öÆÛ·Î ºÎÅÍ ¹®ÀÚ¿­À» ±¸¼º
+				// ë²„í¼ë¡œ ë¶€í„° ë¬¸ìì—´ì„ êµ¬ì„±
 				String writeMessage = new String(writeBuf);
 				System.out.println("BLUETOOTH_out: " + writeMessage);
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
 				// construct a string from the valid bytes in the buffer
-				// ¹öÆÛ¿¡ ÀÖ´Â À¯È¿ÇÑ ¹ÙÀÌÆ®ÀÇ ¹®ÀÚ¿­À» ±¸¼º
+				// ë²„í¼ì— ìˆëŠ” ìœ íš¨í•œ ë°”ì´íŠ¸ì˜ ë¬¸ìì—´ì„ êµ¬ì„±
 				String readMessage = new String(readBuf, 0, msg.arg1);
 
 				// make the move from Bluetooth
-				// ºí·çÅõ½º·Î ºÎÅÍ move¸¦ ¸¸µë
+				// ë¸”ë£¨íˆ¬ìŠ¤ë¡œ ë¶€í„° moveë¥¼ ë§Œë“¬
 				Move m = TextIO.UCIstringToMove(readMessage);
 				ctrl.makeBluetoothMove(m);
 				break;
 			case MESSAGE_DEVICE_NAME:
 				// save the connected device's name
-				// ¿¬°áµÈ ±â±âÀÇ ÀÌ¸§À» ÀúÀåÇÔ
+				// ì—°ê²°ëœ ê¸°ê¸°ì˜ ì´ë¦„ì„ ì €ì¥í•¨
 				mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
 				break;
 			case MESSAGE_TOAST:
@@ -230,17 +230,17 @@ public class BluetoothGameController {
 		switch (requestCode) {
 		case REQUEST_CONNECT_DEVICE:
 			// when DeviceListActivity returns with a device to connect
-			// device list activity°¡ ¿¬°áÇÒ ±â±â¿Í ¸®ÅÏµÉ ¶§
+			// device list activityê°€ ì—°ê²°í•  ê¸°ê¸°ì™€ ë¦¬í„´ë  ë•Œ
 			if (resultCode == Activity.RESULT_OK) {
 				// get the device MAC address
-				// ±â±âÀÇ MAC ÁÖ¼Ò¸¦ ¹ŞÀ½
+				// ê¸°ê¸°ì˜ MAC ì£¼ì†Œë¥¼ ë°›ìŒ
 				String address = data.getExtras().getString(
 						DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-				// ºí·çÅõ½ºµğ¹ÙÀÌ½º °´Ã¼¸¦ ¹ŞÀ½
+				// ë¸”ë£¨íˆ¬ìŠ¤ë””ë°”ì´ìŠ¤ ê°ì²´ë¥¼ ë°›ìŒ
 				// get the BLuetoothDevice object
 				BluetoothDevice device = mBluetoothAdapter
 						.getRemoteDevice(address);
-				// µğ¹ÙÀÌ½º¿Í ¿¬°áÇÏ·Á ½ÃµµÇÔ
+				// ë””ë°”ì´ìŠ¤ì™€ ì—°ê²°í•˜ë ¤ ì‹œë„í•¨
 				// attempt to connect to the device
 				mGameService.connect(device);
 			}
