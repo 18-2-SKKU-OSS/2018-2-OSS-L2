@@ -17,27 +17,27 @@ import android.util.Log;
 
 /**
  * This class does all the work for setting up and managing Bluetooth
- * ºí·çÅõ½º¸¦ ¼³Á¤ÇÏ°í °ü¸®ÇÏ´Â ÀÛ¾÷À» ÇÏ´Â Å¬·¡½º
+ * ë¸”ë£¨íˆ¬ìŠ¤ë¥¼ ì„¤ì •í•˜ê³  ê´€ë¦¬í•˜ëŠ” ì‘ì—…ì„ í•˜ëŠ” í´ë˜ìŠ¤ 
  * 
  * connections with other devices. It has a thread that listens for incoming
- * ´Ù¸¥ ±â±âµé°úÀÇ ¿¬°á. µé¾î¿À´Â ¿¬°áÀ» ¹Ş±âÀ§ÇÑ ¾²·¹µå¸¦ °¡Áø´Ù.
+ * ë‹¤ë¥¸ ê¸°ê¸°ë“¤ê³¼ì˜ ì—°ê²°. ë“¤ì–´ì˜¤ëŠ” ì—°ê²°ì„ ë°›ê¸°ìœ„í•œ ì“°ë ˆë“œë¥¼ ê°€ì§„ë‹¤.
  * 
  * connections, a thread for connecting with a device, and a thread for
- * ±â±â¿Í ¿¬°áÀ» ÇÏ±â À§ÇÑ ¾²·¹µå
+ * ê¸°ê¸°ì™€ ì—°ê²°ì„ í•˜ê¸° ìœ„í•œ ì“°ë ˆë“œ
  * 
  * performing data transmissions when connected.
- * ¿¬°áÀÌ µÇ¾úÀ» ¶§ µ¥ÀÌÅÍ Àü¼ÛÀ» À§ÇÑ ¾²·¹µå
+ * ì—°ê²°ì´ ë˜ì—ˆì„ ë•Œ ë°ì´í„° ì „ì†¡ì„ ìœ„í•œ ì“°ë ˆë“œ
  */
 
 
 public class BluetoothGameService {
 	// Debugging
-	// µğ¹ö±ë
+	// ë””ë²„ê¹…
 	private static final String TAG = "BluetoothGameControllerService";
 	private static final boolean D = true;
 
 	// Name for the SDP record when creating server socket
-	// ¼­¹ö ¼ÒÄÏÀÌ ¸¸µé¾î Á³À»¶§ SDP recordÀÇ ÀÌ¸§
+	// ì„œë²„ ì†Œì¼“ì´ ë§Œë“¤ì–´ ì¡Œì„ë•Œ SDP recordì˜ ì´ë¦„
 	private static final String NAME = "BluetoothGameController";
 
 	// Unique UUID for this application
@@ -53,12 +53,12 @@ public class BluetoothGameService {
 	private int mState;
 
 	// Constants that indicate the current connection state
-	// ÇöÀç »óÅÂ¸¦ ³ªÅ¸³»´Â »ó¼öµé
-	// ¾Æ¹«°Íµµ ÇÏÁö ¾ÊÀ»¶§ 0
-	// µé¾î¿À´Â ¿¬°áÀ» ¹ŞÀ»¶§ 1
-	// ³ª°¡´Â ¿¬°áÀ» ÃÊ±âÈ­ 2
-	// ÀåÄ¡¿Í ¿¬°á 3
-	// ¿¬°á ²÷±è 4
+	// í˜„ì¬ ìƒíƒœë¥¼ ë‚˜íƒ€ë‚´ëŠ” ìƒìˆ˜ë“¤
+	// ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•Šì„ë•Œ 0
+	// ë“¤ì–´ì˜¤ëŠ” ì—°ê²°ì„ ë°›ì„ë•Œ 1
+	// ë‚˜ê°€ëŠ” ì—°ê²°ì„ ì´ˆê¸°í™” 2
+	// ì¥ì¹˜ì™€ ì—°ê²° 3
+	// ì—°ê²° ëŠê¹€ 4
 	public static final int STATE_NONE = 0; // we're doing nothing
 	public static final int STATE_LISTEN = 1; // now listening for incoming
 												// connections
@@ -83,12 +83,12 @@ public class BluetoothGameService {
 	}
 
 	/**
-	 * ÇöÀç chat ¿¬°áÀÇ »óÅÂ¸¦ ¼³Á¤
+	 * í˜„ì¬ chat ì—°ê²°ì˜ ìƒíƒœë¥¼ ì„¤ì •
 	 * Set the current state of the chat connection
 	 * 
 	 * @param state
 	 *            An integer defining the current connection state
-	 * ÇöÀç ¿¬°á »óÅÂ¸¦ ÀúÀåÇÏ´Â º¯¼ö
+	 * í˜„ì¬ ì—°ê²° ìƒíƒœë¥¼ ì €ì¥í•˜ëŠ” ë³€ìˆ˜
 	 */
 	private synchronized void setState(int state) {
 		if (D)
@@ -97,14 +97,14 @@ public class BluetoothGameService {
 
 
 		// Give the new state to the Handler so the UI Activity can update
-		// ÇÚµé·¯¿¡°Ô »õ·Î¿î »óÅÂ ÁÜ. UI Activity°¡ ¾÷µ¥ÀÌÆ®¸¦ ÇÒ ¼ö ÀÖµµ·Ï
+		// í•¸ë“¤ëŸ¬ì—ê²Œ ìƒˆë¡œìš´ ìƒíƒœ ì¤Œ. UI Activityê°€ ì—…ë°ì´íŠ¸ë¥¼ í•  ìˆ˜ ìˆë„ë¡
 		mHandler.obtainMessage(BluetoothGameController.MESSAGE_STATE_CHANGE,
 				state, -1).sendToTarget();
 	}
 
 	/**
 	 * Return the current connection state.
-	 * ¿¬Àç ¿¬°á »óÅÂ °ªÀ» ¹İÈ¯ÇÔ
+	 * ì—°ì¬ ì—°ê²° ìƒíƒœ ê°’ì„ ë°˜í™˜í•¨
 	 */
 	public synchronized int getState() {
 		return mState;
@@ -113,30 +113,30 @@ public class BluetoothGameService {
 	/**
 	 * Start the chat service. Specifically start AcceptThread to begin a
 	 * session in listening (server) mode.
-	 * chat ¼­ºñ½º¸¦ ½ÃÀÛÇÔ
+	 * chat ì„œë¹„ìŠ¤ë¥¼ ì‹œì‘í•¨
 	 * 
-	 * accept thread°¡ ¸®½º´× ¸ğµå¿¡¼­ ¼¼¼ÇÀ» ½ÃÀÛÇÔ
+	 * accept threadê°€ ë¦¬ìŠ¤ë‹ ëª¨ë“œì—ì„œ ì„¸ì…˜ì„ ì‹œì‘í•¨
 	 */
 	public synchronized void start() {
 		if (D)
 			Log.d(TAG, "start");
 
 		// Cancel any thread attempting to make a connection
-		// ¿¬°áÀ» ÇÏ·Á°í ½ÃµµÇÏ´Â ¾²·¹µå¸¦ Ãë¼Ò
+		// ì—°ê²°ì„ í•˜ë ¤ê³  ì‹œë„í•˜ëŠ” ì“°ë ˆë“œë¥¼ ì·¨ì†Œ
 		if (mConnectThread != null) {
 			mConnectThread.cancel();
 			mConnectThread = null;
 		}
 
 		// Cancel any thread currently running a connection
-		// ÇöÀç ¿¬°áÇÏ´Â ¾²·¹µå Ãë¼Ò
+		// í˜„ì¬ ì—°ê²°í•˜ëŠ” ì“°ë ˆë“œ ì·¨ì†Œ
 		if (mConnectedThread != null) {
 			mConnectedThread.cancel();
 			mConnectedThread = null;
 		}
 
 		// Start the thread to listen on a BluetoothServerSocket
-		// ¾²·¹µå ½ÃÀÛ(ºí·çÅõ½º ¼­¹ö¼ÒÄÏ listen)
+		// ì“°ë ˆë“œ ì‹œì‘(ë¸”ë£¨íˆ¬ìŠ¤ ì„œë²„ì†Œì¼“ listen)
 		if (mAcceptThread == null) {
 			mAcceptThread = new AcceptThread();
 			mAcceptThread.start();
@@ -154,25 +154,25 @@ public class BluetoothGameService {
 
 	/**
 	 * Reset the service.
-	 * ¼­¹ö ¸®¼Â
+	 * ì„œë²„ ë¦¬ì…‹
 	 */
 	public synchronized void reset() {
 		// Cancel any thread attempting to make a connection
-		// ¿¬°áÀ» ÇÏ·Á°í ½ÃµµÇÏ´Â ¾²·¹µå¸¦ Ãë¼Ò
+		// ì—°ê²°ì„ í•˜ë ¤ê³  ì‹œë„í•˜ëŠ” ì“°ë ˆë“œë¥¼ ì·¨ì†Œ
 		if (mConnectThread != null) {
 			mConnectThread.cancel();
 			mConnectThread = null;
 		}
 
 		// Cancel any thread currently running a connection
-		// ÇöÀç ¿¬°áÇÏ´Â ¾²·¹µå Ãë¼Ò
+		// í˜„ì¬ ì—°ê²°í•˜ëŠ” ì“°ë ˆë“œ ì·¨ì†Œ
 		if (mConnectedThread != null) {
 			mConnectedThread.cancel();
 			mConnectedThread = null;
 		}
 
 		// Start the thread to listen on a BluetoothServerSocket
-		// ¾²·¹µå ½ÃÀÛ(ºí·çÅõ½º ¼­¹ö¼ÒÄÏ listen)
+		// ì“°ë ˆë“œ ì‹œì‘(ë¸”ë£¨íˆ¬ìŠ¤ ì„œë²„ì†Œì¼“ listen)
 		if (mAcceptThread == null) {
 			mAcceptThread = new AcceptThread();
 			mAcceptThread.start();
@@ -183,18 +183,18 @@ public class BluetoothGameService {
 
 	/**
 	 * Start the ConnectThread to initiate a connection to a remote device.
-	 * ±â±â¿Í ¿¬°áÀ» ½ÃÀÛÇÏ±â À§ÇØ connect thread ½ÃÀÛ
+	 * ê¸°ê¸°ì™€ ì—°ê²°ì„ ì‹œì‘í•˜ê¸° ìœ„í•´ connect thread ì‹œì‘
 	 * 
 	 * @param device
 	 *            The BluetoothDevice to connect
-	 * ¿¬°áÇÏ±â À§ÇÑ ºí·çÅõ½º ±â±â
+	 * ì—°ê²°í•˜ê¸° ìœ„í•œ ë¸”ë£¨íˆ¬ìŠ¤ ê¸°ê¸°
 	 */
 	public synchronized void connect(BluetoothDevice device) {
 		if (D)
 			Log.d(TAG, "connect to: " + device);
 
 		// Cancel any thread attempting to make a connection
-		// ¿¬°áÀ» ÇÏ·Á°í ½ÃµµÇÏ´Â ¾²·¹µå¸¦ Ãë¼Ò
+		// ì—°ê²°ì„ í•˜ë ¤ê³  ì‹œë„í•˜ëŠ” ì“°ë ˆë“œë¥¼ ì·¨ì†Œ
 		if (mState == STATE_CONNECTING) {
 			if (mConnectThread != null) {
 				mConnectThread.cancel();
@@ -203,14 +203,14 @@ public class BluetoothGameService {
 		}
 
 		// Cancel any thread currently running a connection
-		// ÇöÀç ¿¬°áÇÏ´Â ¾²·¹µå Ãë¼Ò
+		// í˜„ì¬ ì—°ê²°í•˜ëŠ” ì“°ë ˆë“œ ì·¨ì†Œ
 		if (mConnectedThread != null) {
 			mConnectedThread.cancel();
 			mConnectedThread = null;
 		}
 
 		// Start the thread to connect with the given device
-		// ¾²·¹µå ½ÃÀÛ(ºí·çÅõ½º ¼­¹ö¼ÒÄÏ listen)
+		// ì“°ë ˆë“œ ì‹œì‘(ë¸”ë£¨íˆ¬ìŠ¤ ì„œë²„ì†Œì¼“ listen)
 		mConnectThread = new ConnectThread(device);
 		mConnectThread.start();
 		setState(STATE_CONNECTING);
@@ -218,14 +218,14 @@ public class BluetoothGameService {
 
 	/**
 	 * Start the ConnectedThread to begin managing a Bluetooth connection
-	 * ºí·çÅõ¼ö ¿¬°áÀ» °ü¸®ÇÏ´Â °ÍÀ» ½ÃÀÛÇÏ±â À§ÇØ ¿¬°áµÈ ¾²·¹µå ½ÃÀÛ
+	 * ë¸”ë£¨íˆ¬ìˆ˜ ì—°ê²°ì„ ê´€ë¦¬í•˜ëŠ” ê²ƒì„ ì‹œì‘í•˜ê¸° ìœ„í•´ ì—°ê²°ëœ ì“°ë ˆë“œ ì‹œì‘
 	 * 
 	 * @param socket
 	 *            The BluetoothSocket on which the connection was made
-	 * ºí·çÅõ½º ¼ÒÄÏ ¿¬°áÀÌ µÇ´Â °÷
+	 * ë¸”ë£¨íˆ¬ìŠ¤ ì†Œì¼“ ì—°ê²°ì´ ë˜ëŠ” ê³³
 	 * @param device
 	 *            The BluetoothDevice that has been connected
-	 * ºí·çÅõ½º ±â±â ¿¬°áµÊ
+	 * ë¸”ë£¨íˆ¬ìŠ¤ ê¸°ê¸° ì—°ê²°ë¨
 	 */
 	public synchronized void connected(BluetoothSocket socket,
 			BluetoothDevice device) {
@@ -233,14 +233,14 @@ public class BluetoothGameService {
 			Log.d(TAG, "connected");
 
 		// Cancel the thread that completed the connection
-		// ¿¬°áÀÌ ³¡³­ ¾²·¹µå cancel
+		// ì—°ê²°ì´ ëë‚œ ì“°ë ˆë“œ cancel
 		if (mConnectThread != null) {
 			mConnectThread.cancel();
 			mConnectThread = null;
 		}
 
 		// Cancel any thread currently running a connection
-		// ÇöÀç ¿¬°áÇÏ´Â ¾²·¹µå cancel
+		// í˜„ì¬ ì—°ê²°í•˜ëŠ” ì“°ë ˆë“œ cancel
 		if (mConnectedThread != null) {
 			mConnectedThread.cancel();
 			mConnectedThread = null;
@@ -248,19 +248,19 @@ public class BluetoothGameService {
 
 		// Cancel the accept thread because we only want to connect to one
 		// device
-		// ¹ŞÀÌÁø ¾²·¹µå cancel ÇÏ³ªÀÇ ±â±â¿¡¸¸ ¿¬°áÀ» ¿øÇÏ±â ¶§¹®¿¡
+		// ë°›ì´ì§„ ì“°ë ˆë“œ cancel í•˜ë‚˜ì˜ ê¸°ê¸°ì—ë§Œ ì—°ê²°ì„ ì›í•˜ê¸° ë•Œë¬¸ì—
 		if (mAcceptThread != null) {
 			mAcceptThread.cancel();
 			mAcceptThread = null;
 		}
 
 		// Start the thread to manage the connection and perform transmissions
-		// ¿¬°áÀ» °ü¸®ÇÏ°í Àü¼ÛÀ» ¼öÇàÇÏ´Â ¾²·¹µå ½ÃÀÛ
+		// ì—°ê²°ì„ ê´€ë¦¬í•˜ê³  ì „ì†¡ì„ ìˆ˜í–‰í•˜ëŠ” ì“°ë ˆë“œ ì‹œì‘
 		mConnectedThread = new ConnectedThread(socket);
 		mConnectedThread.start();
 
 		// Send the name of the connected device back to the UI Activity
-		// ¿¬°áµÈ ±â±âÀÇ ÀÌ¸§À» UI Activity¿¡ º¸³»ÁÜ
+		// ì—°ê²°ëœ ê¸°ê¸°ì˜ ì´ë¦„ì„ UI Activityì— ë³´ë‚´ì¤Œ
 		Message msg = mHandler
 				.obtainMessage(BluetoothGameController.MESSAGE_DEVICE_NAME);
 		Bundle bundle = new Bundle();
@@ -273,7 +273,7 @@ public class BluetoothGameService {
 
 	/**
 	 * Stop all threads
-	 * ¸ğµç ¾²·¹µå Á¤Áö
+	 * ëª¨ë“  ì“°ë ˆë“œ ì •ì§€
 	 */
 	public synchronized void stop() {
 		if (D)
@@ -311,29 +311,29 @@ public class BluetoothGameService {
 	 */
 	public void write(byte[] out) {
 		// Create temporary object
-		// ÀÓ½Ã °´Ã¼ »ı¼º
+		// ì„ì‹œ ê°ì²´ ìƒì„±
 		ConnectedThread r;
 		// Synchronize a copy of the ConnectedThread
-		// ¿¬°áµÈ ¾²·¹µåÀÇ º¹»çº»°ú µ¿±âÈ­
+		// ì—°ê²°ëœ ì“°ë ˆë“œì˜ ë³µì‚¬ë³¸ê³¼ ë™ê¸°í™”
 		synchronized (this) {
 			if (mState != STATE_CONNECTED)
 				return;
 			r = mConnectedThread;
 		}
 		// Perform the write unsynchronized
-		// write ºñµ¿±âÈ­ ¼öÇà
+		// write ë¹„ë™ê¸°í™” ìˆ˜í–‰
 		r.write(out);
 	}
 
 	/**
 	 * Indicate that the connection attempt failed and notify the UI Activity.
-	 * ¿¬°á ½Ãµµ ½ÇÆĞ¸¦ ³ªÅ¸³¿
+	 * ì—°ê²° ì‹œë„ ì‹¤íŒ¨ë¥¼ ë‚˜íƒ€ëƒ„
 	 */
 	private void connectionFailed() {
 		setState(STATE_LISTEN);
 
 		// Send a failure message back to the Activity
-		// ½ÇÆĞ ¸Ş¼¼Áö º¸³¿
+		// ì‹¤íŒ¨ ë©”ì„¸ì§€ ë³´ëƒ„
 		Message msg = mHandler
 				.obtainMessage(BluetoothGameController.MESSAGE_TOAST);
 		Bundle bundle = new Bundle();
@@ -345,7 +345,7 @@ public class BluetoothGameService {
 
 	/**
 	 * Indicate that the connection was lost and notify the UI Activity.
-	 * ¿¬°áÀÌ ²÷¾îÁ³À½À» ³ªÅ¸³»°í UI activity¿¡ ¾Ë¸²
+	 * ì—°ê²°ì´ ëŠì–´ì¡ŒìŒì„ ë‚˜íƒ€ë‚´ê³  UI activityì— ì•Œë¦¼
 	 */
 	private void connectionLost() {
 		setState(STATE_LOST_CONNECTION);
@@ -353,22 +353,22 @@ public class BluetoothGameService {
 
 	/**
 	 * This thread runs while listening for incoming connections. It behaves
-	 * ÀÌ ¾²·¹µå´Â µé¾î¿À´Â ¿¬°áÀ» listenÇÏ´Â Áß ¼öÇàµÊ.
+	 * ì´ ì“°ë ˆë“œëŠ” ë“¤ì–´ì˜¤ëŠ” ì—°ê²°ì„ listení•˜ëŠ” ì¤‘ ìˆ˜í–‰ë¨.
 	 * like a server-side client. It runs until a connection is accepted (or
-	 * server-side client Ã³·³ ÀÛµ¿ÇÔ.
-	 * ¿¬°áÀÌ acceptµÇ°Å³ª cancelµÉ¶§ ±îÁö µ¿ÀÛÇÔ.
+	 * server-side client ì²˜ëŸ¼ ì‘ë™í•¨.
+	 * ì—°ê²°ì´ acceptë˜ê±°ë‚˜ cancelë ë•Œ ê¹Œì§€ ë™ì‘í•¨.
 	 * until cancelled).
 	 */
 	private class AcceptThread extends Thread {
 		// The local server socket
-		// ·ÎÄÃ ¼­¹ö ¼ÒÄÏ
+		// ë¡œì»¬ ì„œë²„ ì†Œì¼“
 		private final BluetoothServerSocket mmServerSocket;
 
 		public AcceptThread() {
 			BluetoothServerSocket tmp = null;
 
 			// Create a new listening server socket
-			// »õ·Î¿î ¸®½º´× ¼­¹ö ¼ÒÄÏ ¸¸µë
+			// ìƒˆë¡œìš´ ë¦¬ìŠ¤ë‹ ì„œë²„ ì†Œì¼“ ë§Œë“¬
 			try {
 				tmp = mAdapter
 						.listenUsingRfcommWithServiceRecord(NAME, MY_UUID);
@@ -385,12 +385,12 @@ public class BluetoothGameService {
 			BluetoothSocket socket = null;
 
 			// Listen to the server socket if we're not connected
-			// ¿¬°áÀÌ µÇ¾îÀÖÁö ¾Ê´Ù¸é ¼­¹ö ¼ÒÄÏÀ» µéÀ½.
+			// ì—°ê²°ì´ ë˜ì–´ìˆì§€ ì•Šë‹¤ë©´ ì„œë²„ ì†Œì¼“ì„ ë“¤ìŒ.
 			while (mState != STATE_CONNECTED) {
 				try {
 					// This is a blocking call and will only return on a
 					// successful connection or an exception
-					// blocking call -> ¿¬°á¿¡ ¼º°øÇÏ°Å³ª exception µÑ Áß ÇÏ³ª ¹İÈ¯
+					// blocking call -> ì—°ê²°ì— ì„±ê³µí•˜ê±°ë‚˜ exception ë‘˜ ì¤‘ í•˜ë‚˜ ë°˜í™˜
 					socket = mmServerSocket.accept();
 				} catch (IOException e) {
 					Log.e(TAG, "accept() failed", e);
@@ -398,18 +398,18 @@ public class BluetoothGameService {
 				}
 
 				// If a connection was accepted
-				// ¿¬°áÀÌ acceptµÉ¶§
+				// ì—°ê²°ì´ acceptë ë•Œ
 				if (socket != null) {
 					synchronized (BluetoothGameService.this) {
 						switch (mState) {
 						case STATE_LISTEN:
 						case STATE_CONNECTING:
 							// Situation normal. Start the connected thread.
-							// ¿¬°áµÈ ¾²·¹µå ½ÃÀÛ
+							// ì—°ê²°ëœ ì“°ë ˆë“œ ì‹œì‘
 							connected(socket, socket.getRemoteDevice());
 							break;
 						case STATE_NONE:
-						// ÁØºñ°¡ ¾ÈµÇ¾îÀÖ°Å³ª ¿¬°áµÇÁö ¾Ê¾Ò´Ù¸é »õ·Î¿î ¼ÒÄÏ Á¾·á
+						// ì¤€ë¹„ê°€ ì•ˆë˜ì–´ìˆê±°ë‚˜ ì—°ê²°ë˜ì§€ ì•Šì•˜ë‹¤ë©´ ìƒˆë¡œìš´ ì†Œì¼“ ì¢…ë£Œ
 						case STATE_CONNECTED:
 							// Either not ready or already connected. Terminate
 							// new socket.
@@ -441,7 +441,7 @@ public class BluetoothGameService {
 
 	/**
 	 * This thread runs while attempting to make an outgoing connection with a
-	 * ÀÌ ¾²·¹µå´Â ±â±â¿Í ³ª°¡´Â ¿¬°áÀÌ ½Ãµµ µÉ¶§ ¼öÇàµÊ.
+	 * ì´ ì“°ë ˆë“œëŠ” ê¸°ê¸°ì™€ ë‚˜ê°€ëŠ” ì—°ê²°ì´ ì‹œë„ ë ë•Œ ìˆ˜í–‰ë¨.
 	 * device. It runs straight through; the connection either succeeds or
 	 * fails.
 	 */
@@ -455,7 +455,7 @@ public class BluetoothGameService {
 
 			// Get a BluetoothSocket for a connection with the
 			// given BluetoothDevice
-			// ÁÖ¾îÁø ºí·çÅõ½º ¼ÒÄÏ°ú ¿¬°áµÇ¾îÀÖ´Â ºí·çÅõ½º ¼ÒÄÏÀ» ¹Ş¾Æ¿È
+			// ì£¼ì–´ì§„ ë¸”ë£¨íˆ¬ìŠ¤ ì†Œì¼“ê³¼ ì—°ê²°ë˜ì–´ìˆëŠ” ë¸”ë£¨íˆ¬ìŠ¤ ì†Œì¼“ì„ ë°›ì•„ì˜´
 			try {
 				tmp = device.createRfcommSocketToServiceRecord(MY_UUID);
 			} catch (IOException e) {
@@ -469,15 +469,15 @@ public class BluetoothGameService {
 			setName("ConnectThread");
 
 			// Always cancel discovery because it will slow down a connection
-			// ¹ß°ßÀ» cancelÇÔ, ¿¬°áÀ» ´À¸®°Ô ÇÒ ¼ö ÀÖ±â ¶§¹®¿¡
+			// ë°œê²¬ì„ cancelí•¨, ì—°ê²°ì„ ëŠë¦¬ê²Œ í•  ìˆ˜ ìˆê¸° ë•Œë¬¸ì—
 			mAdapter.cancelDiscovery();
 
 			// Make a connection to the BluetoothSocket
-			// ºí·çÅõ½º ¼ÒÄÏ°úÀÇ ¿¬°á
+			// ë¸”ë£¨íˆ¬ìŠ¤ ì†Œì¼“ê³¼ì˜ ì—°ê²°
 			try {
 				// This is a blocking call and will only return on a
 				// successful connection or an exception
-				// blocking call -> ¼º°øÀû ¿¬°á or exceptionÀ» ¹İÈ¯ÇÔ
+				// blocking call -> ì„±ê³µì  ì—°ê²° or exceptionì„ ë°˜í™˜í•¨
 				mmSocket.connect();
 			} catch (IOException e) {
 				connectionFailed();
@@ -490,19 +490,19 @@ public class BluetoothGameService {
 							e2);
 				}
 				// Start the service over to restart listening mode
-				// µè±â ¸ğµå ´Ù½Ã ½ÃÀÛ À§ÇØ ¼­ºñ½º ½ÃÀÛ
+				// ë“£ê¸° ëª¨ë“œ ë‹¤ì‹œ ì‹œì‘ ìœ„í•´ ì„œë¹„ìŠ¤ ì‹œì‘
 				BluetoothGameService.this.start();
 				return;
 			}
 
 			// Reset the ConnectThread because we're done
-			// ³¡³µ±â ¶§¹®¿¡ ¿¬°áµÈ ¾²·¹µå ÃÊ±âÈ­
+			// ëë‚¬ê¸° ë•Œë¬¸ì— ì—°ê²°ëœ ì“°ë ˆë“œ ì´ˆê¸°í™”
 			synchronized (BluetoothGameService.this) {
 				mConnectThread = null;
 			}
 
 			// Start the connected thread
-			// ¿¬°áµÈ ¾²·¹µå ½ÃÀÛ
+			// ì—°ê²°ëœ ì“°ë ˆë“œ ì‹œì‘
 			connected(mmSocket, mmDevice);
 		}
 
@@ -517,9 +517,9 @@ public class BluetoothGameService {
 
 	/**
 	 * This thread runs during a connection with a remote device. It handles all
-	 * ¿ø°İ ±â±â¿Í ¿¬°áÇÏ°í ÀÖÀ» ¶§ ÀÛµ¿ÇÏ´Â ¾²·¹µå
+	 * ì›ê²© ê¸°ê¸°ì™€ ì—°ê²°í•˜ê³  ìˆì„ ë•Œ ì‘ë™í•˜ëŠ” ì“°ë ˆë“œ
 	 * incoming and outgoing transmissions.
-	 * ¸ğµç ÀÔÃâ·Â Àü¼ÛµéÀ» °ü¸®ÇÑ´Ù.
+	 * ëª¨ë“  ì…ì¶œë ¥ ì „ì†¡ë“¤ì„ ê´€ë¦¬í•œë‹¤.
 	 */
 	private class ConnectedThread extends Thread {
 		private final BluetoothSocket mmSocket;
@@ -533,7 +533,7 @@ public class BluetoothGameService {
 			OutputStream tmpOut = null;
 
 			// Get the BluetoothSocket input and output streams
-			// ºí·çÅõ½º¼ÒÄÏ ÀÔÃâ·Â ½ºÆ®¸²À» ¹Ş¾Æ¿È
+			// ë¸”ë£¨íˆ¬ìŠ¤ì†Œì¼“ ì…ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ì„ ë°›ì•„ì˜´
 			try {
 				tmpIn = socket.getInputStream();
 				tmpOut = socket.getOutputStream();
@@ -551,11 +551,11 @@ public class BluetoothGameService {
 			int bytes;
 
 			// Keep listening to the InputStream while connected
-			// ¿¬°á ÁßÀÏ ¶§ ÀÔ·Â½ºÆ®¸²À» °è¼ÓÇØ¼­ listen
+			// ì—°ê²° ì¤‘ì¼ ë•Œ ì…ë ¥ìŠ¤íŠ¸ë¦¼ì„ ê³„ì†í•´ì„œ listen
 			while (true) {
 				try {
 					// Read from the InputStream
-					// ÀÔ·Â½ºÆ®¸²À¸·Î ºÎÅÍ ÀĞ¾î¿È
+					// ì…ë ¥ìŠ¤íŠ¸ë¦¼ìœ¼ë¡œ ë¶€í„° ì½ì–´ì˜´
 					bytes = mmInStream.read(buffer);
 
 					// Send the obtained bytes to the UI Activity
@@ -582,7 +582,7 @@ public class BluetoothGameService {
 				mmOutStream.write(buffer);
 
 				// Share the sent message back to the UI Activity
-				// º¸³½ ¸Ş½ÃÁö °øÀ¯
+				// ë³´ë‚¸ ë©”ì‹œì§€ ê³µìœ 
 				mHandler.obtainMessage(BluetoothGameController.MESSAGE_WRITE,
 						-1, -1, buffer).sendToTarget();
 			} catch (IOException e) {
