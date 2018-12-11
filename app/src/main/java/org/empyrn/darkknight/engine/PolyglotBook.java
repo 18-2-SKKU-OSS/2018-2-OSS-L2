@@ -25,7 +25,7 @@ public class PolyglotBook {
 	}
 
 	/** Compute a polyglot hash key corresponding to a position. */
-	// À§Ä¡¿¡ ¸Â´Â ¿©·¯ ¾ğ¾îÀÇ ÇØ½Ã Å°¸¦ °è»ê
+	// ìœ„ì¹˜ì— ë§ëŠ” ì—¬ëŸ¬ ì–¸ì–´ì˜ í•´ì‹œ í‚¤ë¥¼ ê³„ì‚° 
 	public static long getHashKey(Position pos) {
 		// Pieces
 		long key = 0;
@@ -62,14 +62,14 @@ public class PolyglotBook {
 		}
 
 		// Side to move
-		// ¿·À¸·Î ÀÌµ¿
+		// ì˜†ìœ¼ë¡œ ì´ë™
 		if (pos.whiteMove)
 			key ^= hashRandoms[780];
 
 		return key;
 	}
 
-	// ÇØ½Ã ·£´ı °ª
+	// í•´ì‹œ ëœë¤ ê°’
 	static private long hashRandoms[] = {
 		0x9D39247E33776D41L, 0x2AF7398005AAA5C7L, 0x44DB015024623547L, 0x9C15F73E62A76AE2L,
 		0x75834465489C0C89L, 0x3290AC3A203001BFL, 0x0FBBAD1F61042279L, 0xE83A908FF2FB60CAL,
@@ -270,7 +270,7 @@ public class PolyglotBook {
 	};
 
 	/** Return true if the external book is available. */
-	// ¿ÜºÎ bookÀ» »ç¿ëÇÒ ¼ö ÀÖ´Â °æ¿ì Âü ¹İÈ¯
+	// ì™¸ë¶€ bookì„ ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ê²½ìš° ì°¸ ë°˜í™˜
 	final boolean enabled() {
 		return bookFile.canRead();
 	}
@@ -318,7 +318,7 @@ public class PolyglotBook {
 			}
 
 			// Convert castling moves
-			// ·è ÀÌµ¿ º¯È¯
+			// ë£© ì´ë™ ë³€í™˜
 			if ((from == 4) && (pos.getPiece(from) == Piece.WKING)) {
 				if (to == 7)
 					to = 6;
@@ -346,12 +346,12 @@ public class PolyglotBook {
 	}
 
 	/** Return true if key1 < key2, when compared as unsigned longs. */
-	// key2°¡ key1º¸´Ù Å©¸é Âü ¹İÈ¯, unsigned longÀ¸·Î ºñ±³ÇÒ ¶§
+	// key2ê°€ key1ë³´ë‹¤ í¬ë©´ ì°¸ ë°˜í™˜, unsigned longìœ¼ë¡œ ë¹„êµí•  ë•Œ
 	private final boolean keyLess(long key1, long key2) {
 		if ((key1 < 0) == (key2 < 0)) { // Same sign, normal compare
 			return key1 < key2;
 		} else { // The negative number is largest
-			// À½¼ö°¡ °¡Àå Å­
+			// ìŒìˆ˜ê°€ ê°€ì¥ í¼
 			return key2 < 0;
 		}
 	}
@@ -364,7 +364,7 @@ public class PolyglotBook {
 			PGBookEntry ent = new PGBookEntry();
 			
 			// Find first entry with hash key >= wantedKey
-			// ÇØ½Ã°ªÀÌ ¿øÇÏ´Â Å°º¸´Ù Å©°Å³ª °°Àº Ã¹ ¹øÂ° Ç×¸ñ Ã£À½
+			// í•´ì‹œê°’ì´ ì›í•˜ëŠ” í‚¤ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ì€ ì²« ë²ˆì§¸ í•­ëª© ì°¾ìŒ
 			long lo = -1;
 			long hi = numEntries;
 			// ent[lo] < key <= ent[hi]
@@ -380,7 +380,7 @@ public class PolyglotBook {
 			}
 
 			// Read all entries with matching hash key
-			// ÇØ½Ã °ª°ú ¸ÅÄª µÇ´Â ¸ğµç Ç×¸ñµéÀ» ÀĞÀ½
+			// í•´ì‹œ ê°’ê³¼ ë§¤ì¹­ ë˜ëŠ” ëª¨ë“  í•­ëª©ë“¤ì„ ì½ìŒ
 			List<BookEntry> ret = new ArrayList<BookEntry>();
 			long entNo = hi;
 			while (entNo < numEntries) {
