@@ -81,7 +81,7 @@ Kindly send me pull requests and/or shoot a message at avijitg22@gmail.com if yo
 
 *Chesstastic* is participating in Kharagpur Winter of Code 2016. Please join this [Facebook Group](https://www.facebook.com/groups/1814965085382388/) to ask questions and discuss.
 
-*Chesstastic*은 코드 2016의 Kharagpur Winter에 참여하고 있습니다.이 [Facebook Group] (https://www.facebook.com/groups/1814965085382388/)에 가입하여 질문하고 토론하십시오.
+*Chesstastic*은 코드 2016의 Kharagpur Winter에 참여하고 있습니다.이 [Facebook Group](https://www.facebook.com/groups/1814965085382388/) 에 가입하여 질문하고 토론하십시오.
 
 # Screenshots:
 
