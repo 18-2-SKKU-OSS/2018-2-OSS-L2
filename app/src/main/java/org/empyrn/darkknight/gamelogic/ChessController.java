@@ -483,7 +483,9 @@ public class ChessController {
 
 	public final void gotoMove(int moveNr) {
 		boolean needUpdate = false;
-		while (game.currPos().fullMoveCounter > moveNr) { // Go backward
+		while (game.currPos().fullMoveCounter > moveNr) {
+			// Go backward
+			// 뒤로 가기
 			int before = game.currPos().fullMoveCounter * 2
 					+ (game.currPos().whiteMove ? 0 : 1);
 			undoMoveNoUpdate();
@@ -493,7 +495,9 @@ public class ChessController {
 				break;
 			needUpdate = true;
 		}
-		while (game.currPos().fullMoveCounter < moveNr) { // Go forward
+		while (game.currPos().fullMoveCounter < moveNr) { 
+			// Go forward
+		        // 앞으로 가기 
 			int before = game.currPos().fullMoveCounter * 2
 					+ (game.currPos().whiteMove ? 0 : 1);
 			redoMoveNoUpdate();
@@ -700,8 +704,12 @@ public class ChessController {
 							gui.computerMoveMade();
 							listener.clearSearchInfo();
 							stopComputerThinking();
-							stopAnalysis(); // To force analysis to restart for
-											// new position
+							stopAnalysis(); 
+							// To force analysis to restart for
+							// 분석을 강화 
+							
+							// new position
+							// 새로운 위치 
 							updateComputeThreads(true);
 							setSelection();
 							updateGUI();
