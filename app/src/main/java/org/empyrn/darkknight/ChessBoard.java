@@ -216,6 +216,7 @@ public class ChessBoard extends View {
 	}
 
     /** 체스말을 움직이는데 있어서 힌트를 제공하는 함수 */
+    /** Functions that provide hints for moving chess pieces */
 	private final void drawMoveHints(Canvas canvas) {
 		if (moveHints == null)
 			return;
@@ -272,7 +273,9 @@ public class ChessBoard extends View {
 		switch (p) {
 		default:
 		case Piece.EMPTY:
-			dr = null;		// don't do anything
+			dr = null;		
+			// don't do anything
+		        // 실행 금지 
 			break;
 		case Piece.WKING:
 			dr = getContext().getResources().getDrawable(R.drawable.wk);
@@ -376,8 +379,9 @@ public class ChessBoard extends View {
 		if (selectedSquare != -1) {
 			int p = pos.getPiece(selectedSquare);
 			if (!myColor(p)) {
-				setSelection(-1); // Remove selection of opponents last moving
-									// piece
+				setSelection(-1); 
+				// Remove selection of opponents last moving piece
+				// 마지막으로 움직이는 상대방의 선택을 제거합니다.
 			}
 		}
 
