@@ -890,6 +890,7 @@ public class GameTree {
         }
         if (wn + bn == 0) {
             // Only bishops. If they are all on the same color, the position is a draw.
+            // 비숍에서, 모든것들이 같은 색깔이면 그위치는 비기는 것이다.
             boolean bSquare = false;
             boolean wSquare = false;
             for (int x = 0; x < 8; x++) {
@@ -913,6 +914,7 @@ public class GameTree {
 
 	
 	/** Keep track of current move and side to move. Used for move number printing. */
+        /** 현재위치를 기록하고 옆으로 이동하라. 이동숫자를 기록하는 것을 이용하라*/
 	private static final class MoveNumber {
 		final int moveNo;
 		final boolean wtm; // White to move
