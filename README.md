@@ -5,7 +5,7 @@
 * Mail: hotgake@gmail.com
 * ID : hotgake
 * SID: 2015314758
-* Project 관리, Code 관리 , 번역작업 및 주석관리
+* Project 관리, Code 관리 , 번역작업 및 주석관리, 문서작업
 
 ***
 
@@ -13,7 +13,7 @@
 * Mail: skarn2158@naver.com
 * ID : Nam-gu
 * SID: 2017311512
-* Wiki 관리, Code 관리, 번역작업 및 주석관리
+* Wiki 관리, Code 관리, 번역작업 및 주석관리, 문서작업
 
 ***
 * Name: **이현빈**
@@ -21,21 +21,21 @@
 * ID : hyunbeen
 * SID: 2014315355
 * 개인 깃허브 홈페이지: https://hyunbeen.github.io
-* Issue 관리, Code 관리, 번역작업 및 주석관리
+* Issue 관리, Code 관리, 번역작업 및 주석관리, 문서작업
 
 ***
 * Name: **박결**
 * Mail: parkg17@naver.com
 * ID : parkg17
 * SID: 2017312665
-* Issue 관리, Code 관리 ,번역작업 및 주석관리
+* Issue 관리, Code 관리 ,번역작업 및 주석관리, 문서작업
 
 ***
 * Name: **강지수**
 * Mail: kangjisu0403@gmail.com
 * ID : Knowater
 * SID: 2017313101
-* Wiki 관리, Code 관리, 번역작업 및 주석관리
+* Wiki 관리, Code 관리, 번역작업 및 주석관리, 문서작업
 
 ***
 
