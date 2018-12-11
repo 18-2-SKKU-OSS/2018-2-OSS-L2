@@ -26,7 +26,7 @@ import org.empyrn.darkknight.gamelogic.UndoInfo;
 
 /**
  * Implements an opening book.
- * book ½ÃÀÛ ¼öÇà
+ * book ì‹œì‘ ìˆ˜í–‰ 
  * 
  * @author petero
  */
@@ -39,14 +39,14 @@ public class Book {
             count = 1;
         }
     }
-    // º¯¼öµé ¼±¾ğ
+    // ë³€ìˆ˜ë“¤ ì„ ì–¸
     private static Map<Long, List<BookEntry>> bookMap;
     private static Random rndGen;
     private static int numBookMoves = -1;
     
     static PolyglotBook externalBook;
 
-    // book Å¬·¡½º
+    // book í´ë˜ìŠ¤
     public Book(boolean verbose) {
         if (numBookMoves < 0) {
             initBook(verbose);
@@ -58,7 +58,7 @@ public class Book {
 		externalBook.setBookFileName(bookFileName);
 	}
     
-    // book ½ÃÀÛ ÇÔ¼ö
+    // book ì‹œì‘ í•¨ìˆ˜
     private final void initBook(boolean verbose) {
         long t0 = System.currentTimeMillis();
         bookMap = new HashMap<Long, List<BookEntry>>();
@@ -111,7 +111,7 @@ public class Book {
     }
 
     /** Add a move to a position in the opening book. */
-    // opening book¿¡¼­ÀÇ À§Ä¡ ÀÌµ¿ Ãß°¡
+    // opening bookì—ì„œì˜ ìœ„ì¹˜ ì´ë™ ì¶”ê°€
     private final void addToBook(Position pos, Move moveToAdd) {
         List<BookEntry> ent = bookMap.get(pos.zobristHash());
         if (ent == null) {
@@ -131,7 +131,7 @@ public class Book {
     }
 
     /** Return a random book move for a position, or null if out of book. */
-    // book ÀÌµ¿ÀÇ ¹«ÀÛÀ§ ¼±ÅÃ°ª ¹İÈ¯, out of book ÀÏ½Ã null ¹İÈ¯
+    // book ì´ë™ì˜ ë¬´ì‘ìœ„ ì„ íƒê°’ ë°˜í™˜, out of book ì¼ì‹œ null ë°˜í™˜
     public final Move getBookMove(Position pos) {
     	List<BookEntry> bookMoves = getBookEntries(pos);
         if (bookMoves == null) {
@@ -145,9 +145,9 @@ public class Book {
             BookEntry be = bookMoves.get(i);
             if (!legalMoves.contains(be.move)) {
                 // If an illegal move was found, it means there was a hash collision,
-                // Àß¸øµÈ ÀÌµ¿ÀÏ ¶§, hash collision ¹ß»ı
+                // ì˜ëª»ëœ ì´ë™ì¼ ë•Œ, hash collision ë°œìƒ
                 // or a corrupt external book file.
-                // ¶Ç´Â ¿À·ù ¹ß»ı
+                // ë˜ëŠ” ì˜¤ë¥˜ ë°œìƒ
                 return null;
             }
             sum += getWeight(bookMoves.get(i).count);
@@ -165,7 +165,7 @@ public class Book {
         }
         // Should never get here
         // runtime exception
-        // ·±Å¸ÀÓ exception
+        // ëŸ°íƒ€ì„ exception
         throw new RuntimeException();
     }
 
@@ -209,7 +209,7 @@ public class Book {
         return new Pair<String, ArrayList<Move>>(ret.toString(), bookMoveList);
     }
 
-    // book.bin ÆÄÀÏ »ı¼º
+    // book.bin íŒŒì¼ ìƒì„±
     /** Creates the book.bin file. */
     public static void main(String[] args) throws IOException {
     	List<Byte> binBook = createBinBook();
@@ -250,7 +250,7 @@ public class Book {
     }
 
     /** Add a sequence of moves, starting from the initial position, to the binary opening book. */
-    // Ã¹ ¹øÂ° À§Ä¡¿¡¼­ ½ÃÀÛÇÏ´Â ÀÌµ¿µéÀ» binary opening book¿¡ Ãß°¡
+    // ì²« ë²ˆì§¸ ìœ„ì¹˜ì—ì„œ ì‹œì‘í•˜ëŠ” ì´ë™ë“¤ì„ binary opening bookì— ì¶”ê°€
     private static boolean addBookLine(String line, List<Byte> binBook) throws ChessParseError {
         Position pos = TextIO.readFEN(TextIO.startPosFEN);
         UndoInfo ui = new UndoInfo();
