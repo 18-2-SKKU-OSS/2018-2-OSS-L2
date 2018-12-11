@@ -51,6 +51,8 @@
 
 ***
 
+<br>
+
 ## Material Chess - ChessTastic Project Introduction(프로젝트 소개)
 
 ![Chesstastic Icon](http://i.imgur.com/ELIf2Bd.png)
@@ -74,6 +76,7 @@ An extension of the Dark Knight and Stockfish open source projects, I developed 
 1. 스톡 피쉬 8로 이동
 2. Play 게임을 이용한 멀티 플레이어 개발
 3. 블루투스 게임 기능 수정
+
 
 Check [Contributing Guidelines](Contributing.md) on how to get started if you wish to contribute.
 
