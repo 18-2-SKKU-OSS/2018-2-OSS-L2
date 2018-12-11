@@ -16,6 +16,10 @@ https://sourceforge.net/projects/jmcg/ - computer 대결이 아니라 multiplay�
 
 practice mate positions, solve puzzles, play online (FICS), chromecast
 
+#### 활용방안 
+
+비교한 프로젝트를 깃허브 사이트에 올려져있는 경우 watch를 실시하여 팀프로젝트와 비교하며 개발을 실시한다.
+
 -------------------- Comparison with other projects English version -----------------------
 
 #### Other chess-related projects
@@ -31,6 +35,3 @@ The correct file is missing
 
 #### Android Games
 practice mate positions, solve puzzles, play online (FICS), chromecast
-
-
-
