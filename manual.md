@@ -1,4 +1,4 @@
-chess program manual
+체스 프로그램 메뉴얼(chess program manual)
 
 ## 설치환경(install environment)
 컴퓨터를 통한 설치
