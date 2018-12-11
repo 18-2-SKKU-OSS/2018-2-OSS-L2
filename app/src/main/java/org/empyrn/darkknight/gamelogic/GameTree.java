@@ -943,19 +943,38 @@ public class GameTree {
       * 루트 노드는 이동이 없다는 점에서 특별합니다.
       */
     public static class Node {
-    	String moveStr;				// String representation of move leading to this node. Empty string root node.
-    	Move move;					// Computed on demand for better PGN parsing performance.
-    								// Subtrees of invalid moves will be dropped when detected.
-    								// Always valid for current node.
-    	private UndoInfo ui;		// Computed when move is computed
-    	String playerAction;		// Player action. Draw claim/offer/accept or resign.
+    	String moveStr;				
+	// String representation of move leading to this node. Empty string root node.
+	//이 노드에 이르는 이동의 문자열 표현. 빈 문자열 루트 노드입니다.
+    	Move move;					
+	// Computed on demand for better PGN parsing performance.
+    	// Subtrees of invalid moves will be dropped when detected.
+    	// Always valid for current node.
+	// 더 나은 PGN 구문 분석 성능을 요구하면서 계산됩니다.
+        // 무효 한 이동의 서브 트리가 검출되면 (자) 삭제됩니다.
+        // 현재 노드에는 항상 유효합니다.
+    	private UndoInfo ui;		
+	// Computed when move is computed
+        // 이동을 계산 
+    	String playerAction;		
+	// Player action. Draw claim/offer/accept or resign.
+        // 플레이어의 행동. 드로우 선언을 받을 것인지 포기할 것인지.
 
-    	int remainingTime;			// Remaining time in ms for side that played moveStr, or INT_MIN if unknown.
-    	int nag;					// Numeric annotation glyph
-    	String preComment;			// Comment before move
-    	String postComment;			// Comment after move
-    	
-    	private Node parent;		// Null if root node
+    	int remainingTime;			
+	// Remaining time in ms for side that played moveStr, or INT_MIN if unknown.
+	// 말이 이동시간중 남아있는 시간 
+    	int nag;					
+	// Numeric annotation glyph
+        // 숫자 표기 
+    	String preComment;			
+	// Comment before move
+	// 이동 전 코멘트
+    	String postComment;			
+	// Comment after move
+    	// 이동 후 코멘트
+    	private Node parent;		
+	// Null if root node
+	// 루트노드라면 널
     	int defaultChild;
     	private List<Node> children;
 
