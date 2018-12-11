@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 
+/* Code area to manage the color of square and arrow */
 /* Square과 Arrow의 색깔을 관리하는 코드 영역 */
 
 public class Appearance {
