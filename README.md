@@ -51,7 +51,7 @@
 
 ***
 
-## Material Chess - ChessTastic (프로젝트 소개 및 활동)
+## Material Chess - ChessTastic Project Introduction(프로젝트 소개)
 
 ![Chesstastic Icon](http://i.imgur.com/ELIf2Bd.png)
 
