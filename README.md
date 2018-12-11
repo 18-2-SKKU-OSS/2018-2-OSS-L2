@@ -73,7 +73,7 @@ An extension of the Dark Knight and Stockfish open source projects, I developed 
 2. Play 게임을 이용한 멀티 플레이어 개발
 3. 블루투스 게임 기능 수정
 
-Check [Contributing Guidelines](CONTRIBUTING.md) on how to get started if you wish to contribute.
+Check [Contributing Guidelines](Contributing.md) on how to get started if you wish to contribute.
 
 Kindly send me pull requests and/or shoot a message at avijitg22@gmail.com if you are in or have improvements! Thank you.
 
@@ -126,4 +126,4 @@ Additional term:
 
 ```You *MAY NOT* sell this app or any modification of it for commercial purposes. This is intended to be free and open source software.```
 
-```당신은 이 응용 프로그램을 상업적 목적을 위해 수정 판매할 수 없습니다. 이프로그램은 자유 소프트웨어 및 오픈소스 소프트웨어를 위한 것입니다. "
+```당신은 이 응용 프로그램을 상업적 목적을 위해 수정 판매할 수 없습니다. 이프로그램은 자유 소프트웨어 및 오픈소스 소프트웨어를 위한 것입니다.```
