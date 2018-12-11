@@ -21,7 +21,7 @@ public class TypefaceSpan extends MetricAffectingSpan {
    */
   public TypefaceSpan(Context context, String typefaceName) {
       mTypeface = sTypefaceCache.get(typefaceName);
-
+      // If the Typeface is not cached, it is called by the asset and cached.
       // Typeface가 캐시되어 있지 않은 경우 asset에서 불러와 캐시한다.
       if (mTypeface == null) {
           mTypeface = Typeface.createFromAsset(context.getApplicationContext()
